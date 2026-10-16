@@ -726,7 +726,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
   var sel = 0;
   var filtro = 'todos';
   var origem = null, aberto = false, topoPendente = false; // onde o post abre: 'row' (lista) ou 'cal' (semana do calendário)
-  var passo = 0; try { passo = Math.min(3, Math.max(0, +(localStorage.getItem('passo')||0))) || 0; } catch(e){}
+  var passo = 0; try { passo = Math.min(4, Math.max(0, +(localStorage.getItem('passo')||0))) || 0; } catch(e){}
   var CHK = {};   // checks/geral -> {dias,formato,objetivo,estrutura}
   var FMT_COR = {'Reels':'var(--f-reels)','Carrossel':'var(--f-carrossel)','Card único':'var(--f-card)','Stories':'var(--f-stories)'};
   var corFmt = function(f){ return FMT_COR[f] || 'var(--o-outro)'; };
@@ -781,10 +781,11 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
       { id:'dias', titulo:'Os dias estão certos?', sub:'Cada dia com post mostra o tema. Confira se caem nos dias que a cliente publica.' },
       { id:'formato', titulo:'Carrossel e reels estão bem distribuídos?', sub:'Formato + tema: o formato combina com o que o post vai contar?' },
       { id:'objetivo', titulo:'Os objetivos estão bem distribuídos?', sub:'Objetivo + tema: o objetivo está de acordo com o tema? Um por post; dois só quando um é Vender.' },
-      { id:'estrutura', titulo:'As estruturas criativas estão variadas?', sub:'Estrutura + tema: a estrutura serve pra esse tema?' }
+      { id:'estrutura', titulo:'As estruturas criativas estão variadas?', sub:'Estrutura + tema: a estrutura serve pra esse tema?' },
+      { id:'tudo', titulo:'Visão completa', sub:'Tudo junto em cada dia: formato, estrutura, objetivo, nível e tema. Clique num post pra abrir.' }
     ];
     var pa = PASSOS[passo];
-    h += '<div class="checks"><div class="passos" role="tablist">'+PASSOS.map(function(x,i){ return '<button role="tab" data-passo="'+i+'" aria-selected="'+(i===passo)+'" class="'+(CHK[x.id]?'feito':'')+'">'+(CHK[x.id]?'✓ ':'')+(i+1)+'. '+esc(['Dias','Formato','Objetivo','Estrutura'][i])+'</button>'; }).join('')+'</div>';
+    h += '<div class="checks"><div class="passos" role="tablist">'+PASSOS.map(function(x,i){ return '<button role="tab" data-passo="'+i+'" aria-selected="'+(i===passo)+'" class="'+(CHK[x.id]?'feito':'')+'">'+(CHK[x.id]?'✓ ':'')+(i<4?(i+1)+'. ':'👁 ')+esc(['Dias','Formato','Objetivo','Estrutura','Tudo junto'][i])+'</button>'; }).join('')+'</div>';
     h += '<div class="passo-head"><h2>'+esc(pa.titulo)+'</h2><p>'+esc(pa.sub)+'</p></div>';
 
     if (y && mn){
@@ -802,6 +803,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
           if (pa.id==='dias'){ txt=tema; }
           else if (pa.id==='formato'){ cor=corFmt(e.formato); txt='<span class="dim">'+esc(e.formato||'sem formato')+'</span>'+tema; }
           else if (pa.id==='objetivo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join('<br>') || 'sem objetivo')+'</span>'+tema; alerta = objInvalido(e)?'⚠️':''; }
+          else if (pa.id==='tudo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+icon(e.formato)+esc(e.formato||'sem formato')+' · '+esc(e.estrutura||'sem estrutura')+'</span>'+tema+'<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join(' + ') || 'sem objetivo')+(e.nivel?' · '+esc(String(e.nivel).split(' · ')[0]):'')+'</span>'; alerta = objInvalido(e)?'⚠️':''; }
           else { txt='<span class="dim">'+esc(e.estrutura||'sem estrutura')+'</span>'+tema; cor='var(--ink)'; }
           h += '<button class="ent" data-i="'+ix+'" data-semana="'+sem+'" aria-pressed="false" style="--cor:'+cor+'" title="'+esc(DOWL[dw]+' '+two(k)+' · '+(e.formato||'')+' · '+e.objetivo.join(' + ')+' · '+(e.estrutura||'')+' · '+e.tema)+'"><span class="dec">'+alerta+stIcon(p)+(mudou(p,'data')?'📅':'')+'</span><span class="txt">'+txt+'</span></button>';
           });
@@ -833,7 +835,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
       h += '<div class="legend">'+eu.map(function(x){ return '<span>'+esc(x)+' <b>'+ec[x]+'</b></span>'; }).join('')+'</div>';
     }
     h += '</div>';
-    h += '<div class="passo-nav"><button class="chk'+(CHK[pa.id]?' on':'')+'" data-chk="'+pa.id+'"'+(modo==='edita'?'':' disabled')+'>'+(CHK[pa.id]?'✓ Conferido':'Marcar como conferido')+'</button><span class="btns"><button data-passo="'+(passo-1)+'" '+(passo===0?'disabled':'')+'>← Anterior</button><button data-passo="'+(passo+1)+'" '+(passo===PASSOS.length-1?'disabled':'')+'>Próximo →</button></span></div></div>';
+    h += '<div class="passo-nav">'+(pa.id==='tudo'?'<span></span>':'<button class="chk'+(CHK[pa.id]?' on':'')+'" data-chk="'+pa.id+'"'+(modo==='edita'?'':' disabled')+'>'+(CHK[pa.id]?'✓ Conferido':'Marcar como conferido')+'</button>')<span class="btns"><button data-passo="'+(passo-1)+'" '+(passo===0?'disabled':'')+'>← Anterior</button><button data-passo="'+(passo+1)+'" '+(passo===PASSOS.length-1?'disabled':'')+'>Próximo →</button></span></div></div>';
     // ---------- adicionar post em outra data (Denise, 14/10/2026) ----------
     if (false) h += '<details class="novo" open><summary>➕ Adicionar um post em outra data <small>(cria o card no Notion na hora)</small></summary><div class="novo-form"><label>Data <input type="date" id="nv-data" min="'+esc(String(D.ano))+'-'+two(+D.mesNumero)+'-01"></label><label>Formato <select id="nv-fmt">'+FORMATOS.map(function(f){ return '<option>'+esc(f)+'</option>'; }).join('')+'</select></label><label class="wide">Tema / o que é o post <input type="text" id="nv-tema" placeholder="ex.: convite pra live de quinta"></label><button data-novo-post="1"'+(modo==='edita'?'':' disabled')+'>Criar o card no Notion</button><span class="aviso" id="nv-aviso">'+(modo==='edita'?'':'Entre com a conta da Lumen pra criar o card.')+'</span></div></details>';
     // ---------- aprovação do calendário inteiro (gatilho da produção) ----------
@@ -1110,7 +1112,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
   app.innerHTML = '<div class="topline"><span class="brand">LUMEN STRATEGIC HUB · CALENDÁRIO MACRO PRA APROVAR</span><span class="modo" id="modo"><i></i>carregando…</span></div><div id="topo"></div><div id="brief-holder"><article class="brief" id="brief" aria-live="polite" hidden></article></div><section class="decidir" id="decidir"></section>';
   app.addEventListener('click', function(e){
     var f = e.target.closest('[data-filtro]'); if (f){ filtro = f.dataset.filtro; renderTopo(); return; }
-    var b = e.target.closest('[data-passo]'); if (b){ var np=+b.dataset.passo; if(np>=0&&np<4){ passo=np; try{ localStorage.setItem('passo',String(np)); }catch(x){} renderTopo(); try{ document.querySelector('.checks').scrollIntoView({block:'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }catch(x){} } return; }
+    var b = e.target.closest('[data-passo]'); if (b){ var np=+b.dataset.passo; if(np>=0&&np<5){ passo=np; try{ localStorage.setItem('passo',String(np)); }catch(x){} renderTopo(); try{ document.querySelector('.checks').scrollIntoView({block:'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }catch(x){} } return; }
     var ac = e.target.closest('[data-aprova-cal]'); if (ac){ aprovaCalendario(); return; }
     var np = e.target.closest('[data-novo-post]'); if (np){ novoPost(); return; }
     var ad = e.target.closest('[data-add]'); if (ad){ abreAddNoDia(ad.dataset.add); return; }
