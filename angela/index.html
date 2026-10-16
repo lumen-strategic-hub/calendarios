@@ -1747,7 +1747,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     var ad = e.target.closest('[data-add]'); if (ad){ abreAddNoDia(ad.dataset.add); return; }
     var ac2 = e.target.closest('[data-add-cancel]'); if (ac2){ renderTopo(); return; }
     if (e.target.closest('.addf')) return;
-    var c = e.target.closest('[data-chk]'); if (c){ var k=c.dataset.chk; CHK[k] = !CHK[k]; renderTopo(); if (db) escreve('checks/geral', Object.assign({}, CHK, {atualizadoEm: new Date().toISOString()}), {semNotion:true}); return; }
+    var c = e.target.closest('[data-chk]'); if (c){ var k=c.dataset.chk; CHK[k] = !CHK[k]; renderTopo(); if (db || API) escreve('checks/geral', Object.assign({}, CHK, {atualizadoEm: new Date().toISOString()}), {semNotion:true}); return; }
     var n=e.target.closest('.row,.ent,.dia,.pedido'); if(n && n.dataset.i!=null){ origem = n.classList.contains('row') ? 'row' : 'cal'; go(+n.dataset.i,true); }
   });
   renderTopo(); renderBrief(); renderDecidir();
