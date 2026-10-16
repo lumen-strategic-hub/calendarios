@@ -1,0 +1,1835 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow, noarchive">
+<title>Calendário Ângela Novembro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 1) Visão do mês = objetivo + leitura do mês + legenda de objetivos/formatos/estruturas + calendário do mês (ícone do formato na cor do objetivo + código da estrutura) + distribuição por objetivo + lista dos posts. 2) Post selecionado, com todos os campos editáveis, decisão (aprovar/ajustar) e comentário. 3) Pra decidir + material que falta. Edições gravadas no banco do artefato. */
+:root{
+  --bg:#F4F5F7; --surface:#FFFFFF; --ink:#1A1D26; --muted:#606676; --line:#CDD1DA; --weekend:#ECEEF2; --soft:#F0F1F4;
+  --accent:#B9790B; --accent-soft:#FBF1DC; --no:#B4442E; --no-soft:#F9E7E3; --yes:#18877A; --yes-soft:#E0F2EF; --warn:#9A6B00; --warn-soft:#FFF4D6;
+  /* cores fixas dos 9 objetivos da Biblioteca de Objetivos (iguais em todos os clientes) */
+  --f-reels:#C0392B; --f-carrossel:#2E6FB2; --f-card:#7B57C9; --f-stories:#1B8A7D;
+  --o-vender:#C28A00; --o-autoridade:#2E6FB2; --o-conexao:#D2556B; --o-educar:#1B8A7D; --o-desejo:#7B57C9; --o-objecao:#B5452C; --o-burburinho:#A63AA0; --o-base:#4E8F2A; --o-entreter:#1098A8; --o-outro:#8A8F9C;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12141A; --surface:#1B1E26; --ink:#ECEDF1; --muted:#9AA0AF; --line:#3A3F4C; --weekend:#20242D; --soft:#232732;
+  --accent:#E3A93E; --accent-soft:#3A2E17; --no:#E58A75; --no-soft:#3D221D; --yes:#4FC2B2; --yes-soft:#15332F; --warn:#E6B84A; --warn-soft:#3A3014;
+  --f-reels:#EF8A7C; --f-carrossel:#6FA8E6; --f-card:#A98FEA; --f-stories:#4FC2B2;
+  --o-vender:#E8B13A; --o-autoridade:#6FA8E6; --o-conexao:#EF8AA0; --o-educar:#4FC2B2; --o-desejo:#A98FEA; --o-objecao:#E8876C; --o-burburinho:#D77BD0; --o-base:#8CC95E; --o-entreter:#5BC6D6; --o-outro:#9AA0AF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12141A; --surface:#1B1E26; --ink:#ECEDF1; --muted:#9AA0AF; --line:#3A3F4C; --weekend:#20242D; --soft:#232732;
+  --accent:#E3A93E; --accent-soft:#3A2E17; --no:#E58A75; --no-soft:#3D221D; --yes:#4FC2B2; --yes-soft:#15332F; --warn:#E6B84A; --warn-soft:#3A3014;
+  --f-reels:#EF8A7C; --f-carrossel:#6FA8E6; --f-card:#A98FEA; --f-stories:#4FC2B2;
+  --o-vender:#E8B13A; --o-autoridade:#6FA8E6; --o-conexao:#EF8AA0; --o-educar:#4FC2B2; --o-desejo:#A98FEA; --o-objecao:#E8876C; --o-burburinho:#D77BD0; --o-base:#8CC95E; --o-entreter:#5BC6D6; --o-outro:#9AA0AF; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:26px 64px;display:grid;gap:26px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance}
+p{margin:0}
+button{font:inherit}
+.topline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.brand{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);letter-spacing:.05em}
+.modo{font-size:.85rem;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+.modo i{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none}
+.modo.on i{background:var(--yes)}
+.modo.off i{background:var(--no)}
+.label{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- Visão do mês ---------- */
+.visao{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:grid}
+.head{background:var(--ink);color:var(--bg);padding:24px 26px;display:grid;gap:18px}
+.head .mes{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;opacity:.7}
+.head h1{font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.05}
+.head .obj{font-size:1.08rem;max-width:62ch}
+.strat{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 28px;border-top:1px solid color-mix(in srgb,var(--bg) 22%,transparent);padding-top:16px}
+.strat div{display:grid;gap:4px;min-width:0;align-content:start}
+.strat span{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;opacity:.65;font-weight:700}
+.strat p{font-size:.95rem;opacity:.92}
+.placar{display:flex;gap:16px;flex-wrap:wrap;font-size:.9rem;opacity:.9}
+.placar b{font-variant-numeric:tabular-nums}
+
+.bloco{padding:18px 26px 6px;display:grid;gap:10px}
+.bloco + .bloco{border-top:1px solid var(--line);margin-top:12px}
+.bar{display:flex;height:12px;border-radius:99px;overflow:hidden;gap:2px}
+.bar i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.9rem;align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend b{font-variant-numeric:tabular-nums}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.fmts{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.9rem;align-items:center}
+.fmts span{display:inline-flex;align-items:center;gap:6px}
+.fmts svg{width:18px;height:18px}
+.ic{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.estr{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.85rem}
+.estr span{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
+.estr code{font-family:var(--f-mono);font-size:.72rem;font-weight:500;background:var(--soft);border-radius:5px;padding:1px 6px;color:var(--ink)}
+
+/* checks, um de cada vez */
+.pedidos{border-top:1px solid var(--line);background:var(--warn-soft)}
+.pedido{all:unset;cursor:pointer;display:grid;gap:2px;padding:8px 10px;border-radius:8px;border:1px solid transparent}
+.pedido:hover,.pedido:focus-visible{border-color:var(--warn)}
+.pedido b{font-size:.95rem}
+.pedido span{font-size:.9rem;color:var(--muted)}
+.pedidos .nota{font-size:.82rem;color:var(--muted)}
+.checks{scroll-margin-top:12px;padding:18px 26px 10px;display:grid;gap:14px;border-top:1px solid var(--line)}
+.passos{display:flex;flex-wrap:wrap;gap:6px}
+.passos button{all:unset;cursor:pointer;font-size:.85rem;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--muted)}
+.passos button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.passos button.feito:not([aria-selected="true"]){color:var(--yes);border-color:var(--yes)}
+.passos button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.passo-head{display:grid;gap:2px}
+.passo-head h2{font-size:1.25rem}
+.passo-head p{font-size:.9rem;color:var(--muted)}
+.resumo{display:grid;gap:10px}
+.passo-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;padding-top:4px}
+.passo-nav .btns{display:flex;gap:8px}
+.passo-nav button{font-weight:600;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}
+.passo-nav button:disabled{opacity:.35;cursor:default}
+.passo-nav button.chk.on{background:var(--yes-soft);border-color:var(--yes);color:var(--yes)}
+.passo-nav button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.aprovacal{margin:14px 0 4px;padding:14px 16px;border:1.5px solid var(--yes);border-radius:14px;background:var(--yes-soft);display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.aprovacal p{margin:0;flex:1 1 320px;line-height:1.45}
+.aprovacal button{all:unset;cursor:pointer;font-weight:800;border-radius:999px;padding:10px 20px;background:var(--yes);color:#fff;white-space:nowrap}
+.aprovacal button:disabled{opacity:.45;cursor:default}
+.aprovacal button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.aprovacal.done{border-color:var(--line);background:var(--surface)}
+.cell .add{all:unset;cursor:pointer;font-size:.95rem;line-height:1;color:var(--accent);opacity:.35;padding:0 2px}
+.cell:hover .add,.cell .add:focus-visible{opacity:1}
+.cell .addhint{font-size:.66rem;color:var(--accent);opacity:0;align-self:end}
+.cell.livre:hover .addhint{opacity:.8}
+.cell.aberta{grid-template-rows:auto auto;min-height:140px;background:var(--accent-soft);outline:1.5px solid var(--accent)}
+.addf{display:grid;gap:4px;width:100%;justify-items:stretch;font-size:.72rem}
+.addf b{font-size:.7rem;color:var(--accent)}
+.addf input,.addf select{font:inherit;font-size:.72rem;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);width:100%}
+.addf .bt{display:flex;gap:4px}
+.addf button{all:unset;cursor:pointer;font-weight:700;font-size:.7rem;border-radius:999px;padding:4px 10px;background:var(--accent);color:#fff;flex:1;text-align:center}
+.addf button.x{background:var(--surface);color:var(--muted);border:1px solid var(--line);flex:0 0 auto}
+.addf .aviso{font-size:.66rem;color:var(--muted)}
+.novo{margin:14px 0 4px;border:1.5px solid var(--accent);border-radius:14px;padding:12px 16px;background:var(--accent-soft)}
+.novo summary{cursor:pointer;font-weight:800;font-size:1.05rem;color:var(--accent)}
+.novo summary small{font-weight:500;font-size:.85rem;color:var(--muted)}
+.novo-form{display:flex;gap:10px;flex-wrap:wrap;align-items:end;padding:10px 0 4px}
+.novo-form label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600}
+.novo-form label.wide{flex:1 1 260px}
+.novo-form input,.novo-form select{font:inherit;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.novo-form button{all:unset;cursor:pointer;font-weight:700;border-radius:999px;padding:8px 16px;background:var(--accent);color:#fff}
+.novo-form .aviso{font-size:12px;color:var(--muted)}
+.cell .txt{display:grid;gap:3px;font-size:.72rem;font-weight:700;line-height:1.15;text-align:left;color:var(--cor);align-self:start;padding:2px 0;overflow-wrap:anywhere;width:100%}
+.cell .dim{display:block}
+.cell .tema{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:.68rem;font-weight:500;color:var(--ink);line-height:1.2}
+.cell.p-dias .tema{font-weight:600}
+.cell.p-dias{background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
+.cell.p-formato{background:color-mix(in srgb,var(--cor) 12%,var(--surface))}
+.cell.p-objetivo{background:color-mix(in srgb,var(--cor) 10%,var(--surface))}
+.cell.p-estrutura .txt{color:var(--ink);font-weight:600}
+/* calendário do mês */
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal .dw{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;padding-bottom:2px;font-weight:700}
+.cell{all:unset;box-sizing:border-box;min-height:84px;border-radius:9px;padding:6px 6px 5px;display:grid;grid-template-rows:auto 1fr;justify-items:center;gap:2px;font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums;background:var(--soft)}
+.cell.we{background:var(--weekend);opacity:.75}
+.cell.vazio{visibility:hidden}
+.cell.post{color:var(--ink);font-weight:700;background:var(--surface);border:1px solid var(--line);grid-template-rows:auto;align-content:start;gap:4px}
+.cell.post .top{margin-bottom:0}
+.ent{all:unset;cursor:pointer;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 4px;width:100%;border-radius:7px;padding:3px 4px;border:1.5px solid transparent}
+.ent .dec{grid-column:2;grid-row:1;font-size:.7rem;line-height:1}
+.ent .txt{grid-column:1 / span 2}
+.ent:hover{border-color:var(--cor)}
+.ent[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.ent:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.cell.dupla .ent{border-color:color-mix(in srgb,var(--line) 60%,transparent)}
+.cell:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cell .n{justify-self:start;line-height:1}
+.tile{position:relative;width:34px;height:34px;border-radius:9px;background:color-mix(in srgb,var(--cor) 18%,transparent);color:var(--cor);display:grid;place-items:center;align-self:center}
+.tile .ic{width:20px;height:20px}
+.tile .o2{position:absolute;right:-3px;top:-3px;width:11px;height:11px;border-radius:50%;background:var(--cor2);border:2px solid var(--surface)}
+.cell .cod{font-family:var(--f-mono);font-size:.62rem;font-weight:500;color:var(--muted);letter-spacing:.02em}
+.cell .st{position:absolute}
+.cell .dec{justify-self:end;font-size:.7rem;line-height:1}
+.cell .top{display:flex;justify-content:space-between;width:100%;align-items:center}
+
+/* distribuição por objetivo */
+.dist{display:grid;gap:6px}
+.dist .row2{display:grid;grid-template-columns:200px minmax(0,1fr);gap:10px;align-items:center;font-size:.88rem}
+.dist .nome{display:inline-flex;align-items:center;gap:7px;min-width:0}
+.dist .nome b{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600}
+.dias{display:flex;flex-wrap:wrap;gap:4px}
+.dia{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:.72rem;padding:1px 7px;border-radius:99px;background:color-mix(in srgb,var(--cor) 16%,transparent);color:var(--ink);font-variant-numeric:tabular-nums}
+.dia.seg{box-shadow:inset 0 0 0 1.5px var(--warn)}
+.dia:focus-visible{outline:2px solid var(--accent)}
+.dist .nota{font-size:.82rem;color:var(--muted)}
+.dist .nota b{color:var(--warn)}
+
+/* lista */
+.filtro{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:14px 26px 0}
+.filtro button{all:unset;cursor:pointer;font-size:.85rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--muted)}
+.filtro button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.filtro button b{font-variant-numeric:tabular-nums}
+.filtro button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.list{padding:10px 14px 16px;display:grid;gap:2px}
+.row{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:92px 44px 190px minmax(0,1fr) 34px;gap:14px;align-items:start;padding:12px;border-radius:12px;border:1.5px solid transparent}
+.row:hover{background:var(--bg)}
+.row[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.row .day{display:grid}
+.row .dwl{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.row .dn{font-family:var(--f-display);font-weight:700;font-size:1.35rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.row .gap{font-family:var(--f-mono);font-size:.7rem;color:var(--muted)}
+.row .kind{display:grid;gap:5px;justify-items:start}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;font-weight:700;border-radius:99px;padding:2px 10px 2px 8px;background:color-mix(in srgb,var(--cor) 16%,transparent);color:var(--ink);max-width:100%}
+.chip .dot{background:var(--cor);width:8px;height:8px}
+.row .fmt{font-size:.82rem;color:var(--muted)}
+.row .what{display:grid;gap:3px;min-width:0}
+.row .t{font-weight:700;font-size:1.02rem}
+.row .w{font-size:.9rem;color:var(--muted)}
+.row .tile{width:38px;height:38px;border-radius:10px}
+.row .tile .ic{width:22px;height:22px}
+.row .st{font-size:1rem;justify-self:end;text-align:right;line-height:1.3}
+.hintline{padding:0 26px 18px;font-size:.85rem;color:var(--muted)}
+.edit-mark{color:var(--accent);font-weight:700}
+
+/* ---------- Post selecionado (abre logo abaixo de onde foi clicado) ---------- */
+.slot{grid-column:1 / -1}
+.slot:empty{display:none}
+.slot .brief,.list .brief{margin:6px 0 10px}
+#brief-holder:empty{display:none}
+.brief{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 28px;display:grid;gap:22px;scroll-margin-top:12px}
+.brief-head{display:grid;gap:10px;border-bottom:1px solid var(--line);padding-bottom:18px}
+.brief-head .meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem;color:var(--muted);align-items:center}
+.brief-head .meta b{color:var(--ink);font-weight:600}
+.brief-head h2{font-size:clamp(1.3rem,3vw,1.75rem);line-height:1.15}
+.campo{display:grid;gap:8px;min-width:0}
+.campo .lbl{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.campo .lbl .orig{all:unset;cursor:pointer;font-size:.78rem;color:var(--accent);font-weight:600}
+.campo .lbl .orig:focus-visible{outline:2px solid var(--accent);border-radius:4px}
+.campo input[type=date]{width:auto;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.campo input[type=date]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.campo textarea,.campo input[type=text],.campo select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical;min-height:44px;field-sizing:content}
+.campo textarea:focus,.campo input:focus,.campo select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.campo.mudou textarea,.campo.mudou input,.campo.mudou select,.campo.mudou .seg{box-shadow:inset 3px 0 0 var(--accent)}
+.campo .was{font-size:.82rem;color:var(--muted);font-style:italic}
+.campo .ro{font-size:.95rem;color:var(--muted)}
+.opcoes{display:grid;gap:6px}
+.opc{all:unset;cursor:pointer;display:grid;gap:3px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.98rem;line-height:1.35}
+.opc .num{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.opc[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opc:hover{border-color:var(--accent)}
+.opc:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.opc:disabled{cursor:default}
+textarea.gancho{font-family:var(--f-display);font-size:1.2rem;font-weight:500;line-height:1.35;background:var(--accent-soft);border-color:transparent;min-height:72px}
+textarea.cta{border-left:3px solid var(--accent);font-style:italic}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px 28px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600;border:1px solid var(--line);border-radius:99px;padding:5px 12px;color:var(--muted)}
+.seg button[aria-pressed="true"]{color:var(--ink);background:color-mix(in srgb,var(--cor,var(--accent)) 16%,transparent);border-color:var(--cor,var(--accent))}
+.seg button:focus-visible{outline:2px solid var(--accent)}
+.seg button:disabled{cursor:default;opacity:.6}
+.seg .dot{background:var(--cor)}
+.seg .ic{width:16px;height:16px}
+.datewhy{font-size:.92rem;background:var(--bg);border-radius:8px;padding:8px 12px}
+.datewhy b{color:var(--accent)}
+.falta{font-size:.9rem;color:var(--no);background:var(--no-soft);border-radius:8px;padding:8px 12px}
+details.briefing{border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+details.briefing summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:.92rem}
+details.briefing .bgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;padding-top:12px}
+details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
+@media (max-width:760px){details.briefing .bgrid{grid-template-columns:1fr}}
+.decisao{display:grid;gap:12px;border-top:1px solid var(--line);padding-top:18px}
+.decbtns{display:flex;gap:8px;flex-wrap:wrap}
+.decbtns button{all:unset;cursor:pointer;font-weight:700;border:1.5px solid var(--line);border-radius:999px;padding:8px 18px;color:var(--ink)}
+.decbtns button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.decbtns button:disabled{cursor:default;opacity:.5}
+.decbtns .ok[aria-pressed="true"]{background:var(--yes-soft);border-color:var(--yes);color:var(--yes)}
+.decbtns .aj[aria-pressed="true"]{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.decbtns .feito{background:var(--accent-soft);border-color:var(--accent)}
+.salvo{font-size:.8rem;color:var(--muted);min-height:1.2em}
+.nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.nav a{color:var(--accent);font-weight:600}
+.nav .btns{display:flex;gap:8px}
+.nav button{font-weight:600;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}
+.nav button:disabled{opacity:.35;cursor:default}
+.nav button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- Pra decidir ---------- */
+.decidir{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 28px;display:grid;gap:18px}
+.perg{display:grid;gap:6px}
+.perg .q{font-weight:600}
+.perg .af{font-size:.82rem;color:var(--muted)}
+.perg textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;field-sizing:content;resize:vertical}
+.perg textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.mat{display:grid;gap:4px;font-size:.92rem;color:var(--muted)}
+.mat span b{font-family:var(--f-mono);font-weight:500;color:var(--ink);font-size:.82rem;margin-right:8px}
+.rodape{font-size:.8rem;color:var(--muted)}
+.rodape a{color:var(--accent)}
+
+@media (max-width:760px){
+  .row{grid-template-columns:60px 38px minmax(0,1fr);gap:4px 10px}
+  .row .kind{grid-column:2 / span 2;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .row .what{grid-column:2 / span 2}
+  .row .day{grid-row:1 / span 3}
+  .row .st{grid-column:3;grid-row:1;justify-self:end}
+  .grid2{grid-template-columns:1fr}
+  .brief,.decidir{padding:20px}
+  .head,.bloco{padding-inline:18px}
+  .list{padding-inline:4px}
+  .dist .row2{grid-template-columns:1fr}
+  .cell{min-height:72px;padding:4px}
+  .cell .txt{font-size:.58rem}
+  .cell .tema{font-size:.54rem;-webkit-line-clamp:4}
+  .tile{width:28px;height:28px}
+  .tile .ic{width:17px;height:17px}
+  .cell .cod{font-size:.56rem}
+}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+</style>
+</head><body>
+
+
+<!--
+  DADOS DO MÊS: gerados por monta-artefato.js a partir do JSON do cliente/mês (cards do Notion + resposta do robô).
+  Campos de cada post: id (card do Notion), data, campanha, objetivo[], tema, angulo, formato, estrutura, gancho, cta, porque, dependeDe, link.
+  As edições, decisões e comentários NÃO ficam aqui: ficam no banco do artefato (coleções "revisao" e "decisoes").
+-->
+<script id="dados" type="application/json">{
+ "titulo": "Calendário Ângela Novembro",
+ "cliente": "Ângela Martins",
+ "marca": "Heaven7",
+ "mes": "Novembro 2026",
+ "ano": 2026,
+ "mesNumero": 11,
+ "objetivo": "Gerar mensagens privadas para os serviços do Heaven7 e fechar o mês com o espaço percebido como um lugar de cuidado com critério, onde estética e bem-estar andam juntas.",
+ "fio": "O mês alterna duas metades do Heaven7: pele e Laser (sazonalidade, critério da Ângela, conteúdo útil e prova social) e terapias (Frequências, Ámanae, Círculos, Reiki), sempre a partir do momento de vida da pessoa e não da técnica. A frente de Laser fecha um ciclo completo (convite, cuidados, resultado), a de pele sobe de queixa para tese de critério, e a última semana junta tudo no Rise Up, na história do Heaven7 e nos 20 anos da Ângela.",
+ "ritmo": "Um post a cada dois dias, alternando estética e terapias para nenhuma frente cansar. A quebra fica no fim: 28, 29 e 30 seguidos, com o fecho de posicionamento concentrado nos últimos três dias.",
+ "decidir": [],
+ "material": [],
+ "notion": "",
+ "geradoEm": "briefing da Ju (07/10/2026), lido do artefato dela",
+ "origem": "ju",
+ "posts": [
+  {
+   "id": "3f26e1715362803db51fc88b6dc37eb3",
+   "data": "2026-11-02",
+   "link": "https://app.notion.com/p/3f26e1715362803db51fc88b6dc37eb3",
+   "campanha": "Frente (Ju): Vendas",
+   "objetivo": [
+    "Vender"
+   ],
+   "tema": "Laser em novembro",
+   "angulo": "",
+   "formato": "Carrossel",
+   "estrutura": "Texto na tela",
+   "gancho": "Se queres chegar ao próximo verão a pensar menos na depilação, novembro é uma boa altura para começar.",
+   "cta": "Convidar para mensagem privada para perceber se faz sentido começar o Laser nesta altura.",
+   "porque": "Segunda-feira de abertura: puxa a decisão de começar o Laser logo no início do mês, com tempo para as sessões até ao verão.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Laser começa em novembro",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Planeamento + sazonalidade + desejo"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Fazer a pessoa perceber que não precisa de esperar pelo calor para pensar no Laser. O foco é mostrar novembro como uma altura estratégica para começar com antecedência e chegar ao próximo verão com uma rotina de depilação mais simples."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Algumas decisões de cuidado fazem mais sentido quando são tomadas antes de se tornarem urgentes. O verão ainda parece distante em novembro, e é precisamente isso que permite começar sem pressa, com continuidade e expectativas realistas."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "A lógica é:\no verão parece longe → a pessoa adia → o tempo passa → volta a pensar na depilação quando o calor já chegou.\nO conteúdo quebra esse padrão e mostra que antecipar também é uma forma de cuidar."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já conhece Laser ou já pensou em fazer, mas ainda não começou."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Depilação a Laser"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Não comunicar: Não falar do Laser a partir do incómodo com os pelos hoje.\nComunicar: Falar da praticidade que a pessoa quer ter daqui a alguns meses."
+    },
+    {
+     "rotulo": "Referência criativa",
+     "texto": "Fernanda Marques | Especialista em limpeza de pele, https://www.instagram.com/p/DdsS4lqDAiC/"
+    }
+   ],
+   "nivelTexto": "Pessoa que já conhece Laser ou já pensou em fazer, mas ainda não começou.",
+   "ganchos": [
+    "Se queres chegar ao próximo verão a pensar menos na depilação, novembro é uma boa altura para começar.",
+    "Escolher a roupa e lembrar-te de que ainda precisas de te depilar. O planeamento do Laser pode começar por este incómodo do quotidiano.",
+    "«Talvez comece o Laser quando voltar o calor.» Vale a pena perceber o tempo de que o processo precisa.",
+    "O que muda quando começas a depilação a Laser em novembro, em vez de esperares pela primavera?",
+    "A lâmina resolve a depilação daquele dia. O Laser pede um plano de vários meses, que podemos começar a avaliar em novembro."
+   ],
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f26e17153628059b98fee138a907512",
+   "data": "2026-11-04",
+   "link": "https://app.notion.com/p/3f26e17153628059b98fee138a907512",
+   "campanha": "Frente (Ju): Autoridade",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Tratamentos de rosto",
+   "angulo": "",
+   "formato": "Reels",
+   "estrutura": "Comparativo",
+   "gancho": "Uma mancha pode ser o que vês. Mas o ponto de partida do tratamento pode estar noutro lugar.",
+   "cta": "Convidar para uma avaliação caso a pessoa esteja a tentar tratar uma queixa sem perceber por que continua a voltar ou não muda como esperava.",
+   "porque": "Quarta, dois dias depois do Laser: troca de serviço e mostra como a Ângela pensa antes de tratar o rosto.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "A queixa não é o ponto de partida",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Problema x causa + autoridade + posicionamento"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Mostrar que a Ângela não escolhe um tratamento apenas pela queixa que a pessoa aponta ao espelho. O conteúdo deve posicioná-la como uma profissional que observa, avalia e procura compreender o estado da pele antes de decidir o que faz sentido tratar.\nNão é um conteúdo para explicar procedimentos. É um conteúdo para mostrar como ela pensa."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Aquilo que incomoda a pessoa nem sempre conta a história completa da pele.\nUma pessoa pode chegar preocupada com manchas, outra com textura, outra com oleosidade ou aspeto baço. Mas olhar apenas para aquilo que está mais visível pode levar a uma abordagem demasiado superficial.\nA força do conteúdo está em mostrar:\na queixa é o ponto de entrada, não necessariamente o ponto de partida do cuidado."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "Usar diferentes queixas visuais para repetir a lógica da referência:\n“O problema pode parecer estar aqui…”\n“…mas antes de tratar, é preciso perceber o que está a acontecer na pele como um todo.”\nA conclusão leva para a avaliação, mas sem transformar o Reels num conteúdo explicativo sobre avaliação."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já identifica algo de que não gosta na pele e pode até já ter tentado produtos ou tratamentos, mas ainda pensa na solução a partir da queixa isolada."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Tratamentos de rosto"
+    },
+    {
+     "rotulo": "Referência criativa",
+     "texto": "Dra. Isabella Gontijo - Harmonização Facial, https://www.instagram.com/reel/DYDmraYNGxW/"
+    }
+   ],
+   "nivelTexto": "Pessoa que já identifica algo de que não gosta na pele e pode até já ter tentado produtos ou tratamentos, mas ainda pensa na solução a partir da queixa isolada.",
+   "ganchos": [
+    "Uma mancha pode ser o que vês. Mas o ponto de partida do tratamento pode estar noutro lugar.",
+    "Fala: Quando uma borbulha volta ao mesmo sítio, não olho apenas para a borbulha. Quero perceber também como estás a cuidar da pele. Tela: A borbulha voltou. O que preciso de avaliar?",
+    "Fala: «Estou a tratar a vermelhidão, mas a pele continua desconfortável.» Numa avaliação, interessa-me perceber o que pode estar a manter esse desconforto. Tela: Tratar a vermelhidão sem compreender o desconforto?",
+    "Fala: Como escolho um tratamento de rosto quando há manchas, sensibilidade e uma rotina com vários ativos? Não começo por escolher o aparelho. Tela: Manchas e sensibilidade: por onde começar?",
+    "Fala: Duas peles podem apresentar manchas parecidas e precisar de cuidados diferentes. É por isso que avalio antes de propor um tratamento. Tela: Manchas parecidas não significam tratamentos iguais."
+   ],
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f26e171536280158c0aeaf8bbf9ccd1",
+   "data": "2026-11-06",
+   "link": "https://app.notion.com/p/3f26e171536280158c0aeaf8bbf9ccd1",
+   "campanha": "Frente (Ju): Conexão",
+   "objetivo": [
+    "Gerar conexão"
+   ],
+   "tema": "Frequências de Brilho",
+   "angulo": "",
+   "formato": "Carrossel",
+   "estrutura": "Texto na tela",
+   "gancho": "Há momentos em que o que procuras não é mudar de vida. É voltar a sentir-te dentro dela.",
+   "cta": "Convite suave para mensagem privada para quem sente curiosidade ou percebe que este tipo de momento pode fazer sentido agora.",
+   "porque": "Sexta: tom mais emocional para fechar a semana e abrir o lado terapêutico do Heaven7.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Voltar a sentir-te",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Identificação + posicionamento emocional"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Chamar para as Frequências de Brilho a partir de uma sensação de desconexão de si, sem voltar a explicar o que são as Frequências, como funcionam ou o que acontece na sessão.\nO conteúdo precisa criar identificação e desejo pela experiência."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Nem sempre a pessoa está à procura de uma grande mudança. Às vezes, o que sente é que está a viver no automático, muito voltada para fora e pouco ligada ao que está a sentir por dentro.\nA proposta do conteúdo é falar com esse momento.\nAs Frequências entram como possibilidade de cuidado no final, mas não como tema técnico."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "A narrativa pode seguir esta progressão:\nrotina cheia → sensação de afastamento de si → vontade de voltar a sentir presença → convite para um momento de cuidado."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já sente algum interesse por terapias ou desenvolvimento interior, mas que não está necessariamente à procura de uma técnica específica."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Frequências de Brilho"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Não comunicar: o que são Frequências de Brilho\nComunicar: em que momento da vida este tipo de experiência pode começar a fazer sentido para alguém?"
+    },
+    {
+     "rotulo": "Emoção principal",
+     "texto": "Reconhecimento + acolhimento + desejo de reconexão."
+    },
+    {
+     "rotulo": "Mensagem que o conteúdo precisa deixar",
+     "texto": "Há fases em que o cuidado não precisa de começar por “o que tenho de mudar?”, mas por criar espaço para voltar a perceber como se está.\nAs Frequências de Brilho entram como uma das formas de viver esse momento"
+    }
+   ],
+   "nivelTexto": "Pessoa que já sente algum interesse por terapias ou desenvolvimento interior, mas que não está necessariamente à procura de uma técnica específica.",
+   "ganchos": [
+    "Há momentos em que o que procuras não é mudar de vida. É voltar a sentir-te dentro dela.",
+    "Pousas o telemóvel, mas continuas a pensar nas mensagens por responder. É a partir desta dificuldade em parar que te convido a conhecer as Frequências de Brilho.",
+    "«Tenho saudades de ter um momento sem estar disponível para os outros.» Se reconheces este desejo, talvez tenhas curiosidade pelas Frequências de Brilho.",
+    "Como seria reservar um momento sem tarefas para cumprir? Um convite a conhecer as Frequências de Brilho, com calma.",
+    "Há espaço na agenda para reuniões, compras e compromissos. As Frequências de Brilho são um convite a reservar espaço também para ti."
+   ],
+   "nivel": "N2 · Consciente do problema"
+  },
+  {
+   "id": "3f26e171536280178db1fecd5ba8ccb0",
+   "data": "2026-11-08",
+   "link": "https://app.notion.com/p/3f26e171536280178db1fecd5ba8ccb0",
+   "campanha": "Frente (Ju): Vendas",
+   "objetivo": [
+    "Vender"
+   ],
+   "tema": "Massagem de relaxamento",
+   "angulo": "",
+   "formato": "Reels",
+   "estrutura": "Talking head",
+   "gancho": "Não precisas de esperar pelo cansaço de dezembro para reservar uma pausa.",
+   "cta": "Se gostavas de reservar esse tempo para ti antes de dezembro chegar em força, envia-me uma mensagem.",
+   "porque": "Domingo, dia de descanso: o convite para reservar uma pausa chega quando a pessoa já sente a semana a pesar.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Pausa antes de dezembro",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Identificação + sazonalidade + desejo"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Chamar para a massagem a partir do cansaço acumulado do fim do ano, sem esperar que dezembro chegue com a agenda ainda mais cheia.\nO conteúdo não deve explicar como funciona a massagem. A ideia é gerar desejo por esse momento antes de a pessoa sentir que já passou do ponto."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "O fim do ano começa a pesar antes de dezembro.\nAumentam os compromissos.\nHá coisas a fechar.\nPlanos a organizar.\nAssuntos pendentes.\nE a sensação de que é preciso “aguentar só mais um pouco”.\nO conteúdo quebra essa lógica e propõe outra possibilidade: não deixar o cuidado sempre para depois."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "A massagem entra como um momento de cuidado que pode ser escolhido de forma intencional, e não apenas quando o cansaço já tomou conta da rotina."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já sente o peso da rotina e sabe que dezembro tende a trazer ainda mais compromissos, mas continua a adiar momentos para si."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Massagem de relaxamento"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Não comunicar: Não vender a massagem pela dor física.\nComunicar: Vender pela decisão de criar uma pausa antes de chegar ao limite."
+    }
+   ],
+   "nivelTexto": "Pessoa que já sente o peso da rotina e sabe que dezembro tende a trazer ainda mais compromissos, mas continua a adiar momentos para si.",
+   "ganchos": [
+    "Não precisas de esperar pelo cansaço de dezembro para reservar uma pausa.",
+    "Fala: Abres a agenda para organizar dezembro e os dias começam a ficar preenchidos. Antes de acrescentares outro compromisso, há espaço para uma massagem de relaxamento? Tela: A massagem também pode ter lugar na tua agenda.",
+    "Fala: «Marco uma massagem quando esta fase passar.» Com dezembro a aproximar-se, talvez valha a pena reservar esse momento sem esperar por uma semana vazia. Tela: A massagem fica sempre para depois?",
+    "Fala: Ao organizar os compromissos de dezembro, onde fica o teu tempo de descanso? Uma massagem de relaxamento pode começar por essa decisão. Tela: Dezembro aproxima-se. E o teu descanso?",
+    "Fala: A agenda de dezembro pode estar a encher-se, mas uma massagem de relaxamento não precisa de ficar dependente de uma desistência ou de uma tarde livre. Tela: Reservar uma massagem, em vez de esperar que sobre tempo."
+   ],
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f26e171536280bd81b4cd5de695f666",
+   "data": "2026-11-10",
+   "link": "https://app.notion.com/p/3f26e171536280bd81b4cd5de695f666",
+   "campanha": "Frente (Ju): Autoridade",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Pele no outono",
+   "angulo": "",
+   "formato": "Carrossel",
+   "estrutura": "Utilidade",
+   "gancho": "Se a tua pele começou a repuxar, a ficar mais baça ou desconfortável, acrescentar mais produtos não seria a minha primeira decisão.",
+   "cta": "Se sentes que a tua pele mudou com a estação e já não sabes o que manter ou retirar da rotina, escreve-me.",
+   "porque": "Terça, com o frio já instalado: conteúdo útil que retoma o critério do Reels de dia 4.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Pele no outono",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Conteúdo útil + identificação + quebra de crença"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Entregar conteúdo realmente útil para novembro, mostrando que mudanças na pele com a chegada do tempo mais frio não devem ser respondidas automaticamente com mais produtos.\nO conteúdo deve reforçar o posicionamento da Ângela: primeiro observar, perceber o estado da pele e só depois decidir o que faz sentido ajustar."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Quando a pele muda, é comum interpretar isso como um sinal de que “está a faltar alguma coisa” e começar a acrescentar séruns, cremes ou ativos.\nMas mais produto não significa necessariamente mais cuidado.\nA proposta é mostrar alguns sinais que merecem atenção e ensinar a pessoa a pensar antes de acumular passos na rotina."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "Por exemplo:\n“A pele repuxa.” A reação automática pode ser comprar um creme mais pesado.\n“Está mais baça.” A reação pode ser adicionar mais um ativo.\n“A textura mudou.” A tendência pode ser intensificar esfoliação.\nO conteúdo deve mostrar que o primeiro passo não é necessariamente acrescentar algo, mas perceber o que mudou e do que aquela pele precisa agora."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já cuida da pele, compra produtos e percebe alterações com a mudança de estação, mas não sabe exatamente como ajustar a rotina."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Tratamentos de rosto / limpeza de pele"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Não comunicar: Não fazer um conteúdo genérico de “5 cuidados com a pele no outono”.\nComunicar: sinal → interpretação precipitada → decisão mais criteriosa."
+    },
+    {
+     "rotulo": "Referência criativa",
+     "texto": "Fernanda Secco | Harmonização | Skincare, https://www.instagram.com/reel/DdoefrpxOny/"
+    }
+   ],
+   "nivelTexto": "Pessoa que já cuida da pele, compra produtos e percebe alterações com a mudança de estação, mas não sabe exatamente como ajustar a rotina.",
+   "ganchos": [
+    "Se a tua pele começou a repuxar, a ficar mais baça ou desconfortável, acrescentar mais produtos não seria a minha primeira decisão.",
+    "Lavas o rosto numa manhã mais fria e a pele fica a repuxar. Antes de mudares o creme, vale a pena olhar para a limpeza.",
+    "«A minha pele é oleosa. Porque está tão desconfortável neste outono?» Oleosidade e desidratação podem coexistir.",
+    "O creme que usaste no verão deixou de dar conforto à tua pele? A mudança de estação merece uma avaliação da rotina.",
+    "O brilho continua na testa, mas as maçãs do rosto repuxam. No outono, a pele pode precisar de hidratação mesmo quando parece oleosa."
+   ],
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f26e171536280c1870ae5adb734eeff",
+   "data": "2026-11-12",
+   "link": "https://app.notion.com/p/3f26e171536280c1870ae5adb734eeff",
+   "campanha": "Frente (Ju): Conexão",
+   "objetivo": [
+    "Gerar conexão"
+   ],
+   "tema": "Ámanae Brain Work",
+   "angulo": "",
+   "formato": "Reels",
+   "estrutura": "Talking head",
+   "gancho": "Há fases em que pensar mais sobre aquilo que sentes já não te leva mais longe.",
+   "cta": "Se sentes que já pensaste muito sobre aquilo que estás a viver e tens curiosidade por explorar outro tipo de processo, envia-me uma mensagem.",
+   "porque": "Quinta: volta ao trabalho interior, alternando com a pele de terça.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Compreender não é avançar",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Dor + identificação + posicionamento"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Chamar para o Ámanae Brain Work a partir de uma dor muito específica: a sensação de já ter pensado, analisado e tentado compreender tudo, mas continuar sem sentir que avançou.\nO conteúdo não deve explicar o que é Ámanae, como funciona ou o que acontece na sessão. Essa parte já foi trabalhada na linha editorial anterior.\nAqui, o foco é fazer a pessoa reconhecer o momento em que este tipo de experiência pode começar a fazer sentido para ela."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Há pessoas que tentam resolver tudo pela compreensão.\nPensam no que aconteceu.\nTentam encontrar a origem.\nRepassam conversas.\nPerguntam-se porque continuam a sentir aquilo.\nE, mesmo depois de compreenderem muita coisa, percebem que continuam no mesmo lugar emocional.\nA proposta do conteúdo é mostrar que compreender nem sempre é o mesmo que conseguir avançar."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "Trabalhar o contraste entre:\n“eu já percebi isto racionalmente”\ne\n“mas continuo a sentir-me presa ao mesmo lugar.”\nO Ámanae entra no final como uma possibilidade de trabalho interior para quem reconhece esse momento, sem prometer que vai “resolver”, “desbloquear” ou “libertar”."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já procura autoconhecimento, que pensa bastante sobre aquilo que sente e que provavelmente já tentou compreender a situação racionalmente."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Ámanae Brain Work"
+    }
+   ],
+   "nivelTexto": "Pessoa que já procura autoconhecimento, que pensa bastante sobre aquilo que sente e que provavelmente já tentou compreender a situação racionalmente.",
+   "ganchos": [
+    "Há fases em que pensar mais sobre aquilo que sentes já não te leva mais longe.",
+    "Fala: Deitas-te e voltas a rever a mesma conversa, à procura de uma explicação. Se reconheces este momento, talvez tenhas curiosidade em conhecer o Ámanae Brain Work como trabalho de desenvolvimento interior. Tela: Rever a mesma conversa, outra vez. Conhecer o Ámanae Brain Work.",
+    "Fala: «Consigo explicar o que sinto, mas não sei como estar com esse sentimento.» É a partir desta diferença que te convido a conhecer o Ámanae Brain Work. Tela: Ámanae Brain Work: para além de explicar o que sentes.",
+    "Fala: Quando escreves sobre o que sentes, procuras logo uma conclusão? Quero apresentar-te o Ámanae Brain Work sem a pressão de chegares com respostas. Tela: Conhecer o Ámanae Brain Work sem respostas preparadas.",
+    "Fala: Podes chegar a uma sessão de Ámanae Brain Work com muitas palavras ou sem saber por onde começar. Não precisas de trazer uma explicação organizada do que estás a viver. Tela: Ámanae Brain Work: não precisas de saber por onde começar."
+   ],
+   "nivel": "N2 · Consciente do problema"
+  },
+  {
+   "id": "3f26e171536280b39bd6f22516c8a6e7",
+   "data": "2026-11-14",
+   "link": "https://app.notion.com/p/3f26e171536280b39bd6f22516c8a6e7",
+   "campanha": "Frente (Ju): Prova social",
+   "objetivo": [
+    "Vender"
+   ],
+   "tema": "Prova social de limpeza de pele",
+   "angulo": "",
+   "formato": "Carrossel",
+   "estrutura": "Storytelling",
+   "gancho": "Uma experiência a repetir.\nFoi assim que uma cliente descreveu a limpeza de pele no Heaven7.",
+   "cta": "Se sentes que está na altura de dar mais atenção à tua pele, envia-me uma mensagem e falamos com calma.",
+   "porque": "Sábado: depois de dois conteúdos de critério sobre pele (4 e 10), entra a voz de uma cliente a confirmar.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Uma experiência a repetir",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Depoimento real + experiência + confiança"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Usar a experiência real de uma cliente para mostrar que a limpeza de pele no Heaven7 não é percebida apenas pelo resultado visual, mas também pela forma como a pessoa vive o atendimento.\nO foco deve estar em experiência + cuidado + ambiente + percepção da pele, sem transformar o depoimento numa promessa universal."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "A cliente não falou só da pele.\nEla destacou:\n- o ambiente acolhedor e tranquilo;\n- os produtos utilizados;\n- a sensação de renovação na pele;\n- a vontade de repetir a experiência.\nIsso permite construir uma prova social que mostra o valor do atendimento como um todo."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "Usar o depoimento como ponto de partida para reforçar o posicionamento da Ângela."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já pensa em fazer uma limpeza de pele, mas ainda não tomou a decisão de marcar."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Limpeza de pele"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Não comunicar: Não fazer um carrossel só com o print e “mais uma cliente satisfeita”.\nComunicar: cuidar da pele também passa pela forma como a pessoa é recebida, acompanhada e vive aquele momento."
+    },
+    {
+     "rotulo": "Base",
+     "texto": "depoimento real da cliente enviado."
+    }
+   ],
+   "nivelTexto": "Pessoa que já pensa em fazer uma limpeza de pele, mas ainda não tomou a decisão de marcar.",
+   "ganchos": [
+    "Uma experiência a repetir.\nFoi assim que uma cliente descreveu a limpeza de pele no Heaven7.",
+    "Depois da limpeza de pele no Heaven7, ficou a vontade de voltar. É esse o sentido deste testemunho.",
+    "«Uma experiência a repetir.» Se tens receio de marcar uma limpeza de pele, estas palavras podem ajudar-te a conhecer a experiência no Heaven7.",
+    "Voltarias a marcar a mesma limpeza de pele? Neste testemunho sobre o Heaven7, a vontade de repetir ficou expressa.",
+    "Não apenas experimentar uma limpeza de pele, mas querer repeti-la. Foi essa a apreciação partilhada sobre o Heaven7."
+   ],
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f26e171536280519b65e88d07242e61",
+   "data": "2026-11-16",
+   "link": "https://app.notion.com/p/3f26e171536280519b65e88d07242e61",
+   "campanha": "Frente (Ju): Conexão",
+   "objetivo": [
+    "Gerar conexão"
+   ],
+   "tema": "Círculos de Conexão + Workshops",
+   "angulo": "",
+   "formato": "Reels",
+   "estrutura": "Talking head",
+   "gancho": "Nem todo o processo de crescimento precisa de acontecer a sós.",
+   "cta": "Se este tipo de experiência te desperta curiosidade, envia-me uma mensagem e digo-te quando houver um próximo encontro.",
+   "porque": "Segunda, início de semana: abre a frente coletiva do Heaven7 depois do trabalho individual do Ámanae.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Crescer em grupo",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Pertencimento + identificação + posicionamento"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Posicionar o Heaven7 também como um espaço de encontro, partilha e desenvolvimento, sem transformar o conteúdo numa explicação do que são os Círculos de Conexão ou os Workshops.\nA ideia é chamar pessoas que sentem que já fizeram muito caminho sozinhas e que podem beneficiar de viver determinadas experiências em grupo."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Há coisas que conseguimos perceber sozinhas.\nOutras ganham outra dimensão quando ouvimos alguém dizer algo que também sentimos, quando vemos que não somos as únicas a passar por determinada fase ou quando partilhamos um espaço com pessoas que estão igualmente disponíveis para olhar para si.\nO conteúdo deve falar sobre o valor da experiência coletiva, não sobre a estrutura do evento."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "Os Círculos e Workshops entram como consequência desta reflexão."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já se interessa por autoconhecimento, bem-estar ou desenvolvimento interior, mas está habituada a viver esse processo de forma individual."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Círculos de Conexão e Workshops"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Comunicar: Há momentos em que estar com outras pessoas num espaço seguro também pode fazer parte do processo."
+    }
+   ],
+   "nivelTexto": "Pessoa que já se interessa por autoconhecimento, bem-estar ou desenvolvimento interior, mas está habituada a viver esse processo de forma individual.",
+   "ganchos": [
+    "Nem todo o processo de crescimento precisa de acontecer a sós.",
+    "Fala: Guardas exercícios de autoconhecimento no telemóvel, mas falta-te um momento para os explorar. Nos Círculos de Conexão e Workshops, a proposta é aprender e experimentar em grupo. Tela: Do exercício guardado à experiência em grupo.",
+    "Fala: «Gostava de partilhar o que estou a viver, mas não sei por onde começar.» Não precisas de chegar aos Círculos de Conexão com um discurso preparado. Tela: Círculos de Conexão: chegar sem um discurso preparado.",
+    "Fala: Tens curiosidade por um workshop de autoconhecimento, mas receio de não conhecer ninguém? Podemos começar por conversar sobre o que acontece nestes encontros. Tela: Um workshop onde ainda não conheces ninguém?",
+    "Fala: Ler sobre autoconhecimento é uma experiência. Experimentar ferramentas e partilhar perceções num grupo é outra. É esse espaço que proponho nos Círculos de Conexão e Workshops. Tela: Autoconhecimento: da leitura à experiência partilhada."
+   ],
+   "nivel": "N3 · Consciente da solução"
+  },
+  {
+   "id": "3f26e171536280e1aea8eeeac1898388",
+   "data": "2026-11-18",
+   "link": "https://app.notion.com/p/3f26e171536280e1aea8eeeac1898388",
+   "campanha": "Frente (Ju): Conexão",
+   "objetivo": [
+    "Gerar conexão"
+   ],
+   "tema": "Reiki",
+   "angulo": "",
+   "formato": "Carrossel",
+   "estrutura": "Texto na tela",
+   "gancho": "Descansar não devia ser o prémio por teres conseguido dar conta de tudo.",
+   "cta": "Se sentes que tens deixado o descanso sempre para depois, escreve-me.",
+   "porque": "Quarta, meio do mês: retoma o tema da pausa (massagem de dia 8) por outro serviço, o Reiki.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Descanso não é prémio",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Provocação + identificação + posicionamento"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Chamar para o Reiki a partir de uma reflexão sobre a relação com descanso e disponibilidade. O conteúdo deve gerar identificação em quem vive sempre a responder, resolver e cuidar, mas só se permite parar quando já está exausta.\nO Reiki entra como uma possibilidade de cuidado, não como algo que precisa de ser explicado novamente."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Muita gente trata o descanso como algo que precisa de ser merecido.\nPrimeiro termina tudo.\nPrimeiro responde a todos.\nPrimeiro resolve o que falta.\nDepois, se ainda sobrar tempo, para.\nO conteúdo questiona essa lógica e reposiciona o cuidado como algo que também pode existir antes do esgotamento."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "A proposta é construir uma reflexão sobre este padrão e mostrar que o Reiki pode entrar como uma escolha consciente de espaço e presença, não como resposta de emergência."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já sente cansaço mental ou dificuldade em desligar, mas ainda não necessariamente associa isso ao Reiki."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Reiki"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Não comunicar: faz Reiki para relaxar\nComunicar: só paro quando já não consigo continuar"
+    }
+   ],
+   "nivelTexto": "Pessoa que já sente cansaço mental ou dificuldade em desligar, mas ainda não necessariamente associa isso ao Reiki.",
+   "ganchos": [
+    "Descansar não devia ser o prémio por teres conseguido dar conta de tudo.",
+    "Sentares-te no sofá e levantares-te logo para adiantar outra tarefa. Se parar te custa, uma sessão de Reiki pode ser um momento reservado ao teu cuidado.",
+    "«Mesmo quando tenho tempo, sinto que devia estar a fazer alguma coisa.» Podes conhecer o Reiki sem transformar o descanso em mais uma obrigação.",
+    "Consegues reservar uma sessão de Reiki sem passar primeiro pela lista de tarefas por terminar?",
+    "Em casa, a pausa pode ser interrompida pela roupa por arrumar. Numa sessão de Reiki, o tempo está reservado para receberes cuidado."
+   ],
+   "nivel": "N2 · Consciente do problema"
+  },
+  {
+   "id": "3f26e171536280ff975ec1584e7602d9",
+   "data": "2026-11-20",
+   "link": "https://app.notion.com/p/3f26e171536280ff975ec1584e7602d9",
+   "campanha": "Frente (Ju): Autoridade",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Cuidados antes, durante e depois da depilação a Laser",
+   "angulo": "",
+   "formato": "Carrossel",
+   "estrutura": "Utilidade",
+   "gancho": "Se fazes depilação a Laser, estes cuidados antes, durante e depois da sessão fazem parte do processo.",
+   "cta": "Guarda este vídeo para reveres antes da próxima sessão de Laser.\nE se estás a pensar começar, envia-me uma mensagem.",
+   "porque": "Sexta: conteúdo de guardar para quem começou o Laser depois do post de dia 2, antes do fim de semana.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Cuidados na sessão de Laser",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Conteúdo útil + checklist prático + autoridade"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Entregar uma orientação prática que a pessoa consiga guardar e aplicar. O conteúdo deve mostrar que o resultado do Laser não depende apenas do momento em que o aparelho está em contacto com a pele. Há cuidados e comportamentos entre sessões que também importam.\nA diferença para os outros conteúdos de Laser é justamente esta: aqui não estamos a chamar pela sazonalidade nem a explicar como o Laser funciona. Estamos a entregar o que fazer na prática."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Organizar o conteúdo em três momentos claros:\nAntes da sessão: confirmar como está a pele e se houve exposição solar recente. Se a pele estiver bronzeada ou tiver sido exposta recentemente, pode ser necessário esperar antes de avançar. Também reforçar um cuidado que a Ângela já costuma explicar: não arrancar o pelo pela raiz entre sessões. Nada de cera ou pinça. Rapar é permitido.\nDurante a sessão: a pessoa não precisa de “aguentar” desconforto em silêncio. Se alguma zona estiver demasiado desconfortável, deve dizer à Ângela para que seja possível ajustar. Isso acrescenta uma camada de segurança e acompanhamento, em vez de transformar o Laser numa experiência em que a cliente apenas “suporta”.\nDepois da sessão: não avaliar o resultado no próprio dia. Nos primeiros dias pode parecer que nada aconteceu. No conteúdo anterior da Ângela, a orientação é que os pelos começam a cair ao longo dos 10 a 15 dias seguintes. Entre sessões, continua a mesma regra: não arrancar o pelo pela raiz e respeitar o intervalo indicado antes da sessão seguinte."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "É um conteúdo que gera salvamento e, ao mesmo tempo, mostra a Ângela como uma profissional que acompanha o processo para além da aplicação do Laser."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Quem já faz Laser ou está prestes a começar."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Depilação a Laser"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Não comunicar: Aqui estão 5 benefícios do Laser.\nComunicar: Guarda isto para a próxima sessão."
+    }
+   ],
+   "nivelTexto": "Quem já faz Laser ou está prestes a começar.",
+   "ganchos": [
+    "Se fazes depilação a Laser, estes cuidados antes, durante e depois da sessão fazem parte do processo.",
+    "A sessão de Laser está marcada e surge a dúvida diante da lâmina: posso rapar? A preparação também faz parte do cuidado.",
+    "«Entre sessões de Laser, continuo a depilar-me como antes?» A diferença entre rapar e arrancar o pelo merece ser esclarecida.",
+    "Começaste uma medicação desde a última sessão de Laser? É uma das mudanças que preciso de conhecer antes de continuar.",
+    "O cuidado com a depilação a Laser começa antes de chegares ao gabinete e continua quando regressas a casa. A exposição solar é um dos pontos a rever."
+   ],
+   "nivel": "N3 · Consciente da solução"
+  },
+  {
+   "id": "3f26e171536280a38372e20bfeddbdc5",
+   "data": "2026-11-22",
+   "link": "https://app.notion.com/p/3f26e171536280a38372e20bfeddbdc5",
+   "campanha": "Frente (Ju): Posicionamento",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Ritual Rise Up",
+   "angulo": "",
+   "formato": "Carrossel",
+   "estrutura": "Storytelling",
+   "gancho": "Criei o Rise Up porque não queria que cuidar de ti significasse escolher apenas uma parte de ti.",
+   "cta": "Se sentes que precisavas de um momento de cuidado que não te obrigasse a escolher apenas uma parte de ti, envia-me uma mensagem.",
+   "porque": "Domingo: o ritual integrado chega depois de uma semana a falar de pausa, descanso e grupo, que prepara o terreno.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Por que criei o Rise Up",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Storytelling + autoria + posicionamento"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Posicionar o Rise Up como uma expressão da forma como a Ângela entende o cuidado: não separado em corpo, mente ou bem-estar, mas integrado.\nO conteúdo não deve voltar a explicar as etapas do ritual nem listar tudo o que acontece na sessão. A linha anterior já fez isso.\nAqui, o foco é mostrar por que a Ângela sentiu necessidade de criar este ritual."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Ao longo do tempo, a Ângela foi percebendo que muitas mulheres não chegam ao Heaven7 com uma necessidade que cabe numa única categoria.\nÀs vezes, o cansaço aparece no corpo.\nOutras vezes, a necessidade é simplesmente ter um momento só seu.\nE nem sempre faz sentido separar aquilo que a pessoa está a viver em partes.\nO Rise Up nasce dessa visão."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "Isso aumenta a percepção de autoria e diferencia o ritual de uma simples soma de serviços."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já procura momentos de cuidado e bem-estar, mas pode sentir dificuldade em identificar exatamente “do que precisa”."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Ritual Rise Up"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Não comunicar: Rise Up tem escalda-pés + massagem + Reiki + cristais…\nComunicar: Que tipo de cuidado eu queria conseguir oferecer quando uma pessoa não precisava apenas de uma técnica, mas de uma experiência mais inteira?"
+    }
+   ],
+   "nivelTexto": "Pessoa que já procura momentos de cuidado e bem-estar, mas pode sentir dificuldade em identificar exatamente “do que precisa”.",
+   "ganchos": [
+    "Criei o Rise Up porque não queria que cuidar de ti significasse escolher apenas uma parte de ti.",
+    "Um escalda-pés antes da massagem, num momento sem pressa. No Ritual Rise Up, a forma de começar também faz parte do cuidado.",
+    "«Gostava de uma massagem, mas também de tempo para abrandar.» Foi para acolher esse desejo de cuidado que criei o Ritual Rise Up.",
+    "Porque reuni escalda-pés, massagem de relaxamento e Reiki no Ritual Rise Up? Cada parte tem um lugar no ritual que criei.",
+    "O Ritual Rise Up inclui massagem, mas não se resume à massagem. É um ritual autoral com espaço para parar, respirar e voltar a ti."
+   ],
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f26e171536280229256c36255a746a9",
+   "data": "2026-11-24",
+   "link": "https://app.notion.com/p/3f26e171536280229256c36255a746a9",
+   "campanha": "Frente (Ju): Prova social",
+   "objetivo": [
+    "Vender"
+   ],
+   "tema": "Prova social de depilação a Laser",
+   "angulo": "",
+   "formato": "Carrossel",
+   "estrutura": "Storytelling",
+   "gancho": "Devo ter para aí 1/4 dos pelos que tinha, e muito mais fraquinhos.\nFoi esta a mensagem que recebi de uma cliente perto de completar um mês do Laser nas axilas.",
+   "cta": "Se estás a pensar começar depilação a Laser e queres perceber o que pode fazer sentido no teu caso, envia-me uma mensagem.",
+   "porque": "Terça: fecha o ciclo do Laser (2 e 20) com o resultado contado pela própria cliente.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "1/4 dos pelos",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Prova social + resultado concreto + confiança"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Usar um resultado real para reduzir a hesitação de quem pensa em fazer Laser, mas ainda não sabe o que pode esperar do processo.\nO conteúdo deve transmitir:\n“não sou eu a dizer que funciona para esta cliente. É ela a contar espontaneamente aquilo que está a observar.”\nSem transformar o resultado dela numa promessa para todas as pessoas."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Em vez de um clássico antes e depois, mostrar a mensagem que chega depois da sessão.\nA força está justamente na espontaneidade:\nela não foi convidada a dar um testemunho elaborado. Escreveu porque estava feliz com aquilo que estava a observar."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "Trabalhar: resultado percebido pela cliente + continuidade do processo + individualidade dos resultados."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Depilação a Laser"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Não comunicar: Em um mês vais ficar com 1/4 dos pelos.\nComunicar: Esta foi a experiência desta cliente."
+    },
+    {
+     "rotulo": "Depoimento-base",
+     "texto": "Cliente relata que, perto de completar um mês do Laser nas axilas, estima ter cerca de 1/4 dos pelos que tinha antes, além de os sentir “muito mais fraquinhos”. Também refere que já estava satisfeita com os resultados no buço/rosto e que, depois da experiência nas axilas, ficou ainda mais convencida com o tratamento."
+    }
+   ],
+   "ganchos": [
+    "Devo ter para aí 1/4 dos pelos que tinha, e muito mais fraquinhos.\nFoi esta a mensagem que recebi de uma cliente perto de completar um mês do Laser nas axilas.",
+    "Ao observar as axilas depois do Laser, a autora deste testemunho destacou duas mudanças: menos pelos e pelos mais finos.",
+    "«E se os pelos continuarem a aparecer?» Neste testemunho de Laser nas axilas, a mudança descrita foi na quantidade e na espessura.",
+    "Menos pelos ou pelos mais finos depois do Laser nas axilas? Neste relato, foram referidas as duas mudanças.",
+    "O relato não foi «já não tenho pelos». Foi ter menos pelos e mais finos nas axilas após o Laser. Uma experiência individual, não uma promessa."
+   ],
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f26e171536280c99cdeec33957c1992",
+   "data": "2026-11-26",
+   "link": "https://app.notion.com/p/3f26e171536280c99cdeec33957c1992",
+   "campanha": "Frente (Ju): Autoridade",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Estética / filosofia de trabalho",
+   "angulo": "",
+   "formato": "Carrossel",
+   "estrutura": "Comparativo",
+   "gancho": "Na estética, fazer de menos pode não chegar. Fazer demais também pode afastar-te do resultado que procuras.",
+   "cta": "",
+   "porque": "Quinta: abre a reta final com a tese de critério da Ângela, que os dois posts seguintes aprofundam.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Nem menos, nem demais",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Falta x excesso x equilíbrio + posicionamento"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Reforçar uma ideia central do posicionamento da Ângela: um bom cuidado estético não é definido pela quantidade de produtos, técnicas ou procedimentos.\nO conteúdo deve mostrar que mais intervenção não significa necessariamente melhor cuidado e que o valor está em perceber o que faz sentido para aquela pele, naquele momento."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Na estética, é fácil cair em dois extremos.\nNum deles, a pessoa vai adiando o cuidado e esperando que uma questão se resolva sozinha.\nNo outro, começa a acrescentar produto, tratamento e procedimento atrás de procedimento na esperança de acelerar o resultado.\nA proposta da Ângela está no meio:\nobservar, avaliar e fazer apenas aquilo que faz sentido."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "Usar a estrutura da referência quase como uma tese visual:\nFazer de menos pode significar ignorar aquilo que a pele está a pedir.\nFazer demais pode significar sobrecarregar a pele ou perder de vista aquilo de que ela realmente precisa.\nEncontrar equilíbrio é perceber o estado da pele e escolher o cuidado com critério.\nO objetivo não é defender “minimalismo” por si só. É defender personalização."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já consome estética e skincare e está exposta a muitas recomendações, tendências e promessas diferentes."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Tratamentos de rosto / estética"
+    },
+    {
+     "rotulo": "Referência criativa",
+     "texto": "Dra. Rossana Magalhães | Dermatologista, https://www.instagram.com/p/DdRKSDJvViy/\nA ideia é usar a mesma lógica de contraste, mas aplicar ao posicionamento da Ângela sobre estética: nem fazer de menos, nem fazer por excesso. Fazer com critério."
+    }
+   ],
+   "nivelTexto": "Pessoa que já consome estética e skincare e está exposta a muitas recomendações, tendências e promessas diferentes.",
+   "ganchos": [
+    "Na estética, fazer de menos pode não chegar. Fazer demais também pode afastar-te do resultado que procuras.",
+    "Na avaliação, os produtos de rosto ficam em cima da mesa. Antes de propor outro cuidado, preciso de perceber o lugar de cada um.",
+    "«Se acrescentar outro tratamento, talvez a minha pele melhore.» Antes de acrescentar, procuro perceber o que está a faltar e o que pode estar a sobrecarregar.",
+    "Como decido se a tua pele precisa de um tratamento, de um ajuste na rotina ou de tempo para recuperar?",
+    "Uma rotina de rosto com poucos passos pode estar incompleta. Uma rotina longa pode estar sobrecarregada. O meu trabalho é perceber o que faz sentido para a tua pele."
+   ],
+   "nivel": "N3 · Consciente da solução"
+  },
+  {
+   "id": "3f26e17153628056814ef30cf964d284",
+   "data": "2026-11-28",
+   "link": "https://app.notion.com/p/3f26e17153628056814ef30cf964d284",
+   "campanha": "Frente (Ju): Autoridade",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Tratamentos de rosto / limite do cuidado em casa",
+   "angulo": "",
+   "formato": "Reels",
+   "estrutura": "Comparativo",
+   "gancho": "Há queixas de pele em que eu não te diria para comprar mais um produto.",
+   "cta": "Se sentes que já acrescentaste muito à rotina e a tua pele continua a não responder como esperavas, envia-me uma mensagem e marcamos uma avaliação.",
+   "porque": "Sábado: leva a tese de dia 26 para a prática e convida para avaliação antes do fecho de marca.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Parar de acrescentar produtos",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Contraste + autoridade + quebra de crença"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Posicionar a Ângela como uma profissional que não tenta resolver tudo acrescentando cosméticos à rotina.\nO conteúdo deve mostrar que há momentos em que insistir em mais um sérum, creme ou ativo não é necessariamente o melhor próximo passo. Antes de comprar mais, pode fazer sentido avaliar a pele e perceber se um acompanhamento profissional é mais adequado.\nNão queremos explicar procedimentos específicos. Queremos mostrar critério profissional."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "É muito comum tentar resolver uma queixa visível acrescentando produtos:\na textura incomoda, compra-se mais um ativo;\na pele parece baça, entra mais um sérum;\nhá manchas, procura-se outro produto;\nas linhas incomodam, procura-se algo mais potente.\nMas chega um momento em que acumular produtos deixa de ser uma resposta.\nA pergunta deixa de ser: “O que compro agora?”\ne passa a ser: “O que esta pele precisa realmente neste momento?”"
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "A referência original trabalha com a ideia de que determinadas queixas “só se resolvem com procedimentos”.\nPara a Ângela, o posicionamento deve ser mais elegante e menos absoluto.\nÀs vezes, é preciso parar de acrescentar e perceber se faz sentido outro tipo de cuidado."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já investe em skincare, já experimentou vários produtos e continua insatisfeita com alguma questão da pele."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Tratamentos de rosto"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Comunicar: nem tudo precisa de mais um produto em casa."
+    },
+    {
+     "rotulo": "Referência criativa",
+     "texto": "Gabriela Holanda | Harmonização e Estética Facial, https://www.instagram.com/reel/Db9MeaevCnB/"
+    }
+   ],
+   "nivelTexto": "Pessoa que já investe em skincare, já experimentou vários produtos e continua insatisfeita com alguma questão da pele.",
+   "ganchos": [
+    "Há queixas de pele em que eu não te diria para comprar mais um produto.",
+    "Fala: O sérum termina, a mancha mantém-se e começas a procurar outro produto. Antes de repetires a compra, vale a pena perceber o que o cuidado em casa pode fazer no teu caso. Tela: O sérum terminou. A mancha ficou. E agora?",
+    "Fala: «Faço a rotina de rosto todos os dias. Porque não vejo a mudança que esperava?» Nem sempre a resposta está na regularidade ou no produto escolhido. Tela: Rotina consistente, mas sem a mudança esperada?",
+    "Fala: Como perceber se deves ajustar a rotina de rosto ou procurar uma avaliação? A persistência da queixa é um dos pontos que considero. Tela: Ajustar a rotina ou avaliar a pele?",
+    "Fala: Um produto de rosto pode fazer parte do cuidado sem resolver, por si só, a queixa que te preocupa. Reconhecer esse limite ajuda a decidir o próximo passo. Tela: Cuidar em casa não substitui avaliar uma queixa persistente."
+   ],
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f26e171536280488dc7d7975a48047a",
+   "data": "2026-11-29",
+   "link": "https://app.notion.com/p/3f26e171536280488dc7d7975a48047a",
+   "campanha": "Frente (Ju): Posicionamento",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Posicionamento do Heaven7",
+   "angulo": "",
+   "formato": "Carrossel",
+   "estrutura": "Storytelling",
+   "gancho": "Foi quando deixei de separar estética de bem-estar que o Heaven7 começou a fazer sentido como é hoje.",
+   "cta": "Se ainda não conheces o Heaven7, envia-me uma mensagem e explico-te com calma como trabalho.",
+   "porque": "Domingo: começa o fecho de marca do mês, juntando as duas metades do Heaven7 que o mês alternou.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "Estética e bem-estar juntas",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Storytelling de marca + posicionamento + identidade"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Mostrar a visão que organiza o Heaven7 hoje, sem transformar o conteúdo numa apresentação de serviços.\nA proposta é explicar por que estética, terapias e bem-estar convivem no mesmo espaço e como isso nasce da forma como a Ângela passou a olhar para o cuidado ao longo dos anos."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "A Ângela começou pela estética, mas com o tempo percebeu que aquilo que chegava até ela não cabia apenas na pele, no corpo ou na aparência.\nHá momentos em que a mulher procura cuidar da pele.\nNoutros, procura simplificar a rotina.\nNoutros, precisa de abrandar.\nE há fases em que sente necessidade de olhar mais para dentro.\nFoi ao deixar de separar essas dimensões que o Heaven7 passou a traduzir melhor a visão dela sobre cuidado."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "O foco é posicionamento, não catálogo."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já conhece a Ângela ou algum serviço do Heaven7, mas ainda pode não perceber a lógica que une estética, terapias e bem-estar."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Heaven7 como um todo"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Não comunicar: Tudo o que podes fazer no Heaven7.\nComunicar: O que mudou na forma como eu passei a entender o cuidado e como isso transformou o próprio espaço."
+    },
+    {
+     "rotulo": "Referência criativa",
+     "texto": "pauta original, sem referência direta dos conteúdos enviados."
+    }
+   ],
+   "nivelTexto": "Pessoa que já conhece a Ângela ou algum serviço do Heaven7, mas ainda pode não perceber a lógica que une estética, terapias e bem-estar.",
+   "ganchos": [
+    "Foi quando deixei de separar estética de bem-estar que o Heaven7 começou a fazer sentido como é hoje.",
+    "Chegar ao Heaven7 com uma preocupação de pele não significa que a conversa tenha de ficar apenas no rosto.",
+    "«Procuro um tratamento de rosto, mas também um lugar onde possa abrandar.» No Heaven7, há espaço para conhecer as duas necessidades.",
+    "O que aproxima uma avaliação de pele de um momento de Reiki no Heaven7? A atenção à pessoa, sem confundir cuidados diferentes.",
+    "Tratamentos de rosto, Laser e terapias têm funções distintas. No Heaven7, partilham a mesma atenção ao corpo, à mente e à alma."
+   ],
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f26e17153628006abe4ce1408adda0b",
+   "data": "2026-11-30",
+   "link": "https://app.notion.com/p/3f26e17153628006abe4ce1408adda0b",
+   "campanha": "Frente (Ju): Posicionamento",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Ângela + visão de cuidado ao longo dos anos",
+   "angulo": "",
+   "formato": "Reels",
+   "estrutura": "Storytelling",
+   "gancho": "Depois de mais de 20 anos a cuidar de mulheres, deixei de acreditar que todas precisam da mesma coisa.",
+   "cta": "Se sentes que está na altura de cuidar mais de ti, mas ainda não sabes por onde começar, envia-me uma mensagem.",
+   "porque": "Segunda, último dia do mês: fecha o calendário com a autoridade da Ângela e prepara dezembro.",
+   "dependeDe": "",
+   "macro": "",
+   "cardNome": "",
+   "papel": "20 anos a cuidar de mulheres",
+   "briefing": [
+    {
+     "rotulo": "Estrutura (texto da Ju)",
+     "texto": "Autoridade + storytelling + posicionamento"
+    },
+    {
+     "rotulo": "Objetivo (briefing)",
+     "texto": "Fechar o calendário com um conteúdo forte de autoridade e posicionamento, mostrando que a experiência da Ângela não a levou a criar mais protocolos, mas a perceber que pessoas diferentes, em momentos diferentes, precisam de formas diferentes de cuidado.\nO conteúdo deve unir o universo do Heaven7 sem voltar a explicar os serviços."
+    },
+    {
+     "rotulo": "Ideia central",
+     "texto": "Com o tempo, a Ângela percebeu que duas mulheres podem chegar ao mesmo espaço, na mesma semana, e precisar de coisas completamente diferentes.\nUma pode querer cuidar da pele.\nOutra pode estar cansada da rotina de depilação.\nOutra pode precisar de um momento de descanso.\nOutra pode estar num processo mais interior.\nE nenhuma dessas necessidades é “mais importante” do que a outra.\nO que importa é perceber o que faz sentido para aquela pessoa naquele momento."
+    },
+    {
+     "rotulo": "Por que esse ângulo",
+     "texto": "Os serviços aparecem visualmente como consequência dessa visão."
+    },
+    {
+     "rotulo": "Nível de consciência",
+     "texto": "Pessoa que já acompanha a Ângela ou conhece o Heaven7, mas que ainda pode associá-la apenas a uma área específica, como pele ou estética."
+    },
+    {
+     "rotulo": "Serviço",
+     "texto": "Todos os serviços do Heaven7"
+    },
+    {
+     "rotulo": "Ângulo estratégico",
+     "texto": "Não comunicar: Tenho estes serviços disponíveis.\nComunicar: Foi isto que mais de 20 anos de experiência me ensinaram sobre cuidar de pessoas."
+    },
+    {
+     "rotulo": "Emoção principal",
+     "texto": "Confiança + maturidade + sensação de cuidado individual."
+    }
+   ],
+   "nivelTexto": "Pessoa que já acompanha a Ângela ou conhece o Heaven7, mas que ainda pode associá-la apenas a uma área específica, como pele ou estética.",
+   "ganchos": [
+    "Depois de mais de 20 anos a cuidar de mulheres, deixei de acreditar que todas precisam da mesma coisa.",
+    "Fala: Antes de escolher um tratamento, sento-me contigo para perceber o que te trouxe ao Heaven7. Depois de mais de 20 anos nesta área, continuo a dar valor a esse começo. Tela: Mais de 20 anos de cuidado. A avaliação continua a ser o início.",
+    "Fala: «Quero cuidar de mim, mas não sei se preciso de um tratamento de rosto ou de uma pausa.» A minha experiência ajuda-me a acolher essa dúvida sem apressar a escolha. Tela: Um tratamento de rosto ou tempo para abrandar?",
+    "Fala: O que procuro saber antes de te propor um cuidado no Heaven7? Não apenas o que gostarias de mudar, mas como te sentes e o que precisas neste momento. Tela: Antes do tratamento, o que preciso de conhecer?",
+    "Fala: Mais de 20 anos de experiência dão-me referências, mas não me dispensam de te ouvir. A tua rotina e as tuas necessidades continuam a orientar o cuidado. Tela: A experiência orienta. A escuta individualiza o cuidado."
+   ],
+   "nivel": "N3 · Consciente da solução"
+  }
+ ],
+ "idCliente": "Ângela Martins",
+ "estruturas": [
+  "POV",
+  "Storytelling",
+  "Análise",
+  "React",
+  "Meme",
+  "Tela dividida",
+  "Comparativo",
+  "Lista",
+  "Passo a passo",
+  "Tutorial / Demonstração",
+  "Pergunta e resposta",
+  "Conversa / Encenação",
+  "Comentário / Print",
+  "Bastidor",
+  "Talking head",
+  "B-roll + narração",
+  "Texto na tela",
+  "Green screen",
+  "Metáfora visual",
+  "Trend adaptada",
+  "Utilidade"
+ ],
+ "api": "https://n8neditor.paulamunhoz.online/webhook"
+}</script>
+
+<div class="wrap" id="app"></div>
+
+<script>
+(function(){
+  var D;
+  try { D = JSON.parse(document.getElementById('dados').textContent); }
+  catch(e){ document.getElementById('app').textContent = 'Os dados do mês estão com erro de formatação.'; return; }
+
+  // ---------- bibliotecas da Denise (nomes iguais aos do Notion) ----------
+  var OBJS = ['Vender','Ancorar autoridade','Gerar conexão','Educar','Gerar desejo','Quebrar objeção','Gerar curiosidade / burburinho','Aumentar a base','Entreter'];
+  var OBJ_VAR = {'Vender':'--o-vender','Ancorar autoridade':'--o-autoridade','Gerar conexão':'--o-conexao','Educar':'--o-educar','Gerar desejo':'--o-desejo','Quebrar objeção':'--o-objecao','Gerar curiosidade / burburinho':'--o-burburinho','Aumentar a base':'--o-base','Entreter':'--o-entreter'};
+  var OBJ_CURTO = {'Gerar curiosidade / burburinho':'Curiosidade / burburinho'};
+  var FORMATOS = ['Reels','Carrossel','Card único','Stories'];
+  var ESTRS = (Array.isArray(D.estruturas) && D.estruturas.length) ? D.estruturas : ['POV','Storytelling','Análise','React','Meme','Tela dividida','Comparativo','Lista','Passo a passo','Tutorial / Demonstração','Pergunta e resposta','Conversa / Encenação','Comentário / Print','Bastidor','Talking head','B-roll + narração','Texto na tela','Green screen','Metáfora visual','Trend adaptada','Utilidade']; // lista vem do select Estrutura do Notion (gera-dados); fallback fixo
+  var COD = {'POV':'POV','Storytelling':'STORY','Análise':'ANÁL','React':'REACT','Meme':'MEME','Tela dividida':'TELA2','Comparativo':'COMP','Lista':'LISTA','Passo a passo':'PASSO','Tutorial / Demonstração':'TUTO','Pergunta e resposta':'P&R','Conversa / Encenação':'CENA','Comentário / Print':'PRINT','Bastidor':'BAST','Talking head':'TH','B-roll + narração':'BROLL','Texto na tela':'TEXTO','Green screen':'GREEN','Metáfora visual':'METÁF','Trend adaptada':'TREND'};
+  // Ângulo: a Denise tirou da lista de resultado (08/10/2026). Fica só no card do Notion.
+  var ANGS_FORA = ['DOR / PROBLEMA','DIAGNÓSTICO / IDENTIFICAÇÃO','QUEBRA DE CRENÇA','CONSEQUÊNCIA','CAUSA / EXPLICAÇÃO','SOLUÇÃO / EDUCAÇÃO','DESEJO / POSSIBILIDADE','TRANSFORMAÇÃO','PROVA / VALIDAÇÃO','AUTORIDADE / VISÃO DE ESPECIALISTA','BASTIDOR / PROCESSO','STORYTELLING / EXPERIÊNCIA','COMPARAÇÃO / CONTRASTE','OBJEÇÃO / DECISÃO','POSICIONAMENTO / OPINIÃO','ASPIRAÇÃO / IDENTIDADE'];
+  var ICON = {
+    'Reels': '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="3"/><path d="M2 6h12M6 2l2 4M10 2l2 4"/><path d="M7 8.3v4l3.2-2z" fill="currentColor" stroke="none"/></svg>',
+    'Carrossel': '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="9" height="9" rx="1.8"/><path d="M5.5 2.5h6a2 2 0 0 1 2 2v6"/></svg>',
+    'Card único': '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><circle cx="6" cy="6.2" r="1.1" fill="currentColor" stroke="none"/><path d="M3 12l3-3 2 2 2.2-2.2L13 11.6"/></svg>',
+    'Stories': '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke-dasharray="3.2 2.2"/><circle cx="8" cy="8" r="2.6" fill="currentColor" stroke="none"/></svg>'
+  };
+  var ICON_OUTRO = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/></svg>';
+
+  var esc = function(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); };
+  var DOW = ['dom','seg','ter','qua','qui','sex','sáb'];
+  var DOWL = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+  var pd = function(s){ var p=String(s||'').split('-'); return p.length===3 ? new Date(+p[0],+p[1]-1,+p[2]) : null; };
+  var two = function(n){ return String(n).padStart(2,'0'); };
+  var corObj = function(o){ return 'var(' + (OBJ_VAR[o] || '--o-outro') + ')'; };
+  var icon = function(f){ return ICON[f] || ICON_OUTRO; };
+  var nomeObj = function(o){ return OBJ_CURTO[o] || o; };
+
+  // ---------- modelo ----------
+  var P = (D.posts||[]).slice().sort(function(a,b){ return String(a.data||'9').localeCompare(String(b.data||'9')); });
+  var REV = {};   // revisao/<id> -> {campos:{}, comentario, decisao, notion:{campos,decisao,comentario}}
+  var byId = {}; P.forEach(function(p){ byId[p.id] = p; });
+  var ORIG_PT = {data:'Data da postagem', tema:'Foco/Tema', objetivo:'Objetivo', formato:'Formato', estrutura:'Estrutura', angulo:'Ângulo', gancho:'Gancho', cta:'CTA', nivel:'Nível de consciência'};
+  var NIVEIS = ['N1 · Inconsciente','N2 · Consciente do problema','N3 · Consciente da solução','N4 · Consciente do produto','N5 · Totalmente consciente'];
+  var DS_CONTEUDO = '3586e171-5362-8321-ae4d-876799c1134c';
+  var NOVOS = {};
+  var DEC = {};   // decisoes/<id> -> {resposta}
+  var sel = 0;
+  var filtro = 'todos';
+  var origem = null, aberto = false, topoPendente = false; // onde o post abre: 'row' (lista) ou 'cal' (semana do calendário)
+  var passo = 0; try { passo = Math.min(3, Math.max(0, +(localStorage.getItem('passo')||0))) || 0; } catch(e){}
+  var CHK = {};   // checks/geral -> {dias,formato,objetivo,estrutura}
+  var FMT_COR = {'Reels':'var(--f-reels)','Carrossel':'var(--f-carrossel)','Card único':'var(--f-card)','Stories':'var(--f-stories)'};
+  var corFmt = function(f){ return FMT_COR[f] || 'var(--o-outro)'; };
+  var EDIT = ['data','tema','objetivo','formato','estrutura','gancho','cta','nivel'];
+  function eff(p){ var r = REV[p.id] || {}, c = r.campos || {}, o = {}; EDIT.forEach(function(k){ o[k] = (c[k] !== undefined && c[k] !== null) ? c[k] : p[k]; }); o.objetivo = Array.isArray(o.objetivo) ? o.objetivo : (o.objetivo ? [o.objetivo] : []); return o; }
+  function mudou(p,k){ var c=(REV[p.id]||{}).campos||{}; if(c[k]===undefined||c[k]===null) return false; return JSON.stringify(c[k])!==JSON.stringify(p[k]); }
+  function temEdicao(p){ return EDIT.some(function(k){ return mudou(p,k); }); }
+  function decisao(p){ return (REV[p.id]||{}).decisao || ''; }
+  function comentario(p){ return (REV[p.id]||{}).comentario || ''; }
+  function objInvalido(e){ return e.objetivo.length > 1 && e.objetivo.indexOf('Vender') < 0; }
+  function respostaCopy(p){ return (REV[p.id]||{}).respostaCopy || ''; }
+  function validado(p){ var d=decisao(p); return d==='validado' || d==='ajustado'; }
+  function stIcon(p){ var d=decisao(p), c=comentario(p); return (d==='aprovado'?'✅':d==='ajustar'?'🔁':validado(p)?'✍️':'') + (c?'💬':''); }
+  function ganchos(p){ var g = Array.isArray(p.ganchos) && p.ganchos.length ? p.ganchos.slice() : [p.gancho]; if (p.gancho && g.indexOf(p.gancho)<0) g.unshift(p.gancho); return g.filter(Boolean); }
+
+  var app = document.getElementById('app');
+  var modo = 'carregando';
+
+  // ---------- topo + visão do mês ----------
+  function renderTopo(){
+    topoPendente = false; var _b = document.getElementById('brief'), _h = document.getElementById('brief-holder'); if (_b && _h && _b.parentNode !== _h) _h.appendChild(_b);
+    var y = +D.ano, mn = +D.mesNumero;
+    if ((!y||!mn) && P[0] && pd(P[0].data)){ var f0=pd(P[0].data); y=f0.getFullYear(); mn=f0.getMonth()+1; }
+    var E = P.map(eff);
+    var ORD = P.map(function(p,i){ return i; }).sort(function(a,b){ return String(E[a].data||'9').localeCompare(String(E[b].data||'9')); });
+    var nA = P.filter(function(p){return decisao(p)==='aprovado';}).length, nJ = P.filter(function(p){return decisao(p)==='ajustar';}).length, nC = P.filter(function(p){return !!comentario(p);}).length, nO = E.filter(objInvalido).length, nV = P.filter(validado).length;
+
+    var h = '<section class="visao" aria-label="Visão do mês"><div class="head"><span class="mes">'+esc(D.mes)+' · '+P.length+' conteúdos'+(D.marca?' · '+esc(D.marca):'')+'</span><h1>'+esc(D.cliente)+'</h1>'+(D.objetivo?'<p class="obj">'+esc(D.objetivo)+'</p>':'');
+    if (D.fio || D.ritmo) h += '<div class="strat">'+(D.fio?'<div><span>Leitura do mês</span><p>'+esc(D.fio)+'</p></div>':'')+(D.ritmo?'<div><span>Distribuição</span><p>'+esc(D.ritmo)+'</p></div>':'')+'</div>';
+    h += '<div class="placar"><span>Fila da copy <b>'+(P.length-nA-nJ-nV)+'</b></span><span>🔁 Ajustar (volta pra copy) <b>'+nJ+'</b></span><span>✍️ Validados pela copy <b>'+nV+'</b></span><span>✅ Aprovados pela Denise <b>'+nA+'</b></span><span>💬 Com comentário <b>'+nC+'</b></span>'+(nO?'<span>⚠️ Objetivo a escolher <b>'+nO+'</b></span>':'')+'</div></div>';
+
+    // ---------- pedidos de ajuste (pra Ju resolver) ----------
+    var pedidos = []; ORD.forEach(function(i){ if (decisao(P[i])==='ajustar') pedidos.push(i); });
+    if (pedidos.length){
+      h += '<div class="bloco pedidos"><span class="label">🔁 A Denise pediu ajuste · '+pedidos.length+'</span>';
+      pedidos.forEach(function(i){ var p=P[i], e=E[i], d=pd(e.data); h += '<button class="pedido" data-i="'+i+'"><b>'+(d?two(d.getDate())+'/'+two(d.getMonth()+1):'')+' · '+esc(e.tema)+'</b><span>'+esc(comentario(p)||'(sem comentário)')+'</span></button>'; });
+      h += '<p class="nota">Copy: abra o post, ajuste e clique em "Validar". Ele volta pra Denise conferir.</p></div>';
+    }
+    // ---------- 4 checks, um de cada vez (Denise, 08/10/2026): dias → formato → objetivo → estrutura ----------
+    var oc = {}; E.forEach(function(e){ e.objetivo.forEach(function(o){ oc[o]=(oc[o]||0)+1; }); });
+    var usados = OBJS.filter(function(o){return oc[o];}).concat(Object.keys(oc).filter(function(o){return OBJS.indexOf(o)<0;}));
+    var fc = {}; E.forEach(function(e){ var f=e.formato||'Sem formato'; fc[f]=(fc[f]||0)+1; });
+    var fo = FORMATOS.filter(function(f){return fc[f];}).concat(Object.keys(fc).filter(function(f){return FORMATOS.indexOf(f)<0;}));
+    var ec = {}; E.forEach(function(e){ if(e.estrutura) ec[e.estrutura]=(ec[e.estrutura]||0)+1; });
+    var eu = ESTRS.filter(function(x){return ec[x];}).concat(Object.keys(ec).filter(function(x){return ESTRS.indexOf(x)<0;}));
+    var seqAlerta = [];
+    for (var q=1;q<ORD.length;q++){ var ia=ORD[q-1], ib=ORD[q]; var a=E[ia].objetivo, b=E[ib].objetivo; var comum = a.filter(function(o){return b.indexOf(o)>=0;}); if (a.length && b.length && (a[0]===b[0] || comum.length===Math.max(a.length,b.length))) seqAlerta.push([ia,ib,comum.length?comum:[a[0]]]); }
+    var segSet = {}; seqAlerta.forEach(function(sq){ sq[2].forEach(function(o){ segSet[o+'|'+sq[0]]=1; segSet[o+'|'+sq[1]]=1; }); });
+    var dc = [0,0,0,0,0,0,0]; E.forEach(function(e){ var d=pd(e.data); if(d) dc[d.getDay()]++; });
+
+    var PASSOS = [
+      { id:'dias', titulo:'Os dias estão certos?', sub:'Cada dia com post mostra o tema. Confira se caem nos dias que a cliente publica.' },
+      { id:'formato', titulo:'Carrossel e reels estão bem distribuídos?', sub:'Formato + tema: o formato combina com o que o post vai contar?' },
+      { id:'objetivo', titulo:'Os objetivos estão bem distribuídos?', sub:'Objetivo + tema: o objetivo está de acordo com o tema? Um por post; dois só quando um é Vender.' },
+      { id:'estrutura', titulo:'As estruturas criativas estão variadas?', sub:'Estrutura + tema: a estrutura serve pra esse tema?' }
+    ];
+    var pa = PASSOS[passo];
+    h += '<div class="checks"><div class="passos" role="tablist">'+PASSOS.map(function(x,i){ return '<button role="tab" data-passo="'+i+'" aria-selected="'+(i===passo)+'" class="'+(CHK[x.id]?'feito':'')+'">'+(CHK[x.id]?'✓ ':'')+(i+1)+'. '+esc(['Dias','Formato','Objetivo','Estrutura'][i])+'</button>'; }).join('')+'</div>';
+    h += '<div class="passo-head"><h2>'+esc(pa.titulo)+'</h2><p>'+esc(pa.sub)+'</p></div>';
+
+    if (y && mn){
+      var nd = new Date(y,mn,0).getDate(), byDay = {};
+      ORD.forEach(function(i){ var d=pd(E[i].data); if(d && d.getMonth()+1===mn && d.getFullYear()===y){ (byDay[d.getDate()] = byDay[d.getDate()] || []).push(i); } });
+      var first = new Date(y,mn-1,1).getDay(); var lead = (first+6)%7; // semana começa na segunda
+      h += '<div class="cal">';
+      ['seg','ter','qua','qui','sex','sáb','dom'].forEach(function(d){ h+='<span class="dw">'+d+'</span>'; });
+      for (var v=0; v<lead; v++) h += '<span class="cell vazio"></span>';
+      for (var k=1;k<=nd;k++){
+        var dw = new Date(y,mn-1,k).getDay(), we = (dw===0||dw===6)?' we':''; var sem = Math.floor((lead + k - 1) / 7);
+        if (byDay[k]){ h += '<div class="cell post p-'+pa.id+we+(byDay[k].length>1?' dupla':'')+'" data-dia="'+y+'-'+two(mn)+'-'+two(k)+'"><span class="top"><span class="n">'+two(k)+'</span>'+(byDay[k].length>1?'<span class="dec">'+byDay[k].length+' posts</span>':'')+(modo==='edita'?'<button class="add" data-add="'+y+'-'+two(mn)+'-'+two(k)+'" title="Adicionar outro post neste dia">＋</button>':'')+'</span>';
+          byDay[k].forEach(function(ix){ var p=P[ix], e=E[ix]; var cor='var(--accent)', txt='', alerta='';
+          var tema = '<span class="tema">'+esc(e.tema)+'</span>';
+          if (pa.id==='dias'){ txt=tema; }
+          else if (pa.id==='formato'){ cor=corFmt(e.formato); txt='<span class="dim">'+esc(e.formato||'sem formato')+'</span>'+tema; }
+          else if (pa.id==='objetivo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join('<br>') || 'sem objetivo')+'</span>'+tema; alerta = objInvalido(e)?'⚠️':''; }
+          else { txt='<span class="dim">'+esc(e.estrutura||'sem estrutura')+'</span>'+tema; cor='var(--ink)'; }
+          h += '<button class="ent" data-i="'+ix+'" data-semana="'+sem+'" aria-pressed="false" style="--cor:'+cor+'" title="'+esc(DOWL[dw]+' '+two(k)+' · '+(e.formato||'')+' · '+e.objetivo.join(' + ')+' · '+(e.estrutura||'')+' · '+e.tema)+'"><span class="dec">'+alerta+stIcon(p)+(mudou(p,'data')?'📅':'')+'</span><span class="txt">'+txt+'</span></button>';
+          });
+          h += '</div>';
+        } else h += '<span class="cell livre'+we+'" data-dia="'+y+'-'+two(mn)+'-'+two(k)+'"><span class="top"><span class="n">'+two(k)+'</span>'+(modo==='edita'?'<button class="add" data-add="'+y+'-'+two(mn)+'-'+two(k)+'" title="Adicionar um post neste dia">＋</button>':'')+'</span><span class="addhint">'+(modo==='edita'?'+ post':'')+'</span></span>';
+        if ((lead + k) % 7 === 0 || k === nd) h += '<div class="slot" data-semana="'+sem+'"></div>';
+      }
+      h += '</div>';
+    }
+
+    // resumo do passo
+    h += '<div class="resumo">';
+    if (pa.id==='dias'){
+      h += '<div class="legend">'+[1,2,3,4,5,6,0].map(function(d){ return '<span>'+DOW[d]+' <b>'+dc[d]+'</b></span>'; }).join('')+'<span>total <b>'+P.length+'</b></span></div>';
+    } else if (pa.id==='formato'){
+      h += '<div class="legend">'+fo.map(function(f){ return '<span><span class="dot" style="background:'+corFmt(f)+'"></span>'+esc(f)+' <b>'+fc[f]+'</b></span>'; }).join('')+'</div>';
+    } else if (pa.id==='objetivo'){
+      h += '<div class="bar" role="img" aria-label="'+usados.map(function(o){return esc(o)+': '+oc[o];}).join(', ')+'">'+usados.map(function(o){ return '<i style="flex:'+oc[o]+';background:'+corObj(o)+'"></i>'; }).join('')+'</div>';
+      h += '<div class="legend">'+usados.map(function(o){ return '<span><span class="dot" style="background:'+corObj(o)+'"></span>'+esc(nomeObj(o))+' <b>'+oc[o]+'</b></span>'; }).join('')+'</div>';
+      h += '<div class="dist">';
+      usados.forEach(function(o){
+        h += '<div class="row2"><span class="nome"><span class="dot" style="background:'+corObj(o)+'"></span>'+esc(nomeObj(o))+'</span><span class="dias" style="--cor:'+corObj(o)+'">';
+        ORD.forEach(function(i){ var p=P[i]; if (E[i].objetivo.indexOf(o)>=0){ var d=pd(E[i].data); h += '<button class="dia'+(segSet[o+'|'+i]?' seg':'')+'" data-i="'+i+'">'+(d?two(d.getDate()):'?')+'</button>'; } });
+        h += '</span></div>';
+      });
+      var nO = E.filter(objInvalido).length;
+      h += '<p class="nota">'+(seqAlerta.length ? '<b>Posts seguidos com o mesmo objetivo:</b> '+seqAlerta.map(function(sq){ var d1=pd(E[sq[0]].data), d2=pd(E[sq[1]].data); return two(d1.getDate())+' e '+two(d2.getDate())+' ('+sq[2].map(nomeObj).join(' + ')+')'; }).join(' · ')+'. ' : 'Nenhum par de posts seguidos repete o objetivo. ')+(nO?'<b>⚠️ '+nO+' post(s) com dois objetivos sem Vender:</b> abra e clique no que fica.':'')+'</p></div>';
+    } else {
+      h += '<div class="legend">'+eu.map(function(x){ return '<span>'+esc(x)+' <b>'+ec[x]+'</b></span>'; }).join('')+'</div>';
+    }
+    h += '</div>';
+    h += '<div class="passo-nav"><button class="chk'+(CHK[pa.id]?' on':'')+'" data-chk="'+pa.id+'"'+(modo==='edita'?'':' disabled')+'>'+(CHK[pa.id]?'✓ Conferido':'Marcar como conferido')+'</button><span class="btns"><button data-passo="'+(passo-1)+'" '+(passo===0?'disabled':'')+'>← Anterior</button><button data-passo="'+(passo+1)+'" '+(passo===PASSOS.length-1?'disabled':'')+'>Próximo →</button></span></div></div>';
+    // ---------- adicionar post em outra data (Denise, 14/10/2026) ----------
+    if (false) h += '<details class="novo" open><summary>➕ Adicionar um post em outra data <small>(cria o card no Notion na hora)</small></summary><div class="novo-form"><label>Data <input type="date" id="nv-data" min="'+esc(String(D.ano))+'-'+two(+D.mesNumero)+'-01"></label><label>Formato <select id="nv-fmt">'+FORMATOS.map(function(f){ return '<option>'+esc(f)+'</option>'; }).join('')+'</select></label><label class="wide">Tema / o que é o post <input type="text" id="nv-tema" placeholder="ex.: convite pra live de quinta"></label><button data-novo-post="1"'+(modo==='edita'?'':' disabled')+'>Criar o card no Notion</button><span class="aviso" id="nv-aviso">'+(modo==='edita'?'':'Entre com a conta da Lumen pra criar o card.')+'</span></div></details>';
+    // ---------- aprovação do calendário inteiro (gatilho da produção) ----------
+    var nPend = P.filter(function(p){ var d=decisao(p); return d!=='aprovado' && d!=='ajustar'; }).length;
+    var faltam = ['dias','formato','objetivo','estrutura'].filter(function(k){ return !CHK[k]; }).length;
+    h += '<div class="aprovacal'+(CHK.aprovadoEm && !nPend ? ' done' : '')+'">';
+    if (CHK.aprovadoEm) h += '<p><b>✅ Calendário aprovado em '+esc(fmtQuando(CHK.aprovadoEm))+'.</b> A IA está escrevendo a copy dos posts aprovados direto nos cards do Notion, um por vez, e a Ju revisa cada um. '+(nJ ? nJ+' com 🔁 pedido de ajuste ficam de fora até a Ju ajustar. ' : '')+(nPend ? nPend+' post'+(nPend>1?'s':'')+' sem aprovação (mudou depois da aprovação).' : '')+'</p>';
+    else h += '<p><b>Aprovar o calendário inteiro.</b> Os '+nPend+' posts sem 🔁 vão pra produção: a IA escreve a copy de cada um no card do Notion e a Ju revisa antes de chegar em você. '+(nJ ? nJ+' com pedido de ajuste ficam de fora. ' : '')+(faltam ? 'Faltam '+faltam+' das 4 conferências, mas dá pra aprovar mesmo assim.' : '')+'</p>';
+    if (nPend) h += '<button data-aprova-cal="1"'+(modo==='edita'?'':' disabled')+'>✅ Aprovar '+(CHK.aprovadoEm ? 'os '+nPend+' restantes' : 'o calendário')+' e mandar pra produção</button>';
+    h += '</div>';
+
+    // lista
+    var nF = {todos:P.length, copy:P.length-nA-nJ-nV+nJ, denise:nV, aprovados:nA};
+    h += '<div class="filtro"><span class="label">Mostrar</span>'+[['todos','Todos'],['copy','Fila da copy'],['denise','Fila da Denise'],['aprovados','Aprovados']].map(function(f){ return '<button data-filtro="'+f[0]+'" aria-pressed="'+(filtro===f[0])+'">'+f[1]+' <b>'+nF[f[0]]+'</b></button>'; }).join('')+'</div>';
+    h += '<div class="list">';
+    var prev = null;
+    ORD.forEach(function(i){ var p=P[i];
+      var e=E[i], d = pd(e.data), gap = '';
+      var dz = decisao(p); var fila = dz==='aprovado' ? 'aprovados' : validado(p) ? 'denise' : 'copy';
+      if (filtro!=='todos' && fila!==filtro) return;
+      if (d && prev){ var g=Math.round((d-prev)/864e5); gap = '<span class="gap">+'+g+(g===1?' dia':' dias')+'</span>'; }
+      if (d) prev = d;
+      var o1=e.objetivo[0], o2=e.objetivo[1];
+      h += '<button class="row" data-i="'+i+'" aria-pressed="false"><span class="day">'+(d?'<span class="dwl">'+DOW[d.getDay()]+'</span><span class="dn">'+two(d.getDate())+'/'+two(d.getMonth()+1)+(mudou(p,'data')?' <span class="edit-mark" title="data alterada">📅</span>':'')+'</span>':'<span class="dn">sem data</span>')+gap+'</span>';
+      h += '<span class="tile" style="--cor:'+corFmt(e.formato)+'" title="'+esc(e.formato)+'">'+icon(e.formato)+'</span>';
+      h += '<span class="kind">'+e.objetivo.map(function(o){ return '<span class="chip" style="--cor:'+corObj(o)+'"><span class="dot"></span>'+esc(nomeObj(o))+'</span>'; }).join('')+'<span class="fmt">'+esc(e.formato)+' · '+esc(e.estrutura)+'</span></span>';
+      h += '<span class="what"><span class="t">'+(temEdicao(p)?'<span class="edit-mark" title="editado">✎ </span>':'')+esc(e.tema)+'</span>'+(p.campanha?'<span class="w">'+esc(p.campanha)+(p.porque?' · '+esc(p.porque):'')+'</span>':(p.porque?'<span class="w">'+esc(p.porque)+'</span>':''))+'</span>';
+      h += '<span class="st">'+(objInvalido(e)?'⚠️':'')+stIcon(p)+'</span></button>';
+    });
+    h += '</div><p class="hintline">Clique num dia ou numa linha: o post abre logo abaixo. Copy: escolhe o gancho, ajusta o que precisar e valida. Denise: aprova ou dá feedback em cima.</p></section>';
+    document.getElementById('topo').innerHTML = h;
+    mark(); colocaBrief();
+  }
+
+  // ---------- post selecionado ----------
+  var timers = {}, filaEscrita = {};
+  function renderBrief(){
+    var p = P[sel]; if(!p) return;
+    var e = eff(p), ro = (modo!=='edita');
+    var dis = ro ? ' disabled' : '';
+    var bd = pd(e.data);
+    var ORDb = P.map(function(q,i){ return i; }).sort(function(a,b){ return String(eff(P[a]).data||'9').localeCompare(String(eff(P[b]).data||'9')); }); var pos = ORDb.indexOf(sel);
+    var campo = function(k, lbl, inner){ var m = mudou(p,k); return '<div class="campo'+(m?' mudou':'')+'" data-k="'+k+'"><div class="lbl"><span class="label">'+lbl+'</span>'+(m&&!ro?'<button class="orig" data-restaura="'+k+'">↺ voltar ao original</button>':'')+'</div>'+inner+(m?'<p class="was">Original: '+esc(Array.isArray(p[k])?p[k].join(' + '):p[k])+'</p>':'')+'</div>'; };
+    var x = '<header class="brief-head"><span class="label">Post '+two(pos+1)+' de '+two(P.length)+'</span>';
+    x += '<div class="meta">'+(bd?'<span><b>'+DOWL[bd.getDay()]+', '+two(bd.getDate())+'/'+two(bd.getMonth()+1)+'</b></span>':'')+(p.campanha?'<span>'+esc(p.campanha)+'</span>':'')+(p.macro?'<span>No Notion: '+esc(p.macro)+'</span>':'')+'</div>';
+    x += '<h2>'+esc(e.tema)+'</h2>'+(p.porque?'<p class="datewhy"><b>Por que este post nesta data:</b> '+esc(p.porque)+'</p>':'')+'</header>';
+    x += campo('data','Data da postagem (mude aqui se preferir outro dia)','<input type="date" data-f="data" value="'+esc(e.data)+'" min="'+esc(String(e.data||'').slice(0,7))+'-01"'+dis+'>');
+
+    // 1) o que a Denise olha primeiro: objetivo, estrutura, formato
+    x += '<div class="grid3">';
+    x += campo('objetivo','Objetivo (1 por post; com Vender pode ter 2)','<div class="seg" data-multi="objetivo">'+OBJS.map(function(o){ return '<button style="--cor:'+corObj(o)+'" data-v="'+esc(o)+'" aria-pressed="'+(e.objetivo.indexOf(o)>=0)+'"'+dis+'><span class="dot"></span>'+esc(nomeObj(o))+'</button>'; }).join('')+'</div>'+(objInvalido(e)?'<p class="falta">Dois objetivos sem Vender. Clique no que fica; o outro sai sozinho.</p>':''));
+    x += campo('formato','Formato','<div class="seg" data-single="formato">'+FORMATOS.map(function(f){ return '<button data-v="'+esc(f)+'" aria-pressed="'+(e.formato===f)+'"'+dis+'>'+icon(f)+esc(f)+'</button>'; }).join('')+'</div>');
+    var opt = function(list, v){ var l = list.slice(); if (v && l.indexOf(v)<0) l.unshift(v); return (v?'':'<option value="">(sem)</option>')+l.map(function(s){ return '<option'+(s===v?' selected':'')+'>'+esc(s)+'</option>'; }).join(''); };
+    x += campo('estrutura','Estrutura criativa','<select data-f="estrutura"'+dis+'>'+opt(ESTRS, e.estrutura)+'</select>');
+    x += '</div>';
+    x += campo('nivel','Nível de consciência de quem lê (pra quem este post fala)','<select data-f="nivel"'+dis+'>'+opt(NIVEIS, e.nivel||'')+'</select>'+(p.nivelTexto?'<p class="datewhy">Briefing: '+esc(p.nivelTexto)+'</p>':''));
+    // 2) gancho e CTA
+    var G = ganchos(p); var escolhido = G.indexOf(e.gancho);
+    var opcoes = G.length>1 ? '<div class="opcoes" data-opcoes="gancho">'+G.map(function(g,i){ return '<button class="opc" data-g="'+i+'" aria-pressed="'+(i===escolhido)+'"'+dis+'><span class="num">'+(i+1)+(i===0?' · sugerido pelo robô':'')+'</span>'+esc(g)+'</button>'; }).join('')+'</div>' : '';
+    x += campo('gancho','Gancho: '+(G.length>1?G.length+' opções, a copy escolhe a melhor (ou escreve outra)':''), opcoes+'<textarea class="gancho" data-f="gancho" rows="2" aria-label="Gancho escolhido, editável"'+dis+'>'+esc(e.gancho)+'</textarea>');
+    x += '<div class="grid2">'+campo('cta','CTA','<textarea class="cta" data-f="cta" rows="2"'+dis+'>'+esc(e.cta)+'</textarea>')+campo('tema','Foco / tema','<input type="text" data-f="tema" value="'+esc(e.tema)+'"'+dis+'>')+'</div>';
+    // 3) secundário
+    if (p.dependeDe) x += '<div class="campo"><span class="label">Material que precisa existir</span><p class="falta">'+esc(p.dependeDe)+'</p></div>';
+    if (Array.isArray(p.briefing) && p.briefing.length) x += '<details class="briefing"><summary>Briefing completo da copy ('+p.briefing.length+' itens: '+esc(p.briefing.map(function(b){return b.rotulo;}).join(', ').toLowerCase())+')</summary><div class="bgrid">'+p.briefing.map(function(b){ return '<div class="campo"><span class="label">'+esc(b.rotulo)+'</span><div class="txt">'+String(b.texto||'').split('\n').filter(Boolean).map(function(l){return '<p>'+esc(l)+'</p>';}).join('')+'</div></div>'; }).join('')+'</div></details>';
+    // decisão + comentário
+    var dec = decisao(p), vz = validado(p);
+    // 1º estágio: copy
+    x += '<div class="decisao"><span class="label">1. Copy (Ju): valida o post</span>'+(dec==='ajustar'?'<p class="datewhy"><b>🔁 A Denise pediu ajuste.</b> Leia o comentário abaixo, ajuste e valide de novo.</p>':'');
+    x += '<div class="campo"><span class="label">Por que esse gancho / o que você ajustou</span><textarea data-f="respostaCopy" rows="2" placeholder="Opcional, mas ajuda a Denise: ex. escolhi a opção 3 porque abre pela cena do 3h33."'+dis+'>'+esc(respostaCopy(p))+'</textarea></div>';
+    x += '<div class="decbtns"><button class="feito" data-dec="validado" aria-pressed="'+vz+'"'+dis+'>'+(vz?'✍️ Validado pela copy':'✍️ Validar este post')+'</button></div></div>';
+    // 2º estágio: Denise
+    x += '<div class="decisao"><span class="label">2. Denise: aprova ou dá feedback</span>'+(vz?'<p class="datewhy"><b>✍️ Validado pela copy.</b> Confira e aprove, ou peça ajuste.</p>':'<p class="datewhy">Ainda na fila da copy. Você pode aprovar ou trocar algo direto mesmo assim.</p>')+'<div class="decbtns"><button class="ok" data-dec="aprovado" aria-pressed="'+(dec==='aprovado')+'"'+dis+'>✅ Aprovar este post</button><button class="aj" data-dec="ajustar" aria-pressed="'+(dec==='ajustar')+'"'+dis+'>🔁 Pedir ajuste</button></div>';
+    x += '<div class="campo"><span class="label">Feedback pra copy</span><textarea data-f="comentario" rows="2" placeholder="Por que esse gancho não ficou bom, o que trocar, o que manter."'+dis+'>'+esc(comentario(p))+'</textarea></div><p class="salvo" id="salvo"></p></div>';
+    x += '<div class="nav">'+(p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">Abrir o card no Notion</a>':'<span></span>')+'<span class="btns"><button id="fechar">✕ Fechar</button><button id="prev" '+(pos<=0?'disabled':'')+'>← Anterior</button><button id="next" '+(pos>=P.length-1?'disabled':'')+'>Próximo →</button></span></div>';
+    var el = document.getElementById('brief'); el.innerHTML = x;
+    document.getElementById('fechar').onclick = function(){ fechaBrief(); };
+    document.getElementById('prev').onclick = function(){ if (pos>0) go(ORDb[pos-1],false); };
+    document.getElementById('next').onclick = function(){ if (pos<ORDb.length-1) go(ORDb[pos+1],false); };
+    if (ro) return;
+    el.querySelectorAll('[data-f]').forEach(function(inp){
+      inp.addEventListener('input', function(){ var k=inp.dataset.f; if (k==='data') return; if (k==='comentario'||k==='respostaCopy') { var o={}; o[k]=inp.value; setRev(p, o); } else setCampo(p, k, inp.value); });
+      inp.addEventListener('change', function(){ var k=inp.dataset.f; if (k==='data'){ if (!/^\d{4}-\d{2}-\d{2}$/.test(inp.value)) return; setCampo(p, 'data', inp.value===p.data ? null : inp.value); renderBrief(); return; } if (k==='comentario'||k==='respostaCopy') { var o={}; o[k]=inp.value; setRev(p, o); } else setCampo(p, k, inp.value); });
+    });
+    el.querySelectorAll('.seg[data-single] button').forEach(function(b){ b.onclick = function(){ setCampo(p, b.parentNode.dataset.single, b.dataset.v); renderBrief(); }; });
+    el.querySelectorAll('.seg[data-multi] button').forEach(function(b){ b.onclick = function(){ var cur = eff(p).objetivo.slice(); var v=b.dataset.v, ix=cur.indexOf(v); if (ix>=0) cur.splice(ix,1); else if (v==='Vender') cur = cur.filter(function(o){return o!=='Vender';}).slice(0,1).concat(['Vender']); else if (cur.indexOf('Vender')>=0) cur = [v,'Vender']; else cur = [v]; setCampo(p, 'objetivo', cur); renderBrief(); }; });
+    el.querySelectorAll('.opc').forEach(function(b){ b.onclick = function(){ var g = ganchos(p)[+b.dataset.g]; setCampo(p, 'gancho', g===p.gancho ? null : g); renderBrief(); }; });
+    el.querySelectorAll('[data-restaura]').forEach(function(b){ b.onclick = function(){ setCampo(p, b.dataset.restaura, null); renderBrief(); }; });
+    el.querySelectorAll('[data-dec]').forEach(function(b){ b.onclick = function(){ var v = b.dataset.dec; var cur = decisao(p); var novo = (v==='validado') ? (validado(p) ? '' : 'validado') : (cur===v ? (v==='aprovado' ? 'validado' : '') : v); setRev(p, {decisao: novo}); renderBrief(); renderTopo(); }; });
+  }
+
+  // ---------- pra decidir ----------
+  function renderDecidir(){
+    var ro = (modo!=='edita'), dis = ro?' disabled':'';
+    var x = '';
+    if ((D.decidir||[]).length){
+      x += '<h2 style="font-size:1.2rem">Pra decidir</h2><p style="color:var(--muted);font-size:.92rem">Só o que muda o texto de algum post e o robô não tinha como saber.</p>';
+      D.decidir.forEach(function(q){ x += '<div class="perg"><span class="q">'+esc(q.pergunta)+'</span>'+(q.afeta?'<span class="af">Afeta: '+esc(q.afeta)+'</span>':'')+'<textarea data-q="'+esc(q.id)+'" rows="1" placeholder="Sua resposta"'+dis+'>'+esc((DEC[q.id]||{}).resposta||'')+'</textarea></div>'; });
+    }
+    if ((D.material||[]).length){
+      x += '<div><span class="label">Material que falta pra produzir (pendência da equipe, não sua)</span><div class="mat" style="margin-top:6px">'+D.material.map(function(m){ var d=pd(m.data); return '<span><b>'+(d?two(d.getDate())+'/'+two(d.getMonth()+1):'')+'</b>'+esc(m.texto)+'</span>'; }).join('')+'</div></div>';
+    }
+    x += '<p class="rodape">Calendário gerado pelo robô em '+esc(D.geradoEm||'')+' a partir do Notion da cliente. '+(D.notion?'<a href="'+esc(D.notion)+'" target="_blank" rel="noopener">Pendências no Notion</a>. ':'')+''+(mcp ? 'Decisões, comentários e campos que você muda aqui vão direto pros cards; as respostas vão pra página de pendências.' : 'O que você mudar aqui fica salvo e vai pro Notion na próxima sincronização.')+'</p>';
+    var el = document.getElementById('decidir'); el.innerHTML = x;
+    if (ro) return;
+    el.querySelectorAll('[data-q]').forEach(function(t){ t.addEventListener('input', function(){ setDec(t.dataset.q, t.value); }); });
+  }
+
+  // ---------- estado + banco ----------
+  var db = null, mcp = null, notionVivo = false;
+  function setModo(m, txt){ modo = m; var n = document.getElementById('modo'); n.className = 'modo ' + (m==='edita'?'on':m==='carregando'?'':'off'); n.innerHTML = '<i></i>' + esc(txt); }
+  function setCampo(p, k, v){ var r = REV[p.id] = REV[p.id] || {}; r.campos = r.campos || {}; (TOCADOS[p.id] = TOCADOS[p.id] || {})[k] = 1; if (v===null || v===undefined) delete r.campos[k]; else r.campos[k] = v; agenda(p.id); renderTopoSeguro(); }
+  function abreAddNoDia(dia){
+    var cell = document.querySelector('.cell[data-dia="'+dia+'"]'); if (!cell) return;
+    var old = document.querySelector('.addf'); if (old) renderTopo();
+    cell = document.querySelector('.cell[data-dia="'+dia+'"]'); if (!cell) return;
+    var d = pd(dia); var f = document.createElement('div'); f.className = 'addf';
+    f.innerHTML = '<b>Novo post · '+(d?DOWL[d.getDay()]+' '+two(d.getDate())+'/'+two(d.getMonth()+1):esc(dia))+'</b><input type="hidden" id="nv-data" value="'+esc(dia)+'"><select id="nv-fmt">'+FORMATOS.map(function(x){ return '<option>'+esc(x)+'</option>'; }).join('')+'</select><input type="text" id="nv-tema" placeholder="Tema do post" aria-label="Tema do post"><span class="bt"><button data-novo-post="1">Criar card</button><button data-add-cancel="1" class="x">✕</button></span><span class="aviso" id="nv-aviso"></span>';
+    cell.appendChild(f); cell.classList.add('aberta'); var t = f.querySelector('#nv-tema'); if (t) t.focus();
+  }
+  function adicionaPost(p){ if (byId[p.id]) return; P.push(p); byId[p.id] = p; }
+  async function novoPostMcp(){
+    if (modo !== 'edita') return;
+    var data = (document.getElementById('nv-data')||{}).value || '', fmt = (document.getElementById('nv-fmt')||{}).value || 'Carrossel', tema = ((document.getElementById('nv-tema')||{}).value || '').trim();
+    var av = document.getElementById('nv-aviso'); var say = function(t){ if (av) av.textContent = t; };
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) { say('Escolha a data.'); return; }
+    if (!tema) { say('Diga o tema do post.'); return; }
+    if (!mcp) { say('Sem conector Notion nesta conta: peça pra Paula criar o card.'); return; }
+    if (!D.idCliente) { say('Este calendário não tem o ID do cliente; peça pra Paula.'); return; }
+    say('criando o card no Notion…');
+    try {
+      var props = { 'Nome da postagem': tema, 'ID Cliente': D.idCliente, 'date:Data da postagem:start': data, 'date:Data da postagem:is_datetime': 0, 'Formato': fmt, 'Foco/Tema': tema, 'Status do post': '🔵 Produzir copy', 'Tipo': '🎨 Conteúdo', 'Calendário macro': '✍️ Validado pela copy', 'Observações (estrategista)': 'Post adicionado pela estrategista no artefato em ' + new Date().toLocaleDateString('pt-BR') + '. Copy define gancho, CTA e estrutura.' };
+      var res = await mcp.callTool('Notion', 'notion-create-pages', { parent: { type: 'data_source_id', data_source_id: DS_CONTEUDO }, pages: [{ properties: props }], allow_async: false });
+      var txt = JSON.stringify(res); var m = txt.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i) || txt.match(/[0-9a-f]{32}/i); var id = m ? m[0].replace(/-/g,'') : '';
+      if (!id) { say('O Notion criou, mas não devolveu o id. Recarregue a página.'); return; }
+      var novo = { id: id, data: data, link: 'https://app.notion.com/p/' + id, campanha: '', objetivo: [], tema: tema, angulo: '', formato: fmt, estrutura: '', gancho: '', ganchos: [], cta: '', porque: 'Adicionado pela estrategista no artefato.', dependeDe: '', macro: '✍️ Validado pela copy', cardNome: tema, novo: true };
+      adicionaPost(novo); NOVOS[id] = novo; if (db) escreve('novos/' + id, Object.assign({}, novo, { atualizadoEm: new Date().toISOString() }), { semNotion: true });
+      say('card criado ✓'); renderTopo();
+    } catch (e) { say(erroNotion(e)); }
+  }
+  function fmtQuando(iso){ try { var d = new Date(iso); return d.toLocaleDateString('pt-BR') + ' às ' + d.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'}); } catch(e){ return iso; } }
+  function aprovaCalendarioDb(){
+    if (modo !== 'edita') return;
+    var pend = P.filter(function(p){ var d=decisao(p); return d!=='aprovado' && d!=='ajustar'; });
+    var nJ = P.filter(function(p){ return decisao(p)==='ajustar'; }).length;
+    if (!pend.length) return;
+    if (!confirm('Aprovar o calendário inteiro?\n\n'+pend.length+' posts vão pra produção: a IA escreve a copy no Notion e a Ju revisa.'+(nJ ? '\n'+nJ+' com pedido de ajuste ficam de fora.' : ''))) return;
+    pend.forEach(function(p){ var r = REV[p.id] = REV[p.id] || {}; r.decisao = 'aprovado'; });
+    CHK.aprovadoEm = new Date().toISOString();
+    renderTopo(); if (aberto) renderBrief();
+    if (!db) return;
+    escreve('checks/geral', Object.assign({}, CHK, {atualizadoEm: CHK.aprovadoEm}), {semNotion:true});
+    var seq = Promise.resolve(), n = pend.length;
+    pend.forEach(function(p, i){
+      seq = seq.then(function(){ aviso('gravando no Notion ('+(i+1)+'/'+n+')…'); return db.doc('revisao/'+p.id).set(docRev(p.id)); })
+               .then(function(){ return sincronizaCard(p.id); })
+               .then(function(){ return new Promise(function(r){ setTimeout(r, 350); }); })
+               .catch(function(e){ aviso('não salvou '+(i+1)+'/'+n+' ('+(e&&e.code||'erro')+')'); });
+    });
+    seq.then(function(){ aviso(mcp ? 'salvo ✓ · Notion ✓ · produção começa em até 10 min' : 'salvo ✓'); });
+  }
+  function setRev(p, patch){ var r = REV[p.id] = REV[p.id] || {}; Object.keys(patch).forEach(function(k){ r[k] = patch[k]; }); agenda(p.id); renderTopoSeguro(); }
+  function setDec(id, v){ var d = DEC[id] = DEC[id] || {}; d.resposta = v; agendaDec(id); }
+  function docRev(id){ var r = REV[id] || {}; return { campos: r.campos || {}, comentario: r.comentario || '', respostaCopy: r.respostaCopy || '', decisao: r.decisao || '', notion: r.notion || {}, atualizadoEm: new Date().toISOString() }; }
+  function agenda(id){ aviso('salvando…'); clearTimeout(timers[id]); timers[id] = setTimeout(function(){ escreve('revisao/'+id, docRev(id)); }, 1200); }
+  function agendaDec(id){ clearTimeout(timers['d:'+id]); timers['d:'+id] = setTimeout(function(){ var d = DEC[id] || {}; escreve('decisoes/'+id, { resposta: d.resposta || '', notion: d.notion || '', atualizadoEm: new Date().toISOString() }); }, 1200); }
+  function aviso(t){ var s = document.getElementById('salvo'); if (s) s.textContent = t; }
+  function escreveDb(path, data, opts){
+    if (!db) return;
+    opts = opts || {};
+    var prev = filaEscrita[path] || Promise.resolve();
+    filaEscrita[path] = prev.then(function(){ return db.doc(path).set(data); }).then(function(){ aviso('salvo ✓'); if (!opts.semNotion && mcp) { if (path.indexOf('revisao/')===0) return sincronizaCard(path.slice(8)); if (path.indexOf('decisoes/')===0) return sincronizaResposta(path.slice(9)); } }).catch(function(e){
+      var code = e && e.code;
+      if (code === 'invalid_argument') setModo('leitura', 'Sem permissão pra salvar: entre com a conta da Lumen pra aprovar e editar.');
+      else if (code === 'quota_exceeded') aviso('não salvou: banco cheio. Avise a Paula.');
+      else aviso('não salvou agora (' + (code||'erro') + '). Tente de novo.');
+      if (code === 'invalid_argument') { renderBrief(); renderDecidir(); }
+    });
+  }
+  // ---------- Notion direto (conector de quem está logado) ----------
+  function erroNotion(e){
+    var c = e && e.code, s = e && e.message ? String(e.message).slice(0,120) : '';
+    if (c==='needs_reauth') return 'Notion: reconecte o conector em claude.ai → Configurações → Conectores.';
+    if (c==='server_not_connected' || c==='selection_required') return 'Notion: adicione o conector Notion na sua conta claude.ai pra gravar direto nos cards.';
+    if (c==='not_in_manifest' || c==='consent_required' || c==='blocked_by_policy' || c==='approval_required') return 'Notion: esta página não tem permissão pra gravar. Permita o Notion no menu da página; enquanto isso fica salvo aqui.';
+    if (c==='tool_error') return 'Notion recusou a gravação: ' + s;
+    return 'Notion não respondeu agora (' + (c||'erro') + '). Fica salvo aqui; tento de novo na próxima mudança.';
+  }
+  function sincronizaCard(id){
+    var p = byId[id]; if (!p || !mcp) return;
+    var r = REV[id] || {}; var campos = r.campos || {}; var n = r.notion || {}; var nc = n.campos || {};
+    var props = {}, novoNc = {};
+    EDIT.forEach(function(k){
+      var cur = campos[k], prev = nc[k];
+      var val = null;
+      if (cur !== undefined && cur !== null){ novoNc[k] = cur; if (JSON.stringify(cur) !== JSON.stringify(prev)) val = cur; }
+      else if (prev !== undefined) val = p[k]; // voltou ao original: devolve o valor original pro card
+      if (val !== null){ if (k==='data'){ props['date:Data da postagem:start'] = val; props['date:Data da postagem:is_datetime'] = 0; } else props[ORIG_PT[k]] = val; }
+    });
+    var dec = r.decisao || '';
+    if (dec && dec !== n.decisao) props['Calendário macro'] = dec==='aprovado' ? '✅ Aprovado' : (dec==='validado' || dec==='ajustado') ? '✍️ Validado pela copy' : '🔁 Ajustar';
+    var com = (r.comentario ? 'Denise: ' + r.comentario : '') + (r.respostaCopy ? (r.comentario ? '\n\n' : '') + 'Copy: ' + r.respostaCopy : '');
+    if (com !== (n.comentario || '')) props['Observações (estrategista)'] = com;
+    if (!Object.keys(props).length) return;
+    aviso('salvo ✓ · gravando no Notion…');
+    return mcp.callTool('Notion', 'notion-update-page', { page_id: id, command: 'update_properties', properties: props }).then(function(){
+      notionVivo = true;
+      r.notion = { campos: novoNc, decisao: dec || n.decisao || '', comentario: com };
+      aviso('salvo ✓ · Notion ✓');
+      escreve('revisao/' + id, docRev(id), { semNotion: true });
+    }).catch(function(e){ aviso(erroNotion(e)); });
+  }
+  function sincronizaResposta(qid){
+    if (!mcp || !D.notion) return;
+    var q = (D.decidir||[]).filter(function(x){ return x.id===qid; })[0]; if (!q) return;
+    var d = DEC[qid] || {}; var resp = (d.resposta || '').trim(); var antes = d.notion || '';
+    if (resp === antes) return;
+    var pid = String(D.notion).replace(/[^0-9a-f]/gi,'').slice(-32);
+    var marca = ' → Resposta da Denise: ';
+    var oldStr = q.pergunta + (antes ? marca + antes : '');
+    var newStr = q.pergunta + (resp ? marca + resp : '');
+    aviso('gravando resposta no Notion…');
+    return mcp.callTool('Notion', 'notion-update-page', { page_id: pid, command: 'update_content', content_updates: [{ old_str: oldStr, new_str: newStr }] }).then(function(){
+      d.notion = resp; DEC[qid] = d;
+      escreve('decisoes/' + qid, { resposta: resp, notion: resp, atualizadoEm: new Date().toISOString() }, { semNotion: true });
+      aviso('resposta no Notion ✓');
+    }).catch(function(e){ aviso(erroNotion(e)); });
+  }
+  function briefTemFoco(){ var a = document.activeElement; return a && document.getElementById('brief').contains(a); }
+  function decidirTemFoco(){ var a = document.activeElement; return a && document.getElementById('decidir').contains(a); }
+
+  async function initDbOriginal(){
+    try{
+      if (!window.claude || typeof window.claude.use !== 'function'){ setModo('semdb','Modo leitura: edição indisponível nesta visualização.'); renderBrief(); renderDecidir(); return; }
+      db = await window.claude.use('db');
+      var user = await window.claude.use('user');
+      if (!db){ setModo('semdb','Modo leitura: edição indisponível nesta visualização.'); renderBrief(); renderDecidir(); return; }
+      var can = user ? await user.can('data.write') : null;
+      try { mcp = await window.claude.use('mcp'); } catch(e){ mcp = null; }
+      if (can === false){ setModo('leitura','Modo leitura: entre com a conta da Lumen pra aprovar, editar e comentar.'); }
+      else setModo('edita', mcp ? 'Tudo o que você muda aqui é salvo e vai direto pro card no Notion (na 1ª vez a página pede permissão pro seu Notion).' : 'Tudo o que você muda aqui é salvo na hora e vai pro Notion na próxima sincronização.');
+      renderBrief(); renderDecidir();
+      db.collection('revisao').onSnapshot(function(snap){
+        snap.docChanges().forEach(function(ch){ if (ch.type==='removed') delete REV[ch.doc.id]; else REV[ch.doc.id] = JSON.parse(JSON.stringify(ch.doc.data()||{})); });
+        renderTopoSeguro(); if (!briefTemFoco()) renderBrief();
+      }, function(e){ setModo('leitura','Não consegui ler as revisões salvas ('+(e&&e.code||'erro')+'). Recarregue a página.'); });
+      db.collection('novos').onSnapshot(function(snap){ var mudou = false; snap.docChanges().forEach(function(ch){ var d = ch.doc.data() || {}; if (ch.type !== 'removed' && d.id && !byId[d.id]) { adicionaPost(JSON.parse(JSON.stringify(d))); mudou = true; } }); if (mudou) renderTopoSeguro(); }, function(){});
+      db.doc('checks/geral').onSnapshot(function(snap){ var d = snap.exists ? snap.data() : {}; CHK = {dias:!!d.dias, formato:!!d.formato, objetivo:!!d.objetivo, estrutura:!!d.estrutura, aprovadoEm: d.aprovadoEm || ''}; renderTopo(); }, function(){});
+      db.collection('decisoes').onSnapshot(function(snap){
+        snap.docChanges().forEach(function(ch){ if (ch.type==='removed') delete DEC[ch.doc.id]; else DEC[ch.doc.id] = JSON.parse(JSON.stringify(ch.doc.data()||{})); });
+        if (!decidirTemFoco()) renderDecidir();
+      }, function(){});
+    }catch(e){ setModo('semdb','Modo leitura: edição indisponível nesta visualização.'); renderBrief(); renderDecidir(); }
+  }
+
+  // ---------- navegação ----------
+  function colocaBrief(){
+    var b = document.getElementById('brief'), h = document.getElementById('brief-holder'); if (!b || !h) return;
+    if (!aberto){ b.hidden = true; if (b.parentNode !== h) h.appendChild(b); return; }
+    b.hidden = false;
+    if (origem === 'row'){ var r = document.querySelector('.row[data-i="'+sel+'"]'); if (r){ r.insertAdjacentElement('afterend', b); return; } }
+    var ent = document.querySelector('.ent[data-i="'+sel+'"]');
+    if (ent){ var slot = document.querySelector('.slot[data-semana="'+ent.dataset.semana+'"]'); if (slot){ slot.appendChild(b); return; } }
+    var r2 = document.querySelector('.row[data-i="'+sel+'"]'); if (r2){ r2.insertAdjacentElement('afterend', b); return; }
+    h.appendChild(b);
+  }
+  function renderTopoSeguro(){ if (briefTemFoco()) { topoPendente = true; return; } renderTopo(); }
+  function mark(){ document.querySelectorAll('.row,.ent').forEach(function(n){ n.setAttribute('aria-pressed', String(+n.dataset.i===sel)); }); }
+  function go(i,scroll){
+    if(i<0||i>=P.length) return; sel=i; aberto = true; mark(); renderBrief(); colocaBrief();
+    try{ document.getElementById('brief').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth', block:'nearest'}); }catch(e){}
+  }
+  function fechaBrief(){ aberto = false; colocaBrief(); }
+
+  app.innerHTML = '<div class="topline"><span class="brand">LUMEN STRATEGIC HUB · CALENDÁRIO MACRO PRA APROVAR</span><span class="modo" id="modo"><i></i>carregando…</span></div><div id="topo"></div><div id="brief-holder"><article class="brief" id="brief" aria-live="polite" hidden></article></div><section class="decidir" id="decidir"></section>';
+  app.addEventListener('click', function(e){
+    var f = e.target.closest('[data-filtro]'); if (f){ filtro = f.dataset.filtro; renderTopo(); return; }
+    var b = e.target.closest('[data-passo]'); if (b){ var np=+b.dataset.passo; if(np>=0&&np<4){ passo=np; try{ localStorage.setItem('passo',String(np)); }catch(x){} renderTopo(); try{ document.querySelector('.checks').scrollIntoView({block:'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }catch(x){} } return; }
+    var ac = e.target.closest('[data-aprova-cal]'); if (ac){ aprovaCalendario(); return; }
+    var np = e.target.closest('[data-novo-post]'); if (np){ novoPost(); return; }
+    var ad = e.target.closest('[data-add]'); if (ad){ abreAddNoDia(ad.dataset.add); return; }
+    var ac2 = e.target.closest('[data-add-cancel]'); if (ac2){ renderTopo(); return; }
+    if (e.target.closest('.addf')) return;
+    var c = e.target.closest('[data-chk]'); if (c){ var k=c.dataset.chk; CHK[k] = !CHK[k]; renderTopo(); if (db) escreve('checks/geral', Object.assign({}, CHK, {atualizadoEm: new Date().toISOString()}), {semNotion:true}); return; }
+    var n=e.target.closest('.row,.ent,.dia,.pedido'); if(n && n.dataset.i!=null){ origem = n.classList.contains('row') ? 'row' : 'cal'; go(+n.dataset.i,true); }
+  });
+  renderTopo(); renderBrief(); renderDecidir();
+  document.addEventListener('focusout', function(){ setTimeout(function(){ if (topoPendente && !briefTemFoco()) renderTopo(); }, 0); });
+
+  // ===== camada de dados pelo n8n (16/10/2026): a página lê o Notion AO VIVO ao abrir e grava direto, sem login no claude.ai =====
+  var TOCADOS = {};
+  var API = D.api || '';
+  var MES = (D.ano && D.mesNumero) ? (D.ano + '-' + two(+D.mesNumero)) : '';
+  var DEC_MAP = {'✅ Aprovado':'aprovado', '✍️ Validado pela copy':'validado', '🔁 Ajustar':'ajustar'};
+  var CAMPOS_VIVOS = ['data','tema','formato','estrutura','objetivo','gancho','cta','nivel'];
+  function apiGet(){ return fetch(API + '/artefato/calendario?cliente=' + encodeURIComponent(D.idCliente||'') + '&mes=' + MES + '&t=' + Date.now(), {cache:'no-store'}).then(function(r){ return r.json(); }); }
+  function apiPost(body){ return fetch(API + '/artefato/grava', {method:'POST', headers:{'Content-Type':'text/plain'}, body: JSON.stringify(Object.assign({cliente: D.idCliente||'', mes: MES, resumo: D.notion||''}, body))}).then(function(r){ return r.json(); }); }
+  function aplicaVivo(res){
+    var vistos = {};
+    (res.posts||[]).forEach(function(c){
+      vistos[c.id] = 1; var p = byId[c.id];
+      if (!p){ p = {id:c.id, link:'https://app.notion.com/p/'+c.id, porque:'', dependeDe:'', ganchos:[], data:c.data, tema:c.tema, formato:c.formato, estrutura:c.estrutura, objetivo:c.objetivo, gancho:c.gancho, cta:c.cta, nivel:c.nivel, angulo:c.angulo}; adicionaPost(p); }
+      var r = REV[c.id] = REV[c.id] || {}; r.campos = r.campos || {};
+      CAMPOS_VIVOS.forEach(function(k){ var v = c[k]; if (v === undefined || v === null) return; if (k==='objetivo' && !Array.isArray(v)) v = v ? [v] : []; var orig = p[k]; if (k==='objetivo' && !Array.isArray(orig)) orig = orig ? [orig] : []; if (JSON.stringify(v) !== JSON.stringify(orig)) { if (!(TOCADOS[c.id]||{})[k]) r.campos[k] = v; } else if (!(TOCADOS[c.id]||{})[k]) delete r.campos[k]; });
+      if (Array.isArray(c.ganchos) && c.ganchos.length >= 2) p.ganchos = c.ganchos;
+      p.macro = c.macro || ''; p.cardNome = c.cardNome || p.cardNome; if (c.campanha) p.campanha = c.campanha; if (c.angulo) p.angulo = c.angulo;
+      r.decisao = DEC_MAP[c.macro] || '';
+      if (c.obs !== undefined){ var m1 = /Denise:\s*([\s\S]*?)(?=\n\nCopy:|$)/.exec(c.obs||''); var m2 = /Copy:\s*([\s\S]*?)$/.exec(c.obs||''); r.comentario = m1 ? m1[1].trim() : ''; r.respostaCopy = m2 ? m2[1].trim() : ''; }
+      r.notion = {campos: Object.assign({}, r.campos), decisao: r.decisao, comentario: c.obs||''};
+    });
+    for (var i = P.length-1; i >= 0; i--){ if (/^[0-9a-f]{32}$/.test(P[i].id) && !vistos[P[i].id]) { delete byId[P[i].id]; P.splice(i,1); } }
+    var e = res.estado || {}; var ck = e.checks || {};
+    CHK = {dias:!!ck.dias, formato:!!ck.formato, objetivo:!!ck.objetivo, estrutura:!!ck.estrutura, aprovadoEm: e.aprovadoEm||''};
+    Object.keys(e.decisoes||{}).forEach(function(q){ DEC[q] = {resposta: e.decisoes[q], notion: e.decisoes[q]}; });
+    if (sel >= P.length) sel = 0;
+  }
+  function escreve(path, data, opts){
+    if (!API) return escreveDb(path, data, opts);
+    var prev = filaEscrita[path] || Promise.resolve();
+    filaEscrita[path] = prev.then(function(){
+      if (path.indexOf('revisao/')===0){ var id = path.slice(8); var p = byId[id]; var orig = {}; if (p) CAMPOS_VIVOS.forEach(function(k){ orig[k] = p[k]; });
+        return apiPost({tipo:'revisao', id:id, campos: data.campos||{}, original: orig, tocados: Object.keys(TOCADOS[id]||{}), decisao: data.decisao||'', comentario: data.comentario||'', respostaCopy: data.respostaCopy||''}); }
+      if (path === 'checks/geral') return apiPost({tipo:'estado', checks:{dias:!!data.dias, formato:!!data.formato, objetivo:!!data.objetivo, estrutura:!!data.estrutura}, aprovadoEm: data.aprovadoEm||''});
+      if (path.indexOf('decisoes/')===0){ var qid = path.slice(9); var q = (D.decidir||[]).filter(function(x){ return x.id===qid; })[0]; return apiPost({tipo:'decisao', qid:qid, pergunta: q ? q.pergunta : '', resposta: data.resposta||''}); }
+      return null;
+    }).then(function(r){ if (r && r.ok === false) aviso('não salvou: ' + (r.erro||'erro')); else if (r) aviso('salvo no Notion ✓'); }).catch(function(e){ aviso('não salvou agora (' + ((e && e.message) || 'rede') + '). Tente de novo.'); });
+  }
+  async function novoPost(){
+    if (!API) return novoPostMcp();
+    var data = (document.getElementById('nv-data')||{}).value || '', fmt = (document.getElementById('nv-fmt')||{}).value || 'Carrossel', tema = ((document.getElementById('nv-tema')||{}).value || '').trim();
+    var av = document.getElementById('nv-aviso'); var say = function(t){ if (av) av.textContent = t; };
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) { say('Escolha a data.'); return; }
+    if (!tema) { say('Diga o tema do post.'); return; }
+    say('criando o card no Notion…');
+    try { var r = await apiPost({tipo:'novo', data:data, formato:fmt, tema:tema}); if (!r || !r.ok || !r.id) { say('Não criou: ' + ((r && r.erro) || 'erro')); return; }
+      adicionaPost({id:r.id, data:data, link:'https://app.notion.com/p/'+r.id, campanha:'', objetivo:[], tema:tema, angulo:'', formato:fmt, estrutura:'', gancho:'', ganchos:[], cta:'', nivel:'', porque:'Adicionado pela estrategista no artefato.', dependeDe:'', macro:'✍️ Validado pela copy', cardNome:tema, novo:true});
+      REV[r.id] = {campos:{}, decisao:'validado', notion:{campos:{}, decisao:'validado', comentario:''}}; say('card criado ✓'); renderTopo();
+    } catch(e){ say('Não criou agora (' + ((e && e.message) || 'rede') + ').'); }
+  }
+  function aprovaCalendario(){
+    if (!API) return aprovaCalendarioDb();
+    if (modo !== 'edita') return;
+    var pend = P.filter(function(p){ var d = decisao(p); return d !== 'aprovado' && d !== 'ajustar'; });
+    var nJ = P.filter(function(p){ return decisao(p) === 'ajustar'; }).length;
+    if (!pend.length) return;
+    if (!confirm('Aprovar o calendário inteiro?\n\n' + pend.length + ' posts vão pra produção: a IA escreve a copy no Notion e a Ju revisa.' + (nJ ? '\n' + nJ + ' com pedido de ajuste ficam de fora.' : ''))) return;
+    aviso('gravando no Notion…');
+    apiPost({tipo:'aprova-tudo', ids: pend.map(function(p){ return p.id; })}).then(function(r){
+      if (!r || !r.ok) { aviso('não aprovou: ' + ((r && r.erro) || 'erro')); return; }
+      pend.forEach(function(p){ var x = REV[p.id] = REV[p.id] || {}; x.decisao = 'aprovado'; }); CHK.aprovadoEm = r.aprovadoEm || new Date().toISOString();
+      renderTopo(); if (aberto) renderBrief(); aviso('Notion ✓ · produção começa em até 10 min');
+    }).catch(function(e){ aviso('não aprovou agora (' + ((e && e.message) || 'rede') + ').'); });
+  }
+  async function initDb(){
+    if (!API) return initDbOriginal();
+    try {
+      var res = await apiGet();
+      if (!res || !res.ok) { API = ''; return initDbOriginal(); }
+      aplicaVivo(res);
+      setModo('edita', 'Lendo o Notion ao vivo (' + new Date(res.lidoEm).toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'}) + '). Tudo o que você muda aqui vai direto pro card. Sem login.');
+      renderTopo(); renderBrief(); renderDecidir();
+      setInterval(function(){ if (briefTemFoco() || decidirTemFoco() || document.querySelector('.addf')) return; apiGet().then(function(r){ if (r && r.ok) { aplicaVivo(r); renderTopo(); } }).catch(function(){}); }, 120000);
+    } catch(e){ API = ''; return initDbOriginal(); } // dentro do claude.ai o sandbox bloqueia a chamada externa: volta pro modo com login (db + conector)
+  }
+  initDb();
+})();
+</script>
+
+</body></html>

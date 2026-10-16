@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow, noarchive">
+<title>Calendário Rahysa Novembro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: 1) Visão do mês = objetivo + leitura do mês + legenda de objetivos/formatos/estruturas + calendário do mês (ícone do formato na cor do objetivo + código da estrutura) + distribuição por objetivo + lista dos posts. 2) Post selecionado, com todos os campos editáveis, decisão (aprovar/ajustar) e comentário. 3) Pra decidir + material que falta. Edições gravadas no banco do artefato. */
+:root{
+  --bg:#F4F5F7; --surface:#FFFFFF; --ink:#1A1D26; --muted:#606676; --line:#CDD1DA; --weekend:#ECEEF2; --soft:#F0F1F4;
+  --accent:#B9790B; --accent-soft:#FBF1DC; --no:#B4442E; --no-soft:#F9E7E3; --yes:#18877A; --yes-soft:#E0F2EF; --warn:#9A6B00; --warn-soft:#FFF4D6;
+  /* cores fixas dos 9 objetivos da Biblioteca de Objetivos (iguais em todos os clientes) */
+  --f-reels:#C0392B; --f-carrossel:#2E6FB2; --f-card:#7B57C9; --f-stories:#1B8A7D;
+  --o-vender:#C28A00; --o-autoridade:#2E6FB2; --o-conexao:#D2556B; --o-educar:#1B8A7D; --o-desejo:#7B57C9; --o-objecao:#B5452C; --o-burburinho:#A63AA0; --o-base:#4E8F2A; --o-entreter:#1098A8; --o-outro:#8A8F9C;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12141A; --surface:#1B1E26; --ink:#ECEDF1; --muted:#9AA0AF; --line:#3A3F4C; --weekend:#20242D; --soft:#232732;
+  --accent:#E3A93E; --accent-soft:#3A2E17; --no:#E58A75; --no-soft:#3D221D; --yes:#4FC2B2; --yes-soft:#15332F; --warn:#E6B84A; --warn-soft:#3A3014;
+  --f-reels:#EF8A7C; --f-carrossel:#6FA8E6; --f-card:#A98FEA; --f-stories:#4FC2B2;
+  --o-vender:#E8B13A; --o-autoridade:#6FA8E6; --o-conexao:#EF8AA0; --o-educar:#4FC2B2; --o-desejo:#A98FEA; --o-objecao:#E8876C; --o-burburinho:#D77BD0; --o-base:#8CC95E; --o-entreter:#5BC6D6; --o-outro:#9AA0AF; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12141A; --surface:#1B1E26; --ink:#ECEDF1; --muted:#9AA0AF; --line:#3A3F4C; --weekend:#20242D; --soft:#232732;
+  --accent:#E3A93E; --accent-soft:#3A2E17; --no:#E58A75; --no-soft:#3D221D; --yes:#4FC2B2; --yes-soft:#15332F; --warn:#E6B84A; --warn-soft:#3A3014;
+  --f-reels:#EF8A7C; --f-carrossel:#6FA8E6; --f-card:#A98FEA; --f-stories:#4FC2B2;
+  --o-vender:#E8B13A; --o-autoridade:#6FA8E6; --o-conexao:#EF8AA0; --o-educar:#4FC2B2; --o-desejo:#A98FEA; --o-objecao:#E8876C; --o-burburinho:#D77BD0; --o-base:#8CC95E; --o-entreter:#5BC6D6; --o-outro:#9AA0AF; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:26px 64px;display:grid;gap:26px}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance}
+p{margin:0}
+button{font:inherit}
+.topline{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.brand{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);letter-spacing:.05em}
+.modo{font-size:.85rem;color:var(--muted);display:inline-flex;align-items:center;gap:8px}
+.modo i{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none}
+.modo.on i{background:var(--yes)}
+.modo.off i{background:var(--no)}
+.label{font-size:.72rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- Visão do mês ---------- */
+.visao{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:grid}
+.head{background:var(--ink);color:var(--bg);padding:24px 26px;display:grid;gap:18px}
+.head .mes{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;opacity:.7}
+.head h1{font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.05}
+.head .obj{font-size:1.08rem;max-width:62ch}
+.strat{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 28px;border-top:1px solid color-mix(in srgb,var(--bg) 22%,transparent);padding-top:16px}
+.strat div{display:grid;gap:4px;min-width:0;align-content:start}
+.strat span{font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;opacity:.65;font-weight:700}
+.strat p{font-size:.95rem;opacity:.92}
+.placar{display:flex;gap:16px;flex-wrap:wrap;font-size:.9rem;opacity:.9}
+.placar b{font-variant-numeric:tabular-nums}
+
+.bloco{padding:18px 26px 6px;display:grid;gap:10px}
+.bloco + .bloco{border-top:1px solid var(--line);margin-top:12px}
+.bar{display:flex;height:12px;border-radius:99px;overflow:hidden;gap:2px}
+.bar i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.9rem;align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend b{font-variant-numeric:tabular-nums}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.fmts{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.9rem;align-items:center}
+.fmts span{display:inline-flex;align-items:center;gap:6px}
+.fmts svg{width:18px;height:18px}
+.ic{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.estr{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.85rem}
+.estr span{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
+.estr code{font-family:var(--f-mono);font-size:.72rem;font-weight:500;background:var(--soft);border-radius:5px;padding:1px 6px;color:var(--ink)}
+
+/* checks, um de cada vez */
+.pedidos{border-top:1px solid var(--line);background:var(--warn-soft)}
+.pedido{all:unset;cursor:pointer;display:grid;gap:2px;padding:8px 10px;border-radius:8px;border:1px solid transparent}
+.pedido:hover,.pedido:focus-visible{border-color:var(--warn)}
+.pedido b{font-size:.95rem}
+.pedido span{font-size:.9rem;color:var(--muted)}
+.pedidos .nota{font-size:.82rem;color:var(--muted)}
+.checks{scroll-margin-top:12px;padding:18px 26px 10px;display:grid;gap:14px;border-top:1px solid var(--line)}
+.passos{display:flex;flex-wrap:wrap;gap:6px}
+.passos button{all:unset;cursor:pointer;font-size:.85rem;font-weight:700;border:1px solid var(--line);border-radius:999px;padding:6px 14px;color:var(--muted)}
+.passos button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.passos button.feito:not([aria-selected="true"]){color:var(--yes);border-color:var(--yes)}
+.passos button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.passo-head{display:grid;gap:2px}
+.passo-head h2{font-size:1.25rem}
+.passo-head p{font-size:.9rem;color:var(--muted)}
+.resumo{display:grid;gap:10px}
+.passo-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center;padding-top:4px}
+.passo-nav .btns{display:flex;gap:8px}
+.passo-nav button{font-weight:600;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}
+.passo-nav button:disabled{opacity:.35;cursor:default}
+.passo-nav button.chk.on{background:var(--yes-soft);border-color:var(--yes);color:var(--yes)}
+.passo-nav button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.aprovacal{margin:14px 0 4px;padding:14px 16px;border:1.5px solid var(--yes);border-radius:14px;background:var(--yes-soft);display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.aprovacal p{margin:0;flex:1 1 320px;line-height:1.45}
+.aprovacal button{all:unset;cursor:pointer;font-weight:800;border-radius:999px;padding:10px 20px;background:var(--yes);color:#fff;white-space:nowrap}
+.aprovacal button:disabled{opacity:.45;cursor:default}
+.aprovacal button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.aprovacal.done{border-color:var(--line);background:var(--surface)}
+.cell .add{all:unset;cursor:pointer;font-size:.95rem;line-height:1;color:var(--accent);opacity:.35;padding:0 2px}
+.cell:hover .add,.cell .add:focus-visible{opacity:1}
+.cell .addhint{font-size:.66rem;color:var(--accent);opacity:0;align-self:end}
+.cell.livre:hover .addhint{opacity:.8}
+.cell.aberta{grid-template-rows:auto auto;min-height:140px;background:var(--accent-soft);outline:1.5px solid var(--accent)}
+.addf{display:grid;gap:4px;width:100%;justify-items:stretch;font-size:.72rem}
+.addf b{font-size:.7rem;color:var(--accent)}
+.addf input,.addf select{font:inherit;font-size:.72rem;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);width:100%}
+.addf .bt{display:flex;gap:4px}
+.addf button{all:unset;cursor:pointer;font-weight:700;font-size:.7rem;border-radius:999px;padding:4px 10px;background:var(--accent);color:#fff;flex:1;text-align:center}
+.addf button.x{background:var(--surface);color:var(--muted);border:1px solid var(--line);flex:0 0 auto}
+.addf .aviso{font-size:.66rem;color:var(--muted)}
+.novo{margin:14px 0 4px;border:1.5px solid var(--accent);border-radius:14px;padding:12px 16px;background:var(--accent-soft)}
+.novo summary{cursor:pointer;font-weight:800;font-size:1.05rem;color:var(--accent)}
+.novo summary small{font-weight:500;font-size:.85rem;color:var(--muted)}
+.novo-form{display:flex;gap:10px;flex-wrap:wrap;align-items:end;padding:10px 0 4px}
+.novo-form label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600}
+.novo-form label.wide{flex:1 1 260px}
+.novo-form input,.novo-form select{font:inherit;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.novo-form button{all:unset;cursor:pointer;font-weight:700;border-radius:999px;padding:8px 16px;background:var(--accent);color:#fff}
+.novo-form .aviso{font-size:12px;color:var(--muted)}
+.cell .txt{display:grid;gap:3px;font-size:.72rem;font-weight:700;line-height:1.15;text-align:left;color:var(--cor);align-self:start;padding:2px 0;overflow-wrap:anywhere;width:100%}
+.cell .dim{display:block}
+.cell .tema{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-size:.68rem;font-weight:500;color:var(--ink);line-height:1.2}
+.cell.p-dias .tema{font-weight:600}
+.cell.p-dias{background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
+.cell.p-formato{background:color-mix(in srgb,var(--cor) 12%,var(--surface))}
+.cell.p-objetivo{background:color-mix(in srgb,var(--cor) 10%,var(--surface))}
+.cell.p-estrutura .txt{color:var(--ink);font-weight:600}
+/* calendário do mês */
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}
+.cal .dw{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;padding-bottom:2px;font-weight:700}
+.cell{all:unset;box-sizing:border-box;min-height:84px;border-radius:9px;padding:6px 6px 5px;display:grid;grid-template-rows:auto 1fr;justify-items:center;gap:2px;font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums;background:var(--soft)}
+.cell.we{background:var(--weekend);opacity:.75}
+.cell.vazio{visibility:hidden}
+.cell.post{color:var(--ink);font-weight:700;background:var(--surface);border:1px solid var(--line);grid-template-rows:auto;align-content:start;gap:4px}
+.cell.post .top{margin-bottom:0}
+.ent{all:unset;cursor:pointer;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 4px;width:100%;border-radius:7px;padding:3px 4px;border:1.5px solid transparent}
+.ent .dec{grid-column:2;grid-row:1;font-size:.7rem;line-height:1}
+.ent .txt{grid-column:1 / span 2}
+.ent:hover{border-color:var(--cor)}
+.ent[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.ent:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.cell.dupla .ent{border-color:color-mix(in srgb,var(--line) 60%,transparent)}
+.cell:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.cell .n{justify-self:start;line-height:1}
+.tile{position:relative;width:34px;height:34px;border-radius:9px;background:color-mix(in srgb,var(--cor) 18%,transparent);color:var(--cor);display:grid;place-items:center;align-self:center}
+.tile .ic{width:20px;height:20px}
+.tile .o2{position:absolute;right:-3px;top:-3px;width:11px;height:11px;border-radius:50%;background:var(--cor2);border:2px solid var(--surface)}
+.cell .cod{font-family:var(--f-mono);font-size:.62rem;font-weight:500;color:var(--muted);letter-spacing:.02em}
+.cell .st{position:absolute}
+.cell .dec{justify-self:end;font-size:.7rem;line-height:1}
+.cell .top{display:flex;justify-content:space-between;width:100%;align-items:center}
+
+/* distribuição por objetivo */
+.dist{display:grid;gap:6px}
+.dist .row2{display:grid;grid-template-columns:200px minmax(0,1fr);gap:10px;align-items:center;font-size:.88rem}
+.dist .nome{display:inline-flex;align-items:center;gap:7px;min-width:0}
+.dist .nome b{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600}
+.dias{display:flex;flex-wrap:wrap;gap:4px}
+.dia{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:.72rem;padding:1px 7px;border-radius:99px;background:color-mix(in srgb,var(--cor) 16%,transparent);color:var(--ink);font-variant-numeric:tabular-nums}
+.dia.seg{box-shadow:inset 0 0 0 1.5px var(--warn)}
+.dia:focus-visible{outline:2px solid var(--accent)}
+.dist .nota{font-size:.82rem;color:var(--muted)}
+.dist .nota b{color:var(--warn)}
+
+/* lista */
+.filtro{display:flex;flex-wrap:wrap;gap:6px;align-items:center;padding:14px 26px 0}
+.filtro button{all:unset;cursor:pointer;font-size:.85rem;font-weight:600;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--muted)}
+.filtro button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.filtro button b{font-variant-numeric:tabular-nums}
+.filtro button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.list{padding:10px 14px 16px;display:grid;gap:2px}
+.row{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:92px 44px 190px minmax(0,1fr) 34px;gap:14px;align-items:start;padding:12px;border-radius:12px;border:1.5px solid transparent}
+.row:hover{background:var(--bg)}
+.row[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.row:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.row .day{display:grid}
+.row .dwl{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.row .dn{font-family:var(--f-display);font-weight:700;font-size:1.35rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.row .gap{font-family:var(--f-mono);font-size:.7rem;color:var(--muted)}
+.row .kind{display:grid;gap:5px;justify-items:start}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;font-weight:700;border-radius:99px;padding:2px 10px 2px 8px;background:color-mix(in srgb,var(--cor) 16%,transparent);color:var(--ink);max-width:100%}
+.chip .dot{background:var(--cor);width:8px;height:8px}
+.row .fmt{font-size:.82rem;color:var(--muted)}
+.row .what{display:grid;gap:3px;min-width:0}
+.row .t{font-weight:700;font-size:1.02rem}
+.row .w{font-size:.9rem;color:var(--muted)}
+.row .tile{width:38px;height:38px;border-radius:10px}
+.row .tile .ic{width:22px;height:22px}
+.row .st{font-size:1rem;justify-self:end;text-align:right;line-height:1.3}
+.hintline{padding:0 26px 18px;font-size:.85rem;color:var(--muted)}
+.edit-mark{color:var(--accent);font-weight:700}
+
+/* ---------- Post selecionado (abre logo abaixo de onde foi clicado) ---------- */
+.slot{grid-column:1 / -1}
+.slot:empty{display:none}
+.slot .brief,.list .brief{margin:6px 0 10px}
+#brief-holder:empty{display:none}
+.brief{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 28px;display:grid;gap:22px;scroll-margin-top:12px}
+.brief-head{display:grid;gap:10px;border-bottom:1px solid var(--line);padding-bottom:18px}
+.brief-head .meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem;color:var(--muted);align-items:center}
+.brief-head .meta b{color:var(--ink);font-weight:600}
+.brief-head h2{font-size:clamp(1.3rem,3vw,1.75rem);line-height:1.15}
+.campo{display:grid;gap:8px;min-width:0}
+.campo .lbl{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.campo .lbl .orig{all:unset;cursor:pointer;font-size:.78rem;color:var(--accent);font-weight:600}
+.campo .lbl .orig:focus-visible{outline:2px solid var(--accent);border-radius:4px}
+.campo input[type=date]{width:auto;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.campo input[type=date]:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.campo textarea,.campo input[type=text],.campo select{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;resize:vertical;min-height:44px;field-sizing:content}
+.campo textarea:focus,.campo input:focus,.campo select:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.campo.mudou textarea,.campo.mudou input,.campo.mudou select,.campo.mudou .seg{box-shadow:inset 3px 0 0 var(--accent)}
+.campo .was{font-size:.82rem;color:var(--muted);font-style:italic}
+.campo .ro{font-size:.95rem;color:var(--muted)}
+.opcoes{display:grid;gap:6px}
+.opc{all:unset;cursor:pointer;display:grid;gap:3px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.98rem;line-height:1.35}
+.opc .num{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.opc[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opc:hover{border-color:var(--accent)}
+.opc:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.opc:disabled{cursor:default}
+textarea.gancho{font-family:var(--f-display);font-size:1.2rem;font-weight:500;line-height:1.35;background:var(--accent-soft);border-color:transparent;min-height:72px}
+textarea.cta{border-left:3px solid var(--accent);font-style:italic}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px 28px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px 28px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:.85rem;font-weight:600;border:1px solid var(--line);border-radius:99px;padding:5px 12px;color:var(--muted)}
+.seg button[aria-pressed="true"]{color:var(--ink);background:color-mix(in srgb,var(--cor,var(--accent)) 16%,transparent);border-color:var(--cor,var(--accent))}
+.seg button:focus-visible{outline:2px solid var(--accent)}
+.seg button:disabled{cursor:default;opacity:.6}
+.seg .dot{background:var(--cor)}
+.seg .ic{width:16px;height:16px}
+.datewhy{font-size:.92rem;background:var(--bg);border-radius:8px;padding:8px 12px}
+.datewhy b{color:var(--accent)}
+.falta{font-size:.9rem;color:var(--no);background:var(--no-soft);border-radius:8px;padding:8px 12px}
+details.briefing{border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+details.briefing summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:.92rem}
+details.briefing .bgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;padding-top:12px}
+details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
+@media (max-width:760px){details.briefing .bgrid{grid-template-columns:1fr}}
+.decisao{display:grid;gap:12px;border-top:1px solid var(--line);padding-top:18px}
+.decbtns{display:flex;gap:8px;flex-wrap:wrap}
+.decbtns button{all:unset;cursor:pointer;font-weight:700;border:1.5px solid var(--line);border-radius:999px;padding:8px 18px;color:var(--ink)}
+.decbtns button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.decbtns button:disabled{cursor:default;opacity:.5}
+.decbtns .ok[aria-pressed="true"]{background:var(--yes-soft);border-color:var(--yes);color:var(--yes)}
+.decbtns .aj[aria-pressed="true"]{background:var(--warn-soft);border-color:var(--warn);color:var(--warn)}
+.decbtns .feito{background:var(--accent-soft);border-color:var(--accent)}
+.salvo{font-size:.8rem;color:var(--muted);min-height:1.2em}
+.nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.nav a{color:var(--accent);font-weight:600}
+.nav .btns{display:flex;gap:8px}
+.nav button{font-weight:600;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer}
+.nav button:disabled{opacity:.35;cursor:default}
+.nav button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- Pra decidir ---------- */
+.decidir{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px 28px;display:grid;gap:18px}
+.perg{display:grid;gap:6px}
+.perg .q{font-weight:600}
+.perg .af{font-size:.82rem;color:var(--muted)}
+.perg textarea{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-height:44px;field-sizing:content;resize:vertical}
+.perg textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.mat{display:grid;gap:4px;font-size:.92rem;color:var(--muted)}
+.mat span b{font-family:var(--f-mono);font-weight:500;color:var(--ink);font-size:.82rem;margin-right:8px}
+.rodape{font-size:.8rem;color:var(--muted)}
+.rodape a{color:var(--accent)}
+
+@media (max-width:760px){
+  .row{grid-template-columns:60px 38px minmax(0,1fr);gap:4px 10px}
+  .row .kind{grid-column:2 / span 2;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .row .what{grid-column:2 / span 2}
+  .row .day{grid-row:1 / span 3}
+  .row .st{grid-column:3;grid-row:1;justify-self:end}
+  .grid2{grid-template-columns:1fr}
+  .brief,.decidir{padding:20px}
+  .head,.bloco{padding-inline:18px}
+  .list{padding-inline:4px}
+  .dist .row2{grid-template-columns:1fr}
+  .cell{min-height:72px;padding:4px}
+  .cell .txt{font-size:.58rem}
+  .cell .tema{font-size:.54rem;-webkit-line-clamp:4}
+  .tile{width:28px;height:28px}
+  .tile .ic{width:17px;height:17px}
+  .cell .cod{font-size:.56rem}
+}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+</style>
+</head><body>
+
+
+<!--
+  DADOS DO MÊS: gerados por monta-artefato.js a partir do JSON do cliente/mês (cards do Notion + resposta do robô).
+  Campos de cada post: id (card do Notion), data, campanha, objetivo[], tema, angulo, formato, estrutura, gancho, cta, porque, dependeDe, link.
+  As edições, decisões e comentários NÃO ficam aqui: ficam no banco do artefato (coleções "revisao" e "decisoes").
+-->
+<script id="dados" type="application/json">{
+ "titulo": "Calendário Rahysa Novembro",
+ "cliente": "Rahysa Hedjazi",
+ "marca": "",
+ "mes": "Novembro 2026",
+ "ano": 2026,
+ "mesNumero": 11,
+ "objetivo": "Manter a audiência aquecida para o ciclo semanal do Conexões Venusianas, levando pessoas para o PCV e reforçando a credibilidade da Tecnologia Cósmica Venusiana. O mês também precisa preservar demanda reprimida para próximos movimentos pagos, sem inventar campanha nova.",
+ "fio": "Novembro aparece nas fontes como mês de sustentação perene, sem fase registrada de lançamento pago ou upsell dentro do mês.\nO projeto ativo com data recorrente é o Perpétuo de lives Conexões Venusianas, com lives toda terça às 12h12, foco principal no YouTube.\nHá cards informativos de divulgação de live nos domingos 01/11, 08/11, 15/11 e 22/11, e posts de convite no esqueleto nas segundas 02/11, 09/11, 16/11 e 23/11.\nA live de 10/11 está marcada como Portal 11:11, e há um reels do Portal 11:11 em 11/11 já em produção pelo cliente.\nOs demais posts do esqueleto sustentam a linha perene de Tecnologia Cósmica Venusiana, Nave Estrela de Vênus e prova social por depoimentos.",
+ "ritmo": "A frequência contratada é até 14 posts, mas novembro já veio com 12 posts escritos ou em produção que não devem ser devolvidos e 12 posts no esqueleto que, por regra, precisam entrar no calendário. Devolvi apenas os 12 posts do esqueleto, sem criar novos. O mix segue a função dos cards: convites de live em Reels com voz/rosto e conteúdos úteis ou de depoimento em carrossel de 10 slides, conforme padrão validado da cliente. Ganchos passaram pelo checklist de validação da Ju (15/10): 40 reescritos.",
+ "decidir": [],
+ "material": [
+  {
+   "data": "2026-11-04",
+   "texto": "Depoimento/print de aluna sobre Tecnologia Cósmica Venusiana, com autorização e trechos para grifar."
+  },
+  {
+   "data": "2026-11-12",
+   "texto": "Depoimento/print de aluna que fale de técnica, controle, conexão real ou transformação no servir, com autorização e trechos para grifar."
+  },
+  {
+   "data": "2026-11-18",
+   "texto": "Depoimento/print de aluna sobre Eu Cósmico, missão, memória cósmica ou reconhecimento de identidade, com autorização e trechos para grifar."
+  },
+  {
+   "data": "2026-11-27",
+   "texto": "Depoimento/print de aluna que mostre passagem, reconhecimento de missão ou transformação no servir pela Tecnologia Cósmica Venusiana, com autorização e trechos para grifar."
+  }
+ ],
+ "notion": "",
+ "geradoEm": "13/10/2026",
+ "posts": [
+  {
+   "id": "3f86e1715362802cb9fbdff129d42f1d",
+   "data": "2026-11-02",
+   "link": "https://app.notion.com/p/3f86e1715362802cb9fbdff129d42f1d",
+   "campanha": "Perpétuo · Lives Conexões Venusianas · convite/captação PCV · Perpétuo PCV: entrada para a live semanal e demanda reprimida",
+   "objetivo": [
+    "Aumentar a base"
+   ],
+   "tema": "Convite para a live semanal a partir do chamado para servir dentro de uma missão maior",
+   "angulo": "DIAGNÓSTICO / IDENTIFICAÇÃO",
+   "formato": "Reels",
+   "estrutura": "Talking head",
+   "gancho": "Quando o atendimento termina e você sente que algo maior passou por você, talvez a sua missão esteja mudando de camada",
+   "ganchos": [
+    "Você fecha a agenda do dia, sente que serviu de verdade e ainda fica uma pergunta: de qual missão maior o seu trabalho faz parte?",
+    "Quando o atendimento termina e você sente uma conexão real, talvez a sua missão esteja indo além da técnica",
+    "Você fecha a agenda, sente que serviu de verdade e fica uma pergunta: de qual missão maior o seu trabalho faz parte?",
+    "E se a sua sensibilidade no atendimento não estiver pedindo mais controle, mas mais presença no seu servir?",
+    "A técnica organiza o atendimento, mas como explicar a conexão que você sente quando começa a servir?"
+   ],
+   "cta": "Comente PCV para receber o link da live de terça, 03/11, às 12h12, no YouTube e Instagram @rahysa.hedjazi, dentro do Programa Conexões Venusianas.",
+   "porque": "Abre o mês levando a audiência para o PCV e para a live da semana, conforme card do esqueleto e projeto Perpétuo · Lives Conexões Venusianas.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "SOBRE A LIVE SEGUINTE + CTA CHAMANDO PRO PROGRAMA CONEXÕES VENUSIANAS (PALAVRA GATILHO PCV)",
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f86e1715362806b9955f2c54c23ec71",
+   "data": "2026-11-04",
+   "link": "https://app.notion.com/p/3f86e1715362806b9955f2c54c23ec71",
+   "campanha": "Perene · Tecnologia Cósmica Venusiana · Pilar 03 Ferramentas e Práticas CosmoIntegrativas · prova da Tecnologia Venusiana",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Depoimento dando credibilidade para a Tecnologia Cósmica Venusiana",
+   "angulo": "PROVA / VALIDAÇÃO",
+   "formato": "Carrossel",
+   "estrutura": "Comentário / Print",
+   "gancho": "Quando um depoimento mostra que a Tecnologia Cósmica Venusiana saiu da ideia e tocou a prática de uma aluna",
+   "ganchos": [
+    "“Parece uma tecnologia espiritual que veio do futuro.”\nEsse foi o relato de quem viveu as Mandalas de Ascensão.",
+    "Quando um depoimento mostra que a Tecnologia Cósmica Venusiana saiu da ideia e tocou a prática de uma aluna",
+    "O print de uma aluna pode explicar a Tecnologia Cósmica Venusiana melhor do que uma explicação longa",
+    "Você já tentou entender a Tecnologia Cósmica Venusiana pela cabeça antes de senti-la na prática?",
+    "A diferença entre ouvir falar da Tecnologia Cósmica Venusiana e perceber uma mudança real na forma de servir"
+   ],
+   "cta": "Para conhecer mais, acesse o link na bio.",
+   "porque": "Cumpre o card de storytelling com depoimento e insere prova social logo na primeira semana, seguindo o esqueleto e a regra de usar depoimentos para ancorar a Tecnologia Venusiana.",
+   "dependeDe": "Depoimento/print de aluna sobre Tecnologia Cósmica Venusiana, com autorização e trechos para grifar.",
+   "macro": "🤖 Gerado",
+   "cardNome": "STORYTELLING USANO UM DEPOIMENTO DANDO CREDIBILIDADE PARA A TECNOLOGIA VENUSIANA — CTA: CONHECER MAIS ACESSANDO O LINK NA BIO",
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f86e1715362808286eef9f7acb3017b",
+   "data": "2026-11-06",
+   "link": "https://app.notion.com/p/3f86e1715362808286eef9f7acb3017b",
+   "campanha": "Perene · Nave Estrela de Vênus · Pilar 01 Eu Cósmico · escuta da Nave Estrela de Vênus",
+   "objetivo": [
+    "Educar"
+   ],
+   "tema": "Como se abrir para a Nave Estrela de Vênus sem transformar a experiência em mais uma técnica",
+   "angulo": "SOLUÇÃO / EDUCAÇÃO",
+   "formato": "Carrossel",
+   "estrutura": "Utilidade",
+   "gancho": "Quando você sente a Nave Estrela de Vênus por perto, não transforme a mensagem em mais uma técnica para fazer certo",
+   "ganchos": [
+    "A diferença entre receber uma frequência da Nave Estrela de Vênus e tentar controlar a experiência",
+    "Quando você sente a Nave Estrela de Vênus por perto, não transforme a mensagem em uma técnica para fazer certo",
+    "Você já sentiu uma presença luminosa e, segundos depois, tentou explicar com a cabeça?",
+    "Como escutar a Nave Estrela de Vênus sem virar refém da dúvida se foi imaginação",
+    "Antes de pedir um sinal à Nave Estrela de Vênus, observe o que o seu campo já está mostrando"
+   ],
+   "cta": "Salve para voltar a esta orientação quando sentir a presença da Nave Estrela de Vênus no seu campo.",
+   "porque": "Entrega o conteúdo útil pedido no esqueleto com a Nave Estrela de Vênus no título, mantendo o vocabulário específico solicitado nas observações da cliente.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "CONTEUDO UTIL CONTENDO A NAVE ESTRELA DE VENUS NO TITULO",
+   "nivel": "N3 · Consciente da solução"
+  },
+  {
+   "id": "3f86e1715362805a8a47fde22ccc497f",
+   "data": "2026-11-09",
+   "link": "https://app.notion.com/p/3f86e1715362805a8a47fde22ccc497f",
+   "campanha": "Perpétuo · Lives Conexões Venusianas · convite/captação PCV · Portal 11:11 · ancoragem pela frequência venusiana",
+   "objetivo": [
+    "Gerar curiosidade / burburinho"
+   ],
+   "tema": "Convite para a live do Portal 11:11 dentro do Conexões Venusianas",
+   "angulo": "DESEJO / POSSIBILIDADE",
+   "formato": "Reels",
+   "estrutura": "B-roll + narração",
+   "gancho": "O Portal 11:11 não chama a parte de você que quer fugir da Terra, chama a parte que veio ancorar outra frequência aqui",
+   "ganchos": [
+    "Você já olhou para o relógio em 11:11 e sentiu que a mensagem era maior do que um número repetido?",
+    "No Portal 11:11, você quer fugir da Terra ou sustentar sua vida espiritual na rotina?",
+    "Quando o 11:11 começa a aparecer demais, a pergunta não é o que vai acontecer fora de você",
+    "No Portal 11:11, você procura sinais para confirmar medo. E se escutasse um chamado de presença?",
+    "Antes do Portal 11:11, observe qual frequência você está tentando sustentar na vida que já existe"
+   ],
+   "cta": "Comente PCV para receber o link da live de terça, 10/11, às 12h12, no YouTube e Instagram @rahysa.hedjazi, dentro do Programa Conexões Venusianas sobre o Portal 11:11.",
+   "porque": "Aquece a live marcada como Portal 11:11 e usa o CTA PCV indicado no card do esqueleto, sem antecipar promessa nem criar oferta nova.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "SOBRE A LIVE SEGUINTE + CTA CHAMANDO PRO PROGRAMA CONEXÕES VENUSIANAS (PALAVRA GATILHO PCV)",
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f86e171536280278ec7d44f4723ae34",
+   "data": "2026-11-12",
+   "link": "https://app.notion.com/p/3f86e171536280278ec7d44f4723ae34",
+   "campanha": "Perene · Tecnologia Cósmica Venusiana · RH-05: técnica/correção × conexão real e servir",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Depoimento de aluna sobre sair da busca por técnica e reconhecer conexão real no servir",
+   "angulo": "STORYTELLING / EXPERIÊNCIA",
+   "formato": "Carrossel",
+   "estrutura": "Storytelling",
+   "gancho": "Ela não precisava de mais uma técnica para fazer certo, precisava reconhecer a conexão que já chamava pelo servir dela",
+   "ganchos": [
+    "“Meu trabalho mudou completamente quando compreendi a minha missão.”\nO relato de uma terapeuta após conhecer a Tecnologia Cósmica Venusiana.",
+    "A aluna não precisava de mais uma técnica, precisava reconhecer a conexão que já chamava pelo servir dela",
+    "Quantas vezes você tentou corrigir o atendimento quando o campo estava pedindo presença?",
+    "Este depoimento mostra uma virada no atendimento: buscar menos técnica e reconhecer a conexão no servir",
+    "Você busca mais uma técnica no atendimento, mas sente falta da conexão real que sustenta o servir?"
+   ],
+   "cta": "Para conhecer mais, acesse o link na bio.",
+   "porque": "Reforça prova social na segunda semana e obedece ao card de storytelling com depoimento, alinhando com o feedback ativo RH-05 sobre técnica/correção versus conexão real e servir.",
+   "dependeDe": "Depoimento/print de aluna que fale de técnica, controle, conexão real ou transformação no servir, com autorização e trechos para grifar.",
+   "macro": "🤖 Gerado",
+   "cardNome": "STORYTELLING USANO UM DEPOIMENTO DANDO CREDIBILIDADE PARA A TECNOLOGIA VENUSIANA — CTA: CONHECER MAIS ACESSANDO O LINK NA BIO",
+   "nivel": "N3 · Consciente da solução"
+  },
+  {
+   "id": "3f86e1715362805f9199e6ce15223705",
+   "data": "2026-11-14",
+   "link": "https://app.notion.com/p/3f86e1715362805f9199e6ce15223705",
+   "campanha": "Perene · Nave Estrela de Vênus · Pilar 03 Ferramentas e Práticas CosmoIntegrativas · ancoragem no corpo e no campo",
+   "objetivo": [
+    "Educar"
+   ],
+   "tema": "O que observar no corpo e no campo quando a Nave Estrela de Vênus se aproxima",
+   "angulo": "CAUSA / EXPLICAÇÃO",
+   "formato": "Carrossel",
+   "estrutura": "Lista",
+   "gancho": "O que observar no seu corpo quando a Nave Estrela de Vênus toca o seu campo durante uma prática",
+   "ganchos": [
+    "O que observar no seu corpo quando a Nave Estrela de Vênus toca o seu campo durante uma prática",
+    "Você sente calor, emoção ou silêncio profundo na prática espiritual e tenta decidir rápido se foi imaginação?",
+    "Você espera uma imagem da Nave Estrela de Vênus, mas percebe uma mudança no campo durante a prática?",
+    "Antes de procurar uma visão da Nave Estrela de Vênus, preste atenção no que você sente no corpo",
+    "Como diferenciar curiosidade mental e abertura real quando a Nave Estrela de Vênus se aproxima do seu campo"
+   ],
+   "cta": "Salve para consultar antes da sua próxima prática de abertura.",
+   "porque": "Cumpre o conteúdo útil com Nave Estrela de Vênus no título e aprofunda a educação sem prometer resultado, conforme observações de vocabulário da cliente.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "CONTEÚDO UTIL CONTENDO A NAVE ESTRELADE VENUS NO TITULO",
+   "nivel": "N3 · Consciente da solução"
+  },
+  {
+   "id": "3f86e1715362803b95acc3ec8d52e38c",
+   "data": "2026-11-16",
+   "link": "https://app.notion.com/p/3f86e1715362803b95acc3ec8d52e38c",
+   "campanha": "Perpétuo · Lives Conexões Venusianas · convite/captação PCV · Grande narrativa: vida profissional e vida espiritual pedem integração, não separação",
+   "objetivo": [
+    "Aumentar a base"
+   ],
+   "tema": "Convite PCV pela dor de viver a profissão e a espiritualidade como partes separadas",
+   "angulo": "DOR / PROBLEMA",
+   "formato": "Reels",
+   "estrutura": "POV",
+   "gancho": "Você trabalha, atende, cuida de pessoas e ainda sente que a sua vida espiritual ficou em outro cômodo",
+   "ganchos": [
+    "Você trabalha, atende, cuida de pessoas e ainda sente que a sua vida espiritual ficou em outro cômodo",
+    "No fim do expediente, a sensação de só trocar tempo por dinheiro faz você sentir falta da sua vida espiritual?",
+    "Você separa vida profissional e vida espiritual na rotina, mas sente que as duas fazem parte da sua missão?",
+    "Do consultório à sala de aula, a sua frequência não fica esperando a hora da meditação para atuar",
+    "Você divide a rotina em parte espiritual e parte prática, mas sente falta de viver essa conexão no trabalho?"
+   ],
+   "cta": "Comente PCV para receber o link da live de terça, 17/11, às 12h12, no YouTube e Instagram @rahysa.hedjazi, dentro do Programa Conexões Venusianas.",
+   "porque": "Mantém a rotina de convite para a live seguinte e usa um ângulo de identificação validado no Banco de Voz sobre integração entre vida profissional e espiritual.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "SOBRE A LIVE SEGUINTE + CTA CHAMANDO PRO PROGRAMA CONEXÕES VENUSIANAS (PALAVRA GATILHO PCV)",
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f86e17153628008bb13faa26439259f",
+   "data": "2026-11-18",
+   "link": "https://app.notion.com/p/3f86e17153628008bb13faa26439259f",
+   "campanha": "Perene · Tecnologia Cósmica Venusiana · Pilar 01 Eu Cósmico · prova de lembrança da identidade cósmica",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Depoimento sobre reconhecer o Eu Cósmico e ampliar a compreensão da missão",
+   "angulo": "PROVA / VALIDAÇÃO",
+   "formato": "Carrossel",
+   "estrutura": "Comentário / Print",
+   "gancho": "Quando uma aluna reconhece que o Eu Cósmico não era fantasia, a missão deixa de caber só na história humana",
+   "ganchos": [
+    "“Eu só pedi uma coisa: me alinhar e ter paz no coração.”\nE foi assim que uma nova compreensão da sua missão começou.",
+    "Quando uma aluna reconhece que o Eu Cósmico não era fantasia, a missão deixa de caber só na história humana",
+    "O print que mostra uma passagem: parar de se explicar pela personalidade e começar a escutar o Eu Cósmico",
+    "Você já sentiu que a sua história humana não dava conta de explicar a missão espiritual que sente?",
+    "Entre a profissão que você construiu e a missão espiritual que sente, o que ainda falta reconhecer?"
+   ],
+   "cta": "Para conhecer mais, acesse o link na bio.",
+   "porque": "Insere nova prova social no meio do mês e conecta o depoimento ao eixo Eu Cósmico, presente no direcionamento do lançamento e no Banco de Voz.",
+   "dependeDe": "Depoimento/print de aluna sobre Eu Cósmico, missão, memória cósmica ou reconhecimento de identidade, com autorização e trechos para grifar.",
+   "macro": "🤖 Gerado",
+   "cardNome": "STORYTELLING USANO UM DEPOIMENTO DANDO CREDIBILIDADE PARA A TECNOLOGIA VENUSIANA — CTA: CONHECER MAIS ACESSANDO O LINK NA BIO (2)",
+   "nivel": "N3 · Consciente da solução"
+  },
+  {
+   "id": "3f86e17153628089a4cbd54cb9e4b992",
+   "data": "2026-11-20",
+   "link": "https://app.notion.com/p/3f86e17153628089a4cbd54cb9e4b992",
+   "campanha": "Perene · Nave Estrela de Vênus · Movimento: buscar sinal externo → reconhecer frequência ancorada no servir",
+   "objetivo": [
+    "Educar"
+   ],
+   "tema": "Quebra de crença sobre a Nave Estrela de Vênus como espetáculo distante",
+   "angulo": "QUEBRA DE CRENÇA",
+   "formato": "Carrossel",
+   "estrutura": "Comparativo",
+   "gancho": "Você busca a Nave Estrela de Vênus como um lugar distante para visitar ou como uma conexão no seu servir?",
+   "ganchos": [
+    "Você busca a Nave Estrela de Vênus como um lugar distante para visitar ou como uma conexão no seu servir?",
+    "Se você espera uma cena grandiosa no céu, pode não perceber a Nave Estrela de Vênus tocando o seu campo",
+    "Você já descartou uma percepção da Nave Estrela de Vênus porque não veio como visão, imagem ou mensagem pronta?",
+    "A diferença entre buscar a Nave Estrela de Vênus como espetáculo e reconhecer a frequência ancorada em você",
+    "Quando a mente quer prova visual, você pode não perceber a orientação sutil da Nave Estrela de Vênus"
+   ],
+   "cta": "Compartilhe com uma pessoa que tenta entender a Nave Estrela de Vênus só pela cabeça.",
+   "porque": "Atende ao pedido de conteúdo útil com Nave Estrela de Vênus no título e evita a leitura genérica, usando distinções X ≠ Y do Banco de Voz.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "CONTEÚDO UTIL CONTENDO A NAVE ESTRELADE VENUS NO TITULO (2)",
+   "nivel": "N3 · Consciente da solução"
+  },
+  {
+   "id": "3f86e171536280728c0fd73c9e79ec3a",
+   "data": "2026-11-23",
+   "link": "https://app.notion.com/p/3f86e171536280728c0fd73c9e79ec3a",
+   "campanha": "Perpétuo · Lives Conexões Venusianas · convite/captação PCV · Grande narrativa: Semente Estelar que descobre o chamado e precisa ancorar presença",
+   "objetivo": [
+    "Gerar curiosidade / burburinho"
+   ],
+   "tema": "Convite PCV para quem se reconhece como Semente Estelar e quer entender o próximo passo",
+   "angulo": "ASPIRAÇÃO / IDENTIDADE",
+   "formato": "Reels",
+   "estrutura": "Conversa / Encenação",
+   "gancho": "Ser Semente Estelar não é colecionar sinais no céu, é sustentar uma frequência diferente dentro da vida que você já vive",
+   "ganchos": [
+    "Você se reconhece como Semente Estelar e depois volta para uma rotina que parece pequena demais?",
+    "Você se reconhece como Semente Estelar, mas busca mais sinais no céu antes de viver sua missão na rotina?",
+    "O chamado não termina quando você se reconhece como Semente Estelar: como viver sua missão na rotina?",
+    "Você se reconhece como Semente Estelar, mas ainda usa a sensibilidade como desculpa para se esconder?",
+    "Você busca sua identidade cósmica como fuga ou para estar mais presente no trabalho, nas escolhas e no servir?"
+   ],
+   "cta": "Comente PCV para receber o link da live de terça, 24/11, às 12h12, no YouTube e Instagram @rahysa.hedjazi, dentro do Programa Conexões Venusianas.",
+   "porque": "Fecha o ciclo de convites de novembro para as lives semanais com um ângulo identitário de Semente Estelar, recorrente no Banco de Voz e no direcionamento estratégico.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "SOBRE A LIVE SEGUINTE + CTA CHAMANDO PRO PROGRAMA CONEXÕES VENUSIANAS (PALAVRA GATILHO PCV)",
+   "nivel": "N4 · Consciente do produto"
+  },
+  {
+   "id": "3f86e1715362802199c8f84d9208d1bc",
+   "data": "2026-11-25",
+   "link": "https://app.notion.com/p/3f86e1715362802199c8f84d9208d1bc",
+   "campanha": "Perene · Nave Estrela de Vênus · Autoridade canalizada: Rahysa como ponte entre a Nave Estrela de Vênus e a leitora",
+   "objetivo": [
+    "Educar"
+   ],
+   "tema": "Como Rahysa diferencia recebimento, dúvida mental e imaginação na conexão com a Nave Estrela de Vênus",
+   "angulo": "AUTORIDADE / VISÃO DE ESPECIALISTA",
+   "formato": "Carrossel",
+   "estrutura": "Análise",
+   "gancho": "O que a Nave Estrela de Vênus me mostra quando uma aluna pergunta se está recebendo ou imaginando",
+   "ganchos": [
+    "O que a Nave Estrela de Vênus me mostra quando uma aluna pergunta se está recebendo ou imaginando",
+    "Quando a dúvida aparece depois de uma prática espiritual, eu observo como o campo ficou, não a frase que veio",
+    "Você já recebeu uma percepção sutil na prática espiritual e desfez a experiência tentando provar com a cabeça?",
+    "Na conexão com a Nave Estrela de Vênus, você recebe a mensagem ou força uma resposta pela imaginação?",
+    "Antes de perguntar se foi real, observe se a mensagem da Nave Estrela de Vênus trouxe presença ou ansiedade"
+   ],
+   "cta": "Comente qual é a sua maior dúvida quando tenta reconhecer um recebimento.",
+   "porque": "Cumpre o último conteúdo útil com Nave Estrela de Vênus no título e ancora autoridade pela visão canalizada da Rahysa, sem transformar a experiência em protocolo rígido.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "CONTEÚDO UTIL CONTENDO A NAVE ESTRELADE VENUS NO TITULO (1)",
+   "nivel": "N3 · Consciente da solução"
+  },
+  {
+   "id": "3f86e171536280cc918beefba3c101bc",
+   "data": "2026-11-27",
+   "link": "https://app.notion.com/p/3f86e171536280cc918beefba3c101bc",
+   "campanha": "Perene · Tecnologia Cósmica Venusiana · Movimento: missão parcial → missão cósmica com prova de transformação",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Depoimento mostrando a passagem de buscar respostas para reconhecer uma missão maior no servir",
+   "angulo": "TRANSFORMAÇÃO",
+   "formato": "Carrossel",
+   "estrutura": "Storytelling",
+   "gancho": "O depoimento de uma aluna que começou buscando respostas e terminou reconhecendo uma missão maior atravessando o próprio servir",
+   "ganchos": [
+    "Ela já tinha suas próprias ferramentas terapêuticas. Mas foi a expansão da consciência que a fez enxergar seu trabalho de outra forma.",
+    "O depoimento de uma aluna que buscava respostas e reconheceu uma missão espiritual maior no próprio servir",
+    "Quando você reconhece uma missão espiritual no atendimento, o que muda na sua forma de servir?",
+    "Você já percebeu que sua vocação no atendimento era real, mas parecia pequena diante do que a sua alma sentia?",
+    "A passagem da busca por respostas à missão cósmica: o que uma aluna reconheceu no próprio servir?"
+   ],
+   "cta": "Para conhecer mais, acesse o link na bio.",
+   "porque": "Fecha o mês com prova social e transformação, obedecendo ao card de storytelling com depoimento e retomando a grande narrativa de missão parcial para missão cósmica.",
+   "dependeDe": "Depoimento/print de aluna que mostre passagem, reconhecimento de missão ou transformação no servir pela Tecnologia Cósmica Venusiana, com autorização e trechos para grifar.",
+   "macro": "🤖 Gerado",
+   "cardNome": "STORYTELLING USANO UM DEPOIMENTO DANDO CREDIBILIDADE PARA A TECNOLOGIA VENUSIANA — CTA: CONHECER MAIS ACESSANDO O LINK NA BIO (1)",
+   "nivel": "N3 · Consciente da solução"
+  }
+ ],
+ "idCliente": "RAHYSA",
+ "estruturas": [
+  "POV",
+  "Storytelling",
+  "Análise",
+  "React",
+  "Meme",
+  "Tela dividida",
+  "Comparativo",
+  "Lista",
+  "Passo a passo",
+  "Tutorial / Demonstração",
+  "Pergunta e resposta",
+  "Conversa / Encenação",
+  "Comentário / Print",
+  "Bastidor",
+  "Talking head",
+  "B-roll + narração",
+  "Texto na tela",
+  "Green screen",
+  "Metáfora visual",
+  "Trend adaptada",
+  "Utilidade"
+ ],
+ "api": "https://n8neditor.paulamunhoz.online/webhook"
+}</script>
+
+<div class="wrap" id="app"></div>
+
+<script>
+(function(){
+  var D;
+  try { D = JSON.parse(document.getElementById('dados').textContent); }
+  catch(e){ document.getElementById('app').textContent = 'Os dados do mês estão com erro de formatação.'; return; }
+
+  // ---------- bibliotecas da Denise (nomes iguais aos do Notion) ----------
+  var OBJS = ['Vender','Ancorar autoridade','Gerar conexão','Educar','Gerar desejo','Quebrar objeção','Gerar curiosidade / burburinho','Aumentar a base','Entreter'];
+  var OBJ_VAR = {'Vender':'--o-vender','Ancorar autoridade':'--o-autoridade','Gerar conexão':'--o-conexao','Educar':'--o-educar','Gerar desejo':'--o-desejo','Quebrar objeção':'--o-objecao','Gerar curiosidade / burburinho':'--o-burburinho','Aumentar a base':'--o-base','Entreter':'--o-entreter'};
+  var OBJ_CURTO = {'Gerar curiosidade / burburinho':'Curiosidade / burburinho'};
+  var FORMATOS = ['Reels','Carrossel','Card único','Stories'];
+  var ESTRS = (Array.isArray(D.estruturas) && D.estruturas.length) ? D.estruturas : ['POV','Storytelling','Análise','React','Meme','Tela dividida','Comparativo','Lista','Passo a passo','Tutorial / Demonstração','Pergunta e resposta','Conversa / Encenação','Comentário / Print','Bastidor','Talking head','B-roll + narração','Texto na tela','Green screen','Metáfora visual','Trend adaptada','Utilidade']; // lista vem do select Estrutura do Notion (gera-dados); fallback fixo
+  var COD = {'POV':'POV','Storytelling':'STORY','Análise':'ANÁL','React':'REACT','Meme':'MEME','Tela dividida':'TELA2','Comparativo':'COMP','Lista':'LISTA','Passo a passo':'PASSO','Tutorial / Demonstração':'TUTO','Pergunta e resposta':'P&R','Conversa / Encenação':'CENA','Comentário / Print':'PRINT','Bastidor':'BAST','Talking head':'TH','B-roll + narração':'BROLL','Texto na tela':'TEXTO','Green screen':'GREEN','Metáfora visual':'METÁF','Trend adaptada':'TREND'};
+  // Ângulo: a Denise tirou da lista de resultado (08/10/2026). Fica só no card do Notion.
+  var ANGS_FORA = ['DOR / PROBLEMA','DIAGNÓSTICO / IDENTIFICAÇÃO','QUEBRA DE CRENÇA','CONSEQUÊNCIA','CAUSA / EXPLICAÇÃO','SOLUÇÃO / EDUCAÇÃO','DESEJO / POSSIBILIDADE','TRANSFORMAÇÃO','PROVA / VALIDAÇÃO','AUTORIDADE / VISÃO DE ESPECIALISTA','BASTIDOR / PROCESSO','STORYTELLING / EXPERIÊNCIA','COMPARAÇÃO / CONTRASTE','OBJEÇÃO / DECISÃO','POSICIONAMENTO / OPINIÃO','ASPIRAÇÃO / IDENTIDADE'];
+  var ICON = {
+    'Reels': '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="3"/><path d="M2 6h12M6 2l2 4M10 2l2 4"/><path d="M7 8.3v4l3.2-2z" fill="currentColor" stroke="none"/></svg>',
+    'Carrossel': '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="5" width="9" height="9" rx="1.8"/><path d="M5.5 2.5h6a2 2 0 0 1 2 2v6"/></svg>',
+    'Card único': '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/><circle cx="6" cy="6.2" r="1.1" fill="currentColor" stroke="none"/><path d="M3 12l3-3 2 2 2.2-2.2L13 11.6"/></svg>',
+    'Stories': '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke-dasharray="3.2 2.2"/><circle cx="8" cy="8" r="2.6" fill="currentColor" stroke="none"/></svg>'
+  };
+  var ICON_OUTRO = '<svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><rect x="2.5" y="2.5" width="11" height="11" rx="2"/></svg>';
+
+  var esc = function(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); };
+  var DOW = ['dom','seg','ter','qua','qui','sex','sáb'];
+  var DOWL = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+  var pd = function(s){ var p=String(s||'').split('-'); return p.length===3 ? new Date(+p[0],+p[1]-1,+p[2]) : null; };
+  var two = function(n){ return String(n).padStart(2,'0'); };
+  var corObj = function(o){ return 'var(' + (OBJ_VAR[o] || '--o-outro') + ')'; };
+  var icon = function(f){ return ICON[f] || ICON_OUTRO; };
+  var nomeObj = function(o){ return OBJ_CURTO[o] || o; };
+
+  // ---------- modelo ----------
+  var P = (D.posts||[]).slice().sort(function(a,b){ return String(a.data||'9').localeCompare(String(b.data||'9')); });
+  var REV = {};   // revisao/<id> -> {campos:{}, comentario, decisao, notion:{campos,decisao,comentario}}
+  var byId = {}; P.forEach(function(p){ byId[p.id] = p; });
+  var ORIG_PT = {data:'Data da postagem', tema:'Foco/Tema', objetivo:'Objetivo', formato:'Formato', estrutura:'Estrutura', angulo:'Ângulo', gancho:'Gancho', cta:'CTA', nivel:'Nível de consciência'};
+  var NIVEIS = ['N1 · Inconsciente','N2 · Consciente do problema','N3 · Consciente da solução','N4 · Consciente do produto','N5 · Totalmente consciente'];
+  var DS_CONTEUDO = '3586e171-5362-8321-ae4d-876799c1134c';
+  var NOVOS = {};
+  var DEC = {};   // decisoes/<id> -> {resposta}
+  var sel = 0;
+  var filtro = 'todos';
+  var origem = null, aberto = false, topoPendente = false; // onde o post abre: 'row' (lista) ou 'cal' (semana do calendário)
+  var passo = 0; try { passo = Math.min(3, Math.max(0, +(localStorage.getItem('passo')||0))) || 0; } catch(e){}
+  var CHK = {};   // checks/geral -> {dias,formato,objetivo,estrutura}
+  var FMT_COR = {'Reels':'var(--f-reels)','Carrossel':'var(--f-carrossel)','Card único':'var(--f-card)','Stories':'var(--f-stories)'};
+  var corFmt = function(f){ return FMT_COR[f] || 'var(--o-outro)'; };
+  var EDIT = ['data','tema','objetivo','formato','estrutura','gancho','cta','nivel'];
+  function eff(p){ var r = REV[p.id] || {}, c = r.campos || {}, o = {}; EDIT.forEach(function(k){ o[k] = (c[k] !== undefined && c[k] !== null) ? c[k] : p[k]; }); o.objetivo = Array.isArray(o.objetivo) ? o.objetivo : (o.objetivo ? [o.objetivo] : []); return o; }
+  function mudou(p,k){ var c=(REV[p.id]||{}).campos||{}; if(c[k]===undefined||c[k]===null) return false; return JSON.stringify(c[k])!==JSON.stringify(p[k]); }
+  function temEdicao(p){ return EDIT.some(function(k){ return mudou(p,k); }); }
+  function decisao(p){ return (REV[p.id]||{}).decisao || ''; }
+  function comentario(p){ return (REV[p.id]||{}).comentario || ''; }
+  function objInvalido(e){ return e.objetivo.length > 1 && e.objetivo.indexOf('Vender') < 0; }
+  function respostaCopy(p){ return (REV[p.id]||{}).respostaCopy || ''; }
+  function validado(p){ var d=decisao(p); return d==='validado' || d==='ajustado'; }
+  function stIcon(p){ var d=decisao(p), c=comentario(p); return (d==='aprovado'?'✅':d==='ajustar'?'🔁':validado(p)?'✍️':'') + (c?'💬':''); }
+  function ganchos(p){ var g = Array.isArray(p.ganchos) && p.ganchos.length ? p.ganchos.slice() : [p.gancho]; if (p.gancho && g.indexOf(p.gancho)<0) g.unshift(p.gancho); return g.filter(Boolean); }
+
+  var app = document.getElementById('app');
+  var modo = 'carregando';
+
+  // ---------- topo + visão do mês ----------
+  function renderTopo(){
+    topoPendente = false; var _b = document.getElementById('brief'), _h = document.getElementById('brief-holder'); if (_b && _h && _b.parentNode !== _h) _h.appendChild(_b);
+    var y = +D.ano, mn = +D.mesNumero;
+    if ((!y||!mn) && P[0] && pd(P[0].data)){ var f0=pd(P[0].data); y=f0.getFullYear(); mn=f0.getMonth()+1; }
+    var E = P.map(eff);
+    var ORD = P.map(function(p,i){ return i; }).sort(function(a,b){ return String(E[a].data||'9').localeCompare(String(E[b].data||'9')); });
+    var nA = P.filter(function(p){return decisao(p)==='aprovado';}).length, nJ = P.filter(function(p){return decisao(p)==='ajustar';}).length, nC = P.filter(function(p){return !!comentario(p);}).length, nO = E.filter(objInvalido).length, nV = P.filter(validado).length;
+
+    var h = '<section class="visao" aria-label="Visão do mês"><div class="head"><span class="mes">'+esc(D.mes)+' · '+P.length+' conteúdos'+(D.marca?' · '+esc(D.marca):'')+'</span><h1>'+esc(D.cliente)+'</h1>'+(D.objetivo?'<p class="obj">'+esc(D.objetivo)+'</p>':'');
+    if (D.fio || D.ritmo) h += '<div class="strat">'+(D.fio?'<div><span>Leitura do mês</span><p>'+esc(D.fio)+'</p></div>':'')+(D.ritmo?'<div><span>Distribuição</span><p>'+esc(D.ritmo)+'</p></div>':'')+'</div>';
+    h += '<div class="placar"><span>Fila da copy <b>'+(P.length-nA-nJ-nV)+'</b></span><span>🔁 Ajustar (volta pra copy) <b>'+nJ+'</b></span><span>✍️ Validados pela copy <b>'+nV+'</b></span><span>✅ Aprovados pela Denise <b>'+nA+'</b></span><span>💬 Com comentário <b>'+nC+'</b></span>'+(nO?'<span>⚠️ Objetivo a escolher <b>'+nO+'</b></span>':'')+'</div></div>';
+
+    // ---------- pedidos de ajuste (pra Ju resolver) ----------
+    var pedidos = []; ORD.forEach(function(i){ if (decisao(P[i])==='ajustar') pedidos.push(i); });
+    if (pedidos.length){
+      h += '<div class="bloco pedidos"><span class="label">🔁 A Denise pediu ajuste · '+pedidos.length+'</span>';
+      pedidos.forEach(function(i){ var p=P[i], e=E[i], d=pd(e.data); h += '<button class="pedido" data-i="'+i+'"><b>'+(d?two(d.getDate())+'/'+two(d.getMonth()+1):'')+' · '+esc(e.tema)+'</b><span>'+esc(comentario(p)||'(sem comentário)')+'</span></button>'; });
+      h += '<p class="nota">Copy: abra o post, ajuste e clique em "Validar". Ele volta pra Denise conferir.</p></div>';
+    }
+    // ---------- 4 checks, um de cada vez (Denise, 08/10/2026): dias → formato → objetivo → estrutura ----------
+    var oc = {}; E.forEach(function(e){ e.objetivo.forEach(function(o){ oc[o]=(oc[o]||0)+1; }); });
+    var usados = OBJS.filter(function(o){return oc[o];}).concat(Object.keys(oc).filter(function(o){return OBJS.indexOf(o)<0;}));
+    var fc = {}; E.forEach(function(e){ var f=e.formato||'Sem formato'; fc[f]=(fc[f]||0)+1; });
+    var fo = FORMATOS.filter(function(f){return fc[f];}).concat(Object.keys(fc).filter(function(f){return FORMATOS.indexOf(f)<0;}));
+    var ec = {}; E.forEach(function(e){ if(e.estrutura) ec[e.estrutura]=(ec[e.estrutura]||0)+1; });
+    var eu = ESTRS.filter(function(x){return ec[x];}).concat(Object.keys(ec).filter(function(x){return ESTRS.indexOf(x)<0;}));
+    var seqAlerta = [];
+    for (var q=1;q<ORD.length;q++){ var ia=ORD[q-1], ib=ORD[q]; var a=E[ia].objetivo, b=E[ib].objetivo; var comum = a.filter(function(o){return b.indexOf(o)>=0;}); if (a.length && b.length && (a[0]===b[0] || comum.length===Math.max(a.length,b.length))) seqAlerta.push([ia,ib,comum.length?comum:[a[0]]]); }
+    var segSet = {}; seqAlerta.forEach(function(sq){ sq[2].forEach(function(o){ segSet[o+'|'+sq[0]]=1; segSet[o+'|'+sq[1]]=1; }); });
+    var dc = [0,0,0,0,0,0,0]; E.forEach(function(e){ var d=pd(e.data); if(d) dc[d.getDay()]++; });
+
+    var PASSOS = [
+      { id:'dias', titulo:'Os dias estão certos?', sub:'Cada dia com post mostra o tema. Confira se caem nos dias que a cliente publica.' },
+      { id:'formato', titulo:'Carrossel e reels estão bem distribuídos?', sub:'Formato + tema: o formato combina com o que o post vai contar?' },
+      { id:'objetivo', titulo:'Os objetivos estão bem distribuídos?', sub:'Objetivo + tema: o objetivo está de acordo com o tema? Um por post; dois só quando um é Vender.' },
+      { id:'estrutura', titulo:'As estruturas criativas estão variadas?', sub:'Estrutura + tema: a estrutura serve pra esse tema?' }
+    ];
+    var pa = PASSOS[passo];
+    h += '<div class="checks"><div class="passos" role="tablist">'+PASSOS.map(function(x,i){ return '<button role="tab" data-passo="'+i+'" aria-selected="'+(i===passo)+'" class="'+(CHK[x.id]?'feito':'')+'">'+(CHK[x.id]?'✓ ':'')+(i+1)+'. '+esc(['Dias','Formato','Objetivo','Estrutura'][i])+'</button>'; }).join('')+'</div>';
+    h += '<div class="passo-head"><h2>'+esc(pa.titulo)+'</h2><p>'+esc(pa.sub)+'</p></div>';
+
+    if (y && mn){
+      var nd = new Date(y,mn,0).getDate(), byDay = {};
+      ORD.forEach(function(i){ var d=pd(E[i].data); if(d && d.getMonth()+1===mn && d.getFullYear()===y){ (byDay[d.getDate()] = byDay[d.getDate()] || []).push(i); } });
+      var first = new Date(y,mn-1,1).getDay(); var lead = (first+6)%7; // semana começa na segunda
+      h += '<div class="cal">';
+      ['seg','ter','qua','qui','sex','sáb','dom'].forEach(function(d){ h+='<span class="dw">'+d+'</span>'; });
+      for (var v=0; v<lead; v++) h += '<span class="cell vazio"></span>';
+      for (var k=1;k<=nd;k++){
+        var dw = new Date(y,mn-1,k).getDay(), we = (dw===0||dw===6)?' we':''; var sem = Math.floor((lead + k - 1) / 7);
+        if (byDay[k]){ h += '<div class="cell post p-'+pa.id+we+(byDay[k].length>1?' dupla':'')+'" data-dia="'+y+'-'+two(mn)+'-'+two(k)+'"><span class="top"><span class="n">'+two(k)+'</span>'+(byDay[k].length>1?'<span class="dec">'+byDay[k].length+' posts</span>':'')+(modo==='edita'?'<button class="add" data-add="'+y+'-'+two(mn)+'-'+two(k)+'" title="Adicionar outro post neste dia">＋</button>':'')+'</span>';
+          byDay[k].forEach(function(ix){ var p=P[ix], e=E[ix]; var cor='var(--accent)', txt='', alerta='';
+          var tema = '<span class="tema">'+esc(e.tema)+'</span>';
+          if (pa.id==='dias'){ txt=tema; }
+          else if (pa.id==='formato'){ cor=corFmt(e.formato); txt='<span class="dim">'+esc(e.formato||'sem formato')+'</span>'+tema; }
+          else if (pa.id==='objetivo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join('<br>') || 'sem objetivo')+'</span>'+tema; alerta = objInvalido(e)?'⚠️':''; }
+          else { txt='<span class="dim">'+esc(e.estrutura||'sem estrutura')+'</span>'+tema; cor='var(--ink)'; }
+          h += '<button class="ent" data-i="'+ix+'" data-semana="'+sem+'" aria-pressed="false" style="--cor:'+cor+'" title="'+esc(DOWL[dw]+' '+two(k)+' · '+(e.formato||'')+' · '+e.objetivo.join(' + ')+' · '+(e.estrutura||'')+' · '+e.tema)+'"><span class="dec">'+alerta+stIcon(p)+(mudou(p,'data')?'📅':'')+'</span><span class="txt">'+txt+'</span></button>';
+          });
+          h += '</div>';
+        } else h += '<span class="cell livre'+we+'" data-dia="'+y+'-'+two(mn)+'-'+two(k)+'"><span class="top"><span class="n">'+two(k)+'</span>'+(modo==='edita'?'<button class="add" data-add="'+y+'-'+two(mn)+'-'+two(k)+'" title="Adicionar um post neste dia">＋</button>':'')+'</span><span class="addhint">'+(modo==='edita'?'+ post':'')+'</span></span>';
+        if ((lead + k) % 7 === 0 || k === nd) h += '<div class="slot" data-semana="'+sem+'"></div>';
+      }
+      h += '</div>';
+    }
+
+    // resumo do passo
+    h += '<div class="resumo">';
+    if (pa.id==='dias'){
+      h += '<div class="legend">'+[1,2,3,4,5,6,0].map(function(d){ return '<span>'+DOW[d]+' <b>'+dc[d]+'</b></span>'; }).join('')+'<span>total <b>'+P.length+'</b></span></div>';
+    } else if (pa.id==='formato'){
+      h += '<div class="legend">'+fo.map(function(f){ return '<span><span class="dot" style="background:'+corFmt(f)+'"></span>'+esc(f)+' <b>'+fc[f]+'</b></span>'; }).join('')+'</div>';
+    } else if (pa.id==='objetivo'){
+      h += '<div class="bar" role="img" aria-label="'+usados.map(function(o){return esc(o)+': '+oc[o];}).join(', ')+'">'+usados.map(function(o){ return '<i style="flex:'+oc[o]+';background:'+corObj(o)+'"></i>'; }).join('')+'</div>';
+      h += '<div class="legend">'+usados.map(function(o){ return '<span><span class="dot" style="background:'+corObj(o)+'"></span>'+esc(nomeObj(o))+' <b>'+oc[o]+'</b></span>'; }).join('')+'</div>';
+      h += '<div class="dist">';
+      usados.forEach(function(o){
+        h += '<div class="row2"><span class="nome"><span class="dot" style="background:'+corObj(o)+'"></span>'+esc(nomeObj(o))+'</span><span class="dias" style="--cor:'+corObj(o)+'">';
+        ORD.forEach(function(i){ var p=P[i]; if (E[i].objetivo.indexOf(o)>=0){ var d=pd(E[i].data); h += '<button class="dia'+(segSet[o+'|'+i]?' seg':'')+'" data-i="'+i+'">'+(d?two(d.getDate()):'?')+'</button>'; } });
+        h += '</span></div>';
+      });
+      var nO = E.filter(objInvalido).length;
+      h += '<p class="nota">'+(seqAlerta.length ? '<b>Posts seguidos com o mesmo objetivo:</b> '+seqAlerta.map(function(sq){ var d1=pd(E[sq[0]].data), d2=pd(E[sq[1]].data); return two(d1.getDate())+' e '+two(d2.getDate())+' ('+sq[2].map(nomeObj).join(' + ')+')'; }).join(' · ')+'. ' : 'Nenhum par de posts seguidos repete o objetivo. ')+(nO?'<b>⚠️ '+nO+' post(s) com dois objetivos sem Vender:</b> abra e clique no que fica.':'')+'</p></div>';
+    } else {
+      h += '<div class="legend">'+eu.map(function(x){ return '<span>'+esc(x)+' <b>'+ec[x]+'</b></span>'; }).join('')+'</div>';
+    }
+    h += '</div>';
+    h += '<div class="passo-nav"><button class="chk'+(CHK[pa.id]?' on':'')+'" data-chk="'+pa.id+'"'+(modo==='edita'?'':' disabled')+'>'+(CHK[pa.id]?'✓ Conferido':'Marcar como conferido')+'</button><span class="btns"><button data-passo="'+(passo-1)+'" '+(passo===0?'disabled':'')+'>← Anterior</button><button data-passo="'+(passo+1)+'" '+(passo===PASSOS.length-1?'disabled':'')+'>Próximo →</button></span></div></div>';
+    // ---------- adicionar post em outra data (Denise, 14/10/2026) ----------
+    if (false) h += '<details class="novo" open><summary>➕ Adicionar um post em outra data <small>(cria o card no Notion na hora)</small></summary><div class="novo-form"><label>Data <input type="date" id="nv-data" min="'+esc(String(D.ano))+'-'+two(+D.mesNumero)+'-01"></label><label>Formato <select id="nv-fmt">'+FORMATOS.map(function(f){ return '<option>'+esc(f)+'</option>'; }).join('')+'</select></label><label class="wide">Tema / o que é o post <input type="text" id="nv-tema" placeholder="ex.: convite pra live de quinta"></label><button data-novo-post="1"'+(modo==='edita'?'':' disabled')+'>Criar o card no Notion</button><span class="aviso" id="nv-aviso">'+(modo==='edita'?'':'Entre com a conta da Lumen pra criar o card.')+'</span></div></details>';
+    // ---------- aprovação do calendário inteiro (gatilho da produção) ----------
+    var nPend = P.filter(function(p){ var d=decisao(p); return d!=='aprovado' && d!=='ajustar'; }).length;
+    var faltam = ['dias','formato','objetivo','estrutura'].filter(function(k){ return !CHK[k]; }).length;
+    h += '<div class="aprovacal'+(CHK.aprovadoEm && !nPend ? ' done' : '')+'">';
+    if (CHK.aprovadoEm) h += '<p><b>✅ Calendário aprovado em '+esc(fmtQuando(CHK.aprovadoEm))+'.</b> A IA está escrevendo a copy dos posts aprovados direto nos cards do Notion, um por vez, e a Ju revisa cada um. '+(nJ ? nJ+' com 🔁 pedido de ajuste ficam de fora até a Ju ajustar. ' : '')+(nPend ? nPend+' post'+(nPend>1?'s':'')+' sem aprovação (mudou depois da aprovação).' : '')+'</p>';
+    else h += '<p><b>Aprovar o calendário inteiro.</b> Os '+nPend+' posts sem 🔁 vão pra produção: a IA escreve a copy de cada um no card do Notion e a Ju revisa antes de chegar em você. '+(nJ ? nJ+' com pedido de ajuste ficam de fora. ' : '')+(faltam ? 'Faltam '+faltam+' das 4 conferências, mas dá pra aprovar mesmo assim.' : '')+'</p>';
+    if (nPend) h += '<button data-aprova-cal="1"'+(modo==='edita'?'':' disabled')+'>✅ Aprovar '+(CHK.aprovadoEm ? 'os '+nPend+' restantes' : 'o calendário')+' e mandar pra produção</button>';
+    h += '</div>';
+
+    // lista
+    var nF = {todos:P.length, copy:P.length-nA-nJ-nV+nJ, denise:nV, aprovados:nA};
+    h += '<div class="filtro"><span class="label">Mostrar</span>'+[['todos','Todos'],['copy','Fila da copy'],['denise','Fila da Denise'],['aprovados','Aprovados']].map(function(f){ return '<button data-filtro="'+f[0]+'" aria-pressed="'+(filtro===f[0])+'">'+f[1]+' <b>'+nF[f[0]]+'</b></button>'; }).join('')+'</div>';
+    h += '<div class="list">';
+    var prev = null;
+    ORD.forEach(function(i){ var p=P[i];
+      var e=E[i], d = pd(e.data), gap = '';
+      var dz = decisao(p); var fila = dz==='aprovado' ? 'aprovados' : validado(p) ? 'denise' : 'copy';
+      if (filtro!=='todos' && fila!==filtro) return;
+      if (d && prev){ var g=Math.round((d-prev)/864e5); gap = '<span class="gap">+'+g+(g===1?' dia':' dias')+'</span>'; }
+      if (d) prev = d;
+      var o1=e.objetivo[0], o2=e.objetivo[1];
+      h += '<button class="row" data-i="'+i+'" aria-pressed="false"><span class="day">'+(d?'<span class="dwl">'+DOW[d.getDay()]+'</span><span class="dn">'+two(d.getDate())+'/'+two(d.getMonth()+1)+(mudou(p,'data')?' <span class="edit-mark" title="data alterada">📅</span>':'')+'</span>':'<span class="dn">sem data</span>')+gap+'</span>';
+      h += '<span class="tile" style="--cor:'+corFmt(e.formato)+'" title="'+esc(e.formato)+'">'+icon(e.formato)+'</span>';
+      h += '<span class="kind">'+e.objetivo.map(function(o){ return '<span class="chip" style="--cor:'+corObj(o)+'"><span class="dot"></span>'+esc(nomeObj(o))+'</span>'; }).join('')+'<span class="fmt">'+esc(e.formato)+' · '+esc(e.estrutura)+'</span></span>';
+      h += '<span class="what"><span class="t">'+(temEdicao(p)?'<span class="edit-mark" title="editado">✎ </span>':'')+esc(e.tema)+'</span>'+(p.campanha?'<span class="w">'+esc(p.campanha)+(p.porque?' · '+esc(p.porque):'')+'</span>':(p.porque?'<span class="w">'+esc(p.porque)+'</span>':''))+'</span>';
+      h += '<span class="st">'+(objInvalido(e)?'⚠️':'')+stIcon(p)+'</span></button>';
+    });
+    h += '</div><p class="hintline">Clique num dia ou numa linha: o post abre logo abaixo. Copy: escolhe o gancho, ajusta o que precisar e valida. Denise: aprova ou dá feedback em cima.</p></section>';
+    document.getElementById('topo').innerHTML = h;
+    mark(); colocaBrief();
+  }
+
+  // ---------- post selecionado ----------
+  var timers = {}, filaEscrita = {};
+  function renderBrief(){
+    var p = P[sel]; if(!p) return;
+    var e = eff(p), ro = (modo!=='edita');
+    var dis = ro ? ' disabled' : '';
+    var bd = pd(e.data);
+    var ORDb = P.map(function(q,i){ return i; }).sort(function(a,b){ return String(eff(P[a]).data||'9').localeCompare(String(eff(P[b]).data||'9')); }); var pos = ORDb.indexOf(sel);
+    var campo = function(k, lbl, inner){ var m = mudou(p,k); return '<div class="campo'+(m?' mudou':'')+'" data-k="'+k+'"><div class="lbl"><span class="label">'+lbl+'</span>'+(m&&!ro?'<button class="orig" data-restaura="'+k+'">↺ voltar ao original</button>':'')+'</div>'+inner+(m?'<p class="was">Original: '+esc(Array.isArray(p[k])?p[k].join(' + '):p[k])+'</p>':'')+'</div>'; };
+    var x = '<header class="brief-head"><span class="label">Post '+two(pos+1)+' de '+two(P.length)+'</span>';
+    x += '<div class="meta">'+(bd?'<span><b>'+DOWL[bd.getDay()]+', '+two(bd.getDate())+'/'+two(bd.getMonth()+1)+'</b></span>':'')+(p.campanha?'<span>'+esc(p.campanha)+'</span>':'')+(p.macro?'<span>No Notion: '+esc(p.macro)+'</span>':'')+'</div>';
+    x += '<h2>'+esc(e.tema)+'</h2>'+(p.porque?'<p class="datewhy"><b>Por que este post nesta data:</b> '+esc(p.porque)+'</p>':'')+'</header>';
+    x += campo('data','Data da postagem (mude aqui se preferir outro dia)','<input type="date" data-f="data" value="'+esc(e.data)+'" min="'+esc(String(e.data||'').slice(0,7))+'-01"'+dis+'>');
+
+    // 1) o que a Denise olha primeiro: objetivo, estrutura, formato
+    x += '<div class="grid3">';
+    x += campo('objetivo','Objetivo (1 por post; com Vender pode ter 2)','<div class="seg" data-multi="objetivo">'+OBJS.map(function(o){ return '<button style="--cor:'+corObj(o)+'" data-v="'+esc(o)+'" aria-pressed="'+(e.objetivo.indexOf(o)>=0)+'"'+dis+'><span class="dot"></span>'+esc(nomeObj(o))+'</button>'; }).join('')+'</div>'+(objInvalido(e)?'<p class="falta">Dois objetivos sem Vender. Clique no que fica; o outro sai sozinho.</p>':''));
+    x += campo('formato','Formato','<div class="seg" data-single="formato">'+FORMATOS.map(function(f){ return '<button data-v="'+esc(f)+'" aria-pressed="'+(e.formato===f)+'"'+dis+'>'+icon(f)+esc(f)+'</button>'; }).join('')+'</div>');
+    var opt = function(list, v){ var l = list.slice(); if (v && l.indexOf(v)<0) l.unshift(v); return (v?'':'<option value="">(sem)</option>')+l.map(function(s){ return '<option'+(s===v?' selected':'')+'>'+esc(s)+'</option>'; }).join(''); };
+    x += campo('estrutura','Estrutura criativa','<select data-f="estrutura"'+dis+'>'+opt(ESTRS, e.estrutura)+'</select>');
+    x += '</div>';
+    x += campo('nivel','Nível de consciência de quem lê (pra quem este post fala)','<select data-f="nivel"'+dis+'>'+opt(NIVEIS, e.nivel||'')+'</select>'+(p.nivelTexto?'<p class="datewhy">Briefing: '+esc(p.nivelTexto)+'</p>':''));
+    // 2) gancho e CTA
+    var G = ganchos(p); var escolhido = G.indexOf(e.gancho);
+    var opcoes = G.length>1 ? '<div class="opcoes" data-opcoes="gancho">'+G.map(function(g,i){ return '<button class="opc" data-g="'+i+'" aria-pressed="'+(i===escolhido)+'"'+dis+'><span class="num">'+(i+1)+(i===0?' · sugerido pelo robô':'')+'</span>'+esc(g)+'</button>'; }).join('')+'</div>' : '';
+    x += campo('gancho','Gancho: '+(G.length>1?G.length+' opções, a copy escolhe a melhor (ou escreve outra)':''), opcoes+'<textarea class="gancho" data-f="gancho" rows="2" aria-label="Gancho escolhido, editável"'+dis+'>'+esc(e.gancho)+'</textarea>');
+    x += '<div class="grid2">'+campo('cta','CTA','<textarea class="cta" data-f="cta" rows="2"'+dis+'>'+esc(e.cta)+'</textarea>')+campo('tema','Foco / tema','<input type="text" data-f="tema" value="'+esc(e.tema)+'"'+dis+'>')+'</div>';
+    // 3) secundário
+    if (p.dependeDe) x += '<div class="campo"><span class="label">Material que precisa existir</span><p class="falta">'+esc(p.dependeDe)+'</p></div>';
+    if (Array.isArray(p.briefing) && p.briefing.length) x += '<details class="briefing"><summary>Briefing completo da copy ('+p.briefing.length+' itens: '+esc(p.briefing.map(function(b){return b.rotulo;}).join(', ').toLowerCase())+')</summary><div class="bgrid">'+p.briefing.map(function(b){ return '<div class="campo"><span class="label">'+esc(b.rotulo)+'</span><div class="txt">'+String(b.texto||'').split('\n').filter(Boolean).map(function(l){return '<p>'+esc(l)+'</p>';}).join('')+'</div></div>'; }).join('')+'</div></details>';
+    // decisão + comentário
+    var dec = decisao(p), vz = validado(p);
+    // 1º estágio: copy
+    x += '<div class="decisao"><span class="label">1. Copy (Ju): valida o post</span>'+(dec==='ajustar'?'<p class="datewhy"><b>🔁 A Denise pediu ajuste.</b> Leia o comentário abaixo, ajuste e valide de novo.</p>':'');
+    x += '<div class="campo"><span class="label">Por que esse gancho / o que você ajustou</span><textarea data-f="respostaCopy" rows="2" placeholder="Opcional, mas ajuda a Denise: ex. escolhi a opção 3 porque abre pela cena do 3h33."'+dis+'>'+esc(respostaCopy(p))+'</textarea></div>';
+    x += '<div class="decbtns"><button class="feito" data-dec="validado" aria-pressed="'+vz+'"'+dis+'>'+(vz?'✍️ Validado pela copy':'✍️ Validar este post')+'</button></div></div>';
+    // 2º estágio: Denise
+    x += '<div class="decisao"><span class="label">2. Denise: aprova ou dá feedback</span>'+(vz?'<p class="datewhy"><b>✍️ Validado pela copy.</b> Confira e aprove, ou peça ajuste.</p>':'<p class="datewhy">Ainda na fila da copy. Você pode aprovar ou trocar algo direto mesmo assim.</p>')+'<div class="decbtns"><button class="ok" data-dec="aprovado" aria-pressed="'+(dec==='aprovado')+'"'+dis+'>✅ Aprovar este post</button><button class="aj" data-dec="ajustar" aria-pressed="'+(dec==='ajustar')+'"'+dis+'>🔁 Pedir ajuste</button></div>';
+    x += '<div class="campo"><span class="label">Feedback pra copy</span><textarea data-f="comentario" rows="2" placeholder="Por que esse gancho não ficou bom, o que trocar, o que manter."'+dis+'>'+esc(comentario(p))+'</textarea></div><p class="salvo" id="salvo"></p></div>';
+    x += '<div class="nav">'+(p.link?'<a href="'+esc(p.link)+'" target="_blank" rel="noopener">Abrir o card no Notion</a>':'<span></span>')+'<span class="btns"><button id="fechar">✕ Fechar</button><button id="prev" '+(pos<=0?'disabled':'')+'>← Anterior</button><button id="next" '+(pos>=P.length-1?'disabled':'')+'>Próximo →</button></span></div>';
+    var el = document.getElementById('brief'); el.innerHTML = x;
+    document.getElementById('fechar').onclick = function(){ fechaBrief(); };
+    document.getElementById('prev').onclick = function(){ if (pos>0) go(ORDb[pos-1],false); };
+    document.getElementById('next').onclick = function(){ if (pos<ORDb.length-1) go(ORDb[pos+1],false); };
+    if (ro) return;
+    el.querySelectorAll('[data-f]').forEach(function(inp){
+      inp.addEventListener('input', function(){ var k=inp.dataset.f; if (k==='data') return; if (k==='comentario'||k==='respostaCopy') { var o={}; o[k]=inp.value; setRev(p, o); } else setCampo(p, k, inp.value); });
+      inp.addEventListener('change', function(){ var k=inp.dataset.f; if (k==='data'){ if (!/^\d{4}-\d{2}-\d{2}$/.test(inp.value)) return; setCampo(p, 'data', inp.value===p.data ? null : inp.value); renderBrief(); return; } if (k==='comentario'||k==='respostaCopy') { var o={}; o[k]=inp.value; setRev(p, o); } else setCampo(p, k, inp.value); });
+    });
+    el.querySelectorAll('.seg[data-single] button').forEach(function(b){ b.onclick = function(){ setCampo(p, b.parentNode.dataset.single, b.dataset.v); renderBrief(); }; });
+    el.querySelectorAll('.seg[data-multi] button').forEach(function(b){ b.onclick = function(){ var cur = eff(p).objetivo.slice(); var v=b.dataset.v, ix=cur.indexOf(v); if (ix>=0) cur.splice(ix,1); else if (v==='Vender') cur = cur.filter(function(o){return o!=='Vender';}).slice(0,1).concat(['Vender']); else if (cur.indexOf('Vender')>=0) cur = [v,'Vender']; else cur = [v]; setCampo(p, 'objetivo', cur); renderBrief(); }; });
+    el.querySelectorAll('.opc').forEach(function(b){ b.onclick = function(){ var g = ganchos(p)[+b.dataset.g]; setCampo(p, 'gancho', g===p.gancho ? null : g); renderBrief(); }; });
+    el.querySelectorAll('[data-restaura]').forEach(function(b){ b.onclick = function(){ setCampo(p, b.dataset.restaura, null); renderBrief(); }; });
+    el.querySelectorAll('[data-dec]').forEach(function(b){ b.onclick = function(){ var v = b.dataset.dec; var cur = decisao(p); var novo = (v==='validado') ? (validado(p) ? '' : 'validado') : (cur===v ? (v==='aprovado' ? 'validado' : '') : v); setRev(p, {decisao: novo}); renderBrief(); renderTopo(); }; });
+  }
+
+  // ---------- pra decidir ----------
+  function renderDecidir(){
+    var ro = (modo!=='edita'), dis = ro?' disabled':'';
+    var x = '';
+    if ((D.decidir||[]).length){
+      x += '<h2 style="font-size:1.2rem">Pra decidir</h2><p style="color:var(--muted);font-size:.92rem">Só o que muda o texto de algum post e o robô não tinha como saber.</p>';
+      D.decidir.forEach(function(q){ x += '<div class="perg"><span class="q">'+esc(q.pergunta)+'</span>'+(q.afeta?'<span class="af">Afeta: '+esc(q.afeta)+'</span>':'')+'<textarea data-q="'+esc(q.id)+'" rows="1" placeholder="Sua resposta"'+dis+'>'+esc((DEC[q.id]||{}).resposta||'')+'</textarea></div>'; });
+    }
+    if ((D.material||[]).length){
+      x += '<div><span class="label">Material que falta pra produzir (pendência da equipe, não sua)</span><div class="mat" style="margin-top:6px">'+D.material.map(function(m){ var d=pd(m.data); return '<span><b>'+(d?two(d.getDate())+'/'+two(d.getMonth()+1):'')+'</b>'+esc(m.texto)+'</span>'; }).join('')+'</div></div>';
+    }
+    x += '<p class="rodape">Calendário gerado pelo robô em '+esc(D.geradoEm||'')+' a partir do Notion da cliente. '+(D.notion?'<a href="'+esc(D.notion)+'" target="_blank" rel="noopener">Pendências no Notion</a>. ':'')+''+(mcp ? 'Decisões, comentários e campos que você muda aqui vão direto pros cards; as respostas vão pra página de pendências.' : 'O que você mudar aqui fica salvo e vai pro Notion na próxima sincronização.')+'</p>';
+    var el = document.getElementById('decidir'); el.innerHTML = x;
+    if (ro) return;
+    el.querySelectorAll('[data-q]').forEach(function(t){ t.addEventListener('input', function(){ setDec(t.dataset.q, t.value); }); });
+  }
+
+  // ---------- estado + banco ----------
+  var db = null, mcp = null, notionVivo = false;
+  function setModo(m, txt){ modo = m; var n = document.getElementById('modo'); n.className = 'modo ' + (m==='edita'?'on':m==='carregando'?'':'off'); n.innerHTML = '<i></i>' + esc(txt); }
+  function setCampo(p, k, v){ var r = REV[p.id] = REV[p.id] || {}; r.campos = r.campos || {}; (TOCADOS[p.id] = TOCADOS[p.id] || {})[k] = 1; if (v===null || v===undefined) delete r.campos[k]; else r.campos[k] = v; agenda(p.id); renderTopoSeguro(); }
+  function abreAddNoDia(dia){
+    var cell = document.querySelector('.cell[data-dia="'+dia+'"]'); if (!cell) return;
+    var old = document.querySelector('.addf'); if (old) renderTopo();
+    cell = document.querySelector('.cell[data-dia="'+dia+'"]'); if (!cell) return;
+    var d = pd(dia); var f = document.createElement('div'); f.className = 'addf';
+    f.innerHTML = '<b>Novo post · '+(d?DOWL[d.getDay()]+' '+two(d.getDate())+'/'+two(d.getMonth()+1):esc(dia))+'</b><input type="hidden" id="nv-data" value="'+esc(dia)+'"><select id="nv-fmt">'+FORMATOS.map(function(x){ return '<option>'+esc(x)+'</option>'; }).join('')+'</select><input type="text" id="nv-tema" placeholder="Tema do post" aria-label="Tema do post"><span class="bt"><button data-novo-post="1">Criar card</button><button data-add-cancel="1" class="x">✕</button></span><span class="aviso" id="nv-aviso"></span>';
+    cell.appendChild(f); cell.classList.add('aberta'); var t = f.querySelector('#nv-tema'); if (t) t.focus();
+  }
+  function adicionaPost(p){ if (byId[p.id]) return; P.push(p); byId[p.id] = p; }
+  async function novoPostMcp(){
+    if (modo !== 'edita') return;
+    var data = (document.getElementById('nv-data')||{}).value || '', fmt = (document.getElementById('nv-fmt')||{}).value || 'Carrossel', tema = ((document.getElementById('nv-tema')||{}).value || '').trim();
+    var av = document.getElementById('nv-aviso'); var say = function(t){ if (av) av.textContent = t; };
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) { say('Escolha a data.'); return; }
+    if (!tema) { say('Diga o tema do post.'); return; }
+    if (!mcp) { say('Sem conector Notion nesta conta: peça pra Paula criar o card.'); return; }
+    if (!D.idCliente) { say('Este calendário não tem o ID do cliente; peça pra Paula.'); return; }
+    say('criando o card no Notion…');
+    try {
+      var props = { 'Nome da postagem': tema, 'ID Cliente': D.idCliente, 'date:Data da postagem:start': data, 'date:Data da postagem:is_datetime': 0, 'Formato': fmt, 'Foco/Tema': tema, 'Status do post': '🔵 Produzir copy', 'Tipo': '🎨 Conteúdo', 'Calendário macro': '✍️ Validado pela copy', 'Observações (estrategista)': 'Post adicionado pela estrategista no artefato em ' + new Date().toLocaleDateString('pt-BR') + '. Copy define gancho, CTA e estrutura.' };
+      var res = await mcp.callTool('Notion', 'notion-create-pages', { parent: { type: 'data_source_id', data_source_id: DS_CONTEUDO }, pages: [{ properties: props }], allow_async: false });
+      var txt = JSON.stringify(res); var m = txt.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i) || txt.match(/[0-9a-f]{32}/i); var id = m ? m[0].replace(/-/g,'') : '';
+      if (!id) { say('O Notion criou, mas não devolveu o id. Recarregue a página.'); return; }
+      var novo = { id: id, data: data, link: 'https://app.notion.com/p/' + id, campanha: '', objetivo: [], tema: tema, angulo: '', formato: fmt, estrutura: '', gancho: '', ganchos: [], cta: '', porque: 'Adicionado pela estrategista no artefato.', dependeDe: '', macro: '✍️ Validado pela copy', cardNome: tema, novo: true };
+      adicionaPost(novo); NOVOS[id] = novo; if (db) escreve('novos/' + id, Object.assign({}, novo, { atualizadoEm: new Date().toISOString() }), { semNotion: true });
+      say('card criado ✓'); renderTopo();
+    } catch (e) { say(erroNotion(e)); }
+  }
+  function fmtQuando(iso){ try { var d = new Date(iso); return d.toLocaleDateString('pt-BR') + ' às ' + d.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'}); } catch(e){ return iso; } }
+  function aprovaCalendarioDb(){
+    if (modo !== 'edita') return;
+    var pend = P.filter(function(p){ var d=decisao(p); return d!=='aprovado' && d!=='ajustar'; });
+    var nJ = P.filter(function(p){ return decisao(p)==='ajustar'; }).length;
+    if (!pend.length) return;
+    if (!confirm('Aprovar o calendário inteiro?\n\n'+pend.length+' posts vão pra produção: a IA escreve a copy no Notion e a Ju revisa.'+(nJ ? '\n'+nJ+' com pedido de ajuste ficam de fora.' : ''))) return;
+    pend.forEach(function(p){ var r = REV[p.id] = REV[p.id] || {}; r.decisao = 'aprovado'; });
+    CHK.aprovadoEm = new Date().toISOString();
+    renderTopo(); if (aberto) renderBrief();
+    if (!db) return;
+    escreve('checks/geral', Object.assign({}, CHK, {atualizadoEm: CHK.aprovadoEm}), {semNotion:true});
+    var seq = Promise.resolve(), n = pend.length;
+    pend.forEach(function(p, i){
+      seq = seq.then(function(){ aviso('gravando no Notion ('+(i+1)+'/'+n+')…'); return db.doc('revisao/'+p.id).set(docRev(p.id)); })
+               .then(function(){ return sincronizaCard(p.id); })
+               .then(function(){ return new Promise(function(r){ setTimeout(r, 350); }); })
+               .catch(function(e){ aviso('não salvou '+(i+1)+'/'+n+' ('+(e&&e.code||'erro')+')'); });
+    });
+    seq.then(function(){ aviso(mcp ? 'salvo ✓ · Notion ✓ · produção começa em até 10 min' : 'salvo ✓'); });
+  }
+  function setRev(p, patch){ var r = REV[p.id] = REV[p.id] || {}; Object.keys(patch).forEach(function(k){ r[k] = patch[k]; }); agenda(p.id); renderTopoSeguro(); }
+  function setDec(id, v){ var d = DEC[id] = DEC[id] || {}; d.resposta = v; agendaDec(id); }
+  function docRev(id){ var r = REV[id] || {}; return { campos: r.campos || {}, comentario: r.comentario || '', respostaCopy: r.respostaCopy || '', decisao: r.decisao || '', notion: r.notion || {}, atualizadoEm: new Date().toISOString() }; }
+  function agenda(id){ aviso('salvando…'); clearTimeout(timers[id]); timers[id] = setTimeout(function(){ escreve('revisao/'+id, docRev(id)); }, 1200); }
+  function agendaDec(id){ clearTimeout(timers['d:'+id]); timers['d:'+id] = setTimeout(function(){ var d = DEC[id] || {}; escreve('decisoes/'+id, { resposta: d.resposta || '', notion: d.notion || '', atualizadoEm: new Date().toISOString() }); }, 1200); }
+  function aviso(t){ var s = document.getElementById('salvo'); if (s) s.textContent = t; }
+  function escreveDb(path, data, opts){
+    if (!db) return;
+    opts = opts || {};
+    var prev = filaEscrita[path] || Promise.resolve();
+    filaEscrita[path] = prev.then(function(){ return db.doc(path).set(data); }).then(function(){ aviso('salvo ✓'); if (!opts.semNotion && mcp) { if (path.indexOf('revisao/')===0) return sincronizaCard(path.slice(8)); if (path.indexOf('decisoes/')===0) return sincronizaResposta(path.slice(9)); } }).catch(function(e){
+      var code = e && e.code;
+      if (code === 'invalid_argument') setModo('leitura', 'Sem permissão pra salvar: entre com a conta da Lumen pra aprovar e editar.');
+      else if (code === 'quota_exceeded') aviso('não salvou: banco cheio. Avise a Paula.');
+      else aviso('não salvou agora (' + (code||'erro') + '). Tente de novo.');
+      if (code === 'invalid_argument') { renderBrief(); renderDecidir(); }
+    });
+  }
+  // ---------- Notion direto (conector de quem está logado) ----------
+  function erroNotion(e){
+    var c = e && e.code, s = e && e.message ? String(e.message).slice(0,120) : '';
+    if (c==='needs_reauth') return 'Notion: reconecte o conector em claude.ai → Configurações → Conectores.';
+    if (c==='server_not_connected' || c==='selection_required') return 'Notion: adicione o conector Notion na sua conta claude.ai pra gravar direto nos cards.';
+    if (c==='not_in_manifest' || c==='consent_required' || c==='blocked_by_policy' || c==='approval_required') return 'Notion: esta página não tem permissão pra gravar. Permita o Notion no menu da página; enquanto isso fica salvo aqui.';
+    if (c==='tool_error') return 'Notion recusou a gravação: ' + s;
+    return 'Notion não respondeu agora (' + (c||'erro') + '). Fica salvo aqui; tento de novo na próxima mudança.';
+  }
+  function sincronizaCard(id){
+    var p = byId[id]; if (!p || !mcp) return;
+    var r = REV[id] || {}; var campos = r.campos || {}; var n = r.notion || {}; var nc = n.campos || {};
+    var props = {}, novoNc = {};
+    EDIT.forEach(function(k){
+      var cur = campos[k], prev = nc[k];
+      var val = null;
+      if (cur !== undefined && cur !== null){ novoNc[k] = cur; if (JSON.stringify(cur) !== JSON.stringify(prev)) val = cur; }
+      else if (prev !== undefined) val = p[k]; // voltou ao original: devolve o valor original pro card
+      if (val !== null){ if (k==='data'){ props['date:Data da postagem:start'] = val; props['date:Data da postagem:is_datetime'] = 0; } else props[ORIG_PT[k]] = val; }
+    });
+    var dec = r.decisao || '';
+    if (dec && dec !== n.decisao) props['Calendário macro'] = dec==='aprovado' ? '✅ Aprovado' : (dec==='validado' || dec==='ajustado') ? '✍️ Validado pela copy' : '🔁 Ajustar';
+    var com = (r.comentario ? 'Denise: ' + r.comentario : '') + (r.respostaCopy ? (r.comentario ? '\n\n' : '') + 'Copy: ' + r.respostaCopy : '');
+    if (com !== (n.comentario || '')) props['Observações (estrategista)'] = com;
+    if (!Object.keys(props).length) return;
+    aviso('salvo ✓ · gravando no Notion…');
+    return mcp.callTool('Notion', 'notion-update-page', { page_id: id, command: 'update_properties', properties: props }).then(function(){
+      notionVivo = true;
+      r.notion = { campos: novoNc, decisao: dec || n.decisao || '', comentario: com };
+      aviso('salvo ✓ · Notion ✓');
+      escreve('revisao/' + id, docRev(id), { semNotion: true });
+    }).catch(function(e){ aviso(erroNotion(e)); });
+  }
+  function sincronizaResposta(qid){
+    if (!mcp || !D.notion) return;
+    var q = (D.decidir||[]).filter(function(x){ return x.id===qid; })[0]; if (!q) return;
+    var d = DEC[qid] || {}; var resp = (d.resposta || '').trim(); var antes = d.notion || '';
+    if (resp === antes) return;
+    var pid = String(D.notion).replace(/[^0-9a-f]/gi,'').slice(-32);
+    var marca = ' → Resposta da Denise: ';
+    var oldStr = q.pergunta + (antes ? marca + antes : '');
+    var newStr = q.pergunta + (resp ? marca + resp : '');
+    aviso('gravando resposta no Notion…');
+    return mcp.callTool('Notion', 'notion-update-page', { page_id: pid, command: 'update_content', content_updates: [{ old_str: oldStr, new_str: newStr }] }).then(function(){
+      d.notion = resp; DEC[qid] = d;
+      escreve('decisoes/' + qid, { resposta: resp, notion: resp, atualizadoEm: new Date().toISOString() }, { semNotion: true });
+      aviso('resposta no Notion ✓');
+    }).catch(function(e){ aviso(erroNotion(e)); });
+  }
+  function briefTemFoco(){ var a = document.activeElement; return a && document.getElementById('brief').contains(a); }
+  function decidirTemFoco(){ var a = document.activeElement; return a && document.getElementById('decidir').contains(a); }
+
+  async function initDbOriginal(){
+    try{
+      if (!window.claude || typeof window.claude.use !== 'function'){ setModo('semdb','Modo leitura: edição indisponível nesta visualização.'); renderBrief(); renderDecidir(); return; }
+      db = await window.claude.use('db');
+      var user = await window.claude.use('user');
+      if (!db){ setModo('semdb','Modo leitura: edição indisponível nesta visualização.'); renderBrief(); renderDecidir(); return; }
+      var can = user ? await user.can('data.write') : null;
+      try { mcp = await window.claude.use('mcp'); } catch(e){ mcp = null; }
+      if (can === false){ setModo('leitura','Modo leitura: entre com a conta da Lumen pra aprovar, editar e comentar.'); }
+      else setModo('edita', mcp ? 'Tudo o que você muda aqui é salvo e vai direto pro card no Notion (na 1ª vez a página pede permissão pro seu Notion).' : 'Tudo o que você muda aqui é salvo na hora e vai pro Notion na próxima sincronização.');
+      renderBrief(); renderDecidir();
+      db.collection('revisao').onSnapshot(function(snap){
+        snap.docChanges().forEach(function(ch){ if (ch.type==='removed') delete REV[ch.doc.id]; else REV[ch.doc.id] = JSON.parse(JSON.stringify(ch.doc.data()||{})); });
+        renderTopoSeguro(); if (!briefTemFoco()) renderBrief();
+      }, function(e){ setModo('leitura','Não consegui ler as revisões salvas ('+(e&&e.code||'erro')+'). Recarregue a página.'); });
+      db.collection('novos').onSnapshot(function(snap){ var mudou = false; snap.docChanges().forEach(function(ch){ var d = ch.doc.data() || {}; if (ch.type !== 'removed' && d.id && !byId[d.id]) { adicionaPost(JSON.parse(JSON.stringify(d))); mudou = true; } }); if (mudou) renderTopoSeguro(); }, function(){});
+      db.doc('checks/geral').onSnapshot(function(snap){ var d = snap.exists ? snap.data() : {}; CHK = {dias:!!d.dias, formato:!!d.formato, objetivo:!!d.objetivo, estrutura:!!d.estrutura, aprovadoEm: d.aprovadoEm || ''}; renderTopo(); }, function(){});
+      db.collection('decisoes').onSnapshot(function(snap){
+        snap.docChanges().forEach(function(ch){ if (ch.type==='removed') delete DEC[ch.doc.id]; else DEC[ch.doc.id] = JSON.parse(JSON.stringify(ch.doc.data()||{})); });
+        if (!decidirTemFoco()) renderDecidir();
+      }, function(){});
+    }catch(e){ setModo('semdb','Modo leitura: edição indisponível nesta visualização.'); renderBrief(); renderDecidir(); }
+  }
+
+  // ---------- navegação ----------
+  function colocaBrief(){
+    var b = document.getElementById('brief'), h = document.getElementById('brief-holder'); if (!b || !h) return;
+    if (!aberto){ b.hidden = true; if (b.parentNode !== h) h.appendChild(b); return; }
+    b.hidden = false;
+    if (origem === 'row'){ var r = document.querySelector('.row[data-i="'+sel+'"]'); if (r){ r.insertAdjacentElement('afterend', b); return; } }
+    var ent = document.querySelector('.ent[data-i="'+sel+'"]');
+    if (ent){ var slot = document.querySelector('.slot[data-semana="'+ent.dataset.semana+'"]'); if (slot){ slot.appendChild(b); return; } }
+    var r2 = document.querySelector('.row[data-i="'+sel+'"]'); if (r2){ r2.insertAdjacentElement('afterend', b); return; }
+    h.appendChild(b);
+  }
+  function renderTopoSeguro(){ if (briefTemFoco()) { topoPendente = true; return; } renderTopo(); }
+  function mark(){ document.querySelectorAll('.row,.ent').forEach(function(n){ n.setAttribute('aria-pressed', String(+n.dataset.i===sel)); }); }
+  function go(i,scroll){
+    if(i<0||i>=P.length) return; sel=i; aberto = true; mark(); renderBrief(); colocaBrief();
+    try{ document.getElementById('brief').scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth', block:'nearest'}); }catch(e){}
+  }
+  function fechaBrief(){ aberto = false; colocaBrief(); }
+
+  app.innerHTML = '<div class="topline"><span class="brand">LUMEN STRATEGIC HUB · CALENDÁRIO MACRO PRA APROVAR</span><span class="modo" id="modo"><i></i>carregando…</span></div><div id="topo"></div><div id="brief-holder"><article class="brief" id="brief" aria-live="polite" hidden></article></div><section class="decidir" id="decidir"></section>';
+  app.addEventListener('click', function(e){
+    var f = e.target.closest('[data-filtro]'); if (f){ filtro = f.dataset.filtro; renderTopo(); return; }
+    var b = e.target.closest('[data-passo]'); if (b){ var np=+b.dataset.passo; if(np>=0&&np<4){ passo=np; try{ localStorage.setItem('passo',String(np)); }catch(x){} renderTopo(); try{ document.querySelector('.checks').scrollIntoView({block:'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }catch(x){} } return; }
+    var ac = e.target.closest('[data-aprova-cal]'); if (ac){ aprovaCalendario(); return; }
+    var np = e.target.closest('[data-novo-post]'); if (np){ novoPost(); return; }
+    var ad = e.target.closest('[data-add]'); if (ad){ abreAddNoDia(ad.dataset.add); return; }
+    var ac2 = e.target.closest('[data-add-cancel]'); if (ac2){ renderTopo(); return; }
+    if (e.target.closest('.addf')) return;
+    var c = e.target.closest('[data-chk]'); if (c){ var k=c.dataset.chk; CHK[k] = !CHK[k]; renderTopo(); if (db) escreve('checks/geral', Object.assign({}, CHK, {atualizadoEm: new Date().toISOString()}), {semNotion:true}); return; }
+    var n=e.target.closest('.row,.ent,.dia,.pedido'); if(n && n.dataset.i!=null){ origem = n.classList.contains('row') ? 'row' : 'cal'; go(+n.dataset.i,true); }
+  });
+  renderTopo(); renderBrief(); renderDecidir();
+  document.addEventListener('focusout', function(){ setTimeout(function(){ if (topoPendente && !briefTemFoco()) renderTopo(); }, 0); });
+
+  // ===== camada de dados pelo n8n (16/10/2026): a página lê o Notion AO VIVO ao abrir e grava direto, sem login no claude.ai =====
+  var TOCADOS = {};
+  var API = D.api || '';
+  var MES = (D.ano && D.mesNumero) ? (D.ano + '-' + two(+D.mesNumero)) : '';
+  var DEC_MAP = {'✅ Aprovado':'aprovado', '✍️ Validado pela copy':'validado', '🔁 Ajustar':'ajustar'};
+  var CAMPOS_VIVOS = ['data','tema','formato','estrutura','objetivo','gancho','cta','nivel'];
+  function apiGet(){ return fetch(API + '/artefato/calendario?cliente=' + encodeURIComponent(D.idCliente||'') + '&mes=' + MES + '&t=' + Date.now(), {cache:'no-store'}).then(function(r){ return r.json(); }); }
+  function apiPost(body){ return fetch(API + '/artefato/grava', {method:'POST', headers:{'Content-Type':'text/plain'}, body: JSON.stringify(Object.assign({cliente: D.idCliente||'', mes: MES, resumo: D.notion||''}, body))}).then(function(r){ return r.json(); }); }
+  function aplicaVivo(res){
+    var vistos = {};
+    (res.posts||[]).forEach(function(c){
+      vistos[c.id] = 1; var p = byId[c.id];
+      if (!p){ p = {id:c.id, link:'https://app.notion.com/p/'+c.id, porque:'', dependeDe:'', ganchos:[], data:c.data, tema:c.tema, formato:c.formato, estrutura:c.estrutura, objetivo:c.objetivo, gancho:c.gancho, cta:c.cta, nivel:c.nivel, angulo:c.angulo}; adicionaPost(p); }
+      var r = REV[c.id] = REV[c.id] || {}; r.campos = r.campos || {};
+      CAMPOS_VIVOS.forEach(function(k){ var v = c[k]; if (v === undefined || v === null) return; if (k==='objetivo' && !Array.isArray(v)) v = v ? [v] : []; var orig = p[k]; if (k==='objetivo' && !Array.isArray(orig)) orig = orig ? [orig] : []; if (JSON.stringify(v) !== JSON.stringify(orig)) { if (!(TOCADOS[c.id]||{})[k]) r.campos[k] = v; } else if (!(TOCADOS[c.id]||{})[k]) delete r.campos[k]; });
+      if (Array.isArray(c.ganchos) && c.ganchos.length >= 2) p.ganchos = c.ganchos;
+      p.macro = c.macro || ''; p.cardNome = c.cardNome || p.cardNome; if (c.campanha) p.campanha = c.campanha; if (c.angulo) p.angulo = c.angulo;
+      r.decisao = DEC_MAP[c.macro] || '';
+      if (c.obs !== undefined){ var m1 = /Denise:\s*([\s\S]*?)(?=\n\nCopy:|$)/.exec(c.obs||''); var m2 = /Copy:\s*([\s\S]*?)$/.exec(c.obs||''); r.comentario = m1 ? m1[1].trim() : ''; r.respostaCopy = m2 ? m2[1].trim() : ''; }
+      r.notion = {campos: Object.assign({}, r.campos), decisao: r.decisao, comentario: c.obs||''};
+    });
+    for (var i = P.length-1; i >= 0; i--){ if (/^[0-9a-f]{32}$/.test(P[i].id) && !vistos[P[i].id]) { delete byId[P[i].id]; P.splice(i,1); } }
+    var e = res.estado || {}; var ck = e.checks || {};
+    CHK = {dias:!!ck.dias, formato:!!ck.formato, objetivo:!!ck.objetivo, estrutura:!!ck.estrutura, aprovadoEm: e.aprovadoEm||''};
+    Object.keys(e.decisoes||{}).forEach(function(q){ DEC[q] = {resposta: e.decisoes[q], notion: e.decisoes[q]}; });
+    if (sel >= P.length) sel = 0;
+  }
+  function escreve(path, data, opts){
+    if (!API) return escreveDb(path, data, opts);
+    var prev = filaEscrita[path] || Promise.resolve();
+    filaEscrita[path] = prev.then(function(){
+      if (path.indexOf('revisao/')===0){ var id = path.slice(8); var p = byId[id]; var orig = {}; if (p) CAMPOS_VIVOS.forEach(function(k){ orig[k] = p[k]; });
+        return apiPost({tipo:'revisao', id:id, campos: data.campos||{}, original: orig, tocados: Object.keys(TOCADOS[id]||{}), decisao: data.decisao||'', comentario: data.comentario||'', respostaCopy: data.respostaCopy||''}); }
+      if (path === 'checks/geral') return apiPost({tipo:'estado', checks:{dias:!!data.dias, formato:!!data.formato, objetivo:!!data.objetivo, estrutura:!!data.estrutura}, aprovadoEm: data.aprovadoEm||''});
+      if (path.indexOf('decisoes/')===0){ var qid = path.slice(9); var q = (D.decidir||[]).filter(function(x){ return x.id===qid; })[0]; return apiPost({tipo:'decisao', qid:qid, pergunta: q ? q.pergunta : '', resposta: data.resposta||''}); }
+      return null;
+    }).then(function(r){ if (r && r.ok === false) aviso('não salvou: ' + (r.erro||'erro')); else if (r) aviso('salvo no Notion ✓'); }).catch(function(e){ aviso('não salvou agora (' + ((e && e.message) || 'rede') + '). Tente de novo.'); });
+  }
+  async function novoPost(){
+    if (!API) return novoPostMcp();
+    var data = (document.getElementById('nv-data')||{}).value || '', fmt = (document.getElementById('nv-fmt')||{}).value || 'Carrossel', tema = ((document.getElementById('nv-tema')||{}).value || '').trim();
+    var av = document.getElementById('nv-aviso'); var say = function(t){ if (av) av.textContent = t; };
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(data)) { say('Escolha a data.'); return; }
+    if (!tema) { say('Diga o tema do post.'); return; }
+    say('criando o card no Notion…');
+    try { var r = await apiPost({tipo:'novo', data:data, formato:fmt, tema:tema}); if (!r || !r.ok || !r.id) { say('Não criou: ' + ((r && r.erro) || 'erro')); return; }
+      adicionaPost({id:r.id, data:data, link:'https://app.notion.com/p/'+r.id, campanha:'', objetivo:[], tema:tema, angulo:'', formato:fmt, estrutura:'', gancho:'', ganchos:[], cta:'', nivel:'', porque:'Adicionado pela estrategista no artefato.', dependeDe:'', macro:'✍️ Validado pela copy', cardNome:tema, novo:true});
+      REV[r.id] = {campos:{}, decisao:'validado', notion:{campos:{}, decisao:'validado', comentario:''}}; say('card criado ✓'); renderTopo();
+    } catch(e){ say('Não criou agora (' + ((e && e.message) || 'rede') + ').'); }
+  }
+  function aprovaCalendario(){
+    if (!API) return aprovaCalendarioDb();
+    if (modo !== 'edita') return;
+    var pend = P.filter(function(p){ var d = decisao(p); return d !== 'aprovado' && d !== 'ajustar'; });
+    var nJ = P.filter(function(p){ return decisao(p) === 'ajustar'; }).length;
+    if (!pend.length) return;
+    if (!confirm('Aprovar o calendário inteiro?\n\n' + pend.length + ' posts vão pra produção: a IA escreve a copy no Notion e a Ju revisa.' + (nJ ? '\n' + nJ + ' com pedido de ajuste ficam de fora.' : ''))) return;
+    aviso('gravando no Notion…');
+    apiPost({tipo:'aprova-tudo', ids: pend.map(function(p){ return p.id; })}).then(function(r){
+      if (!r || !r.ok) { aviso('não aprovou: ' + ((r && r.erro) || 'erro')); return; }
+      pend.forEach(function(p){ var x = REV[p.id] = REV[p.id] || {}; x.decisao = 'aprovado'; }); CHK.aprovadoEm = r.aprovadoEm || new Date().toISOString();
+      renderTopo(); if (aberto) renderBrief(); aviso('Notion ✓ · produção começa em até 10 min');
+    }).catch(function(e){ aviso('não aprovou agora (' + ((e && e.message) || 'rede') + ').'); });
+  }
+  async function initDb(){
+    if (!API) return initDbOriginal();
+    try {
+      var res = await apiGet();
+      if (!res || !res.ok) { API = ''; return initDbOriginal(); }
+      aplicaVivo(res);
+      setModo('edita', 'Lendo o Notion ao vivo (' + new Date(res.lidoEm).toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'}) + '). Tudo o que você muda aqui vai direto pro card. Sem login.');
+      renderTopo(); renderBrief(); renderDecidir();
+      setInterval(function(){ if (briefTemFoco() || decidirTemFoco() || document.querySelector('.addf')) return; apiGet().then(function(r){ if (r && r.ok) { aplicaVivo(r); renderTopo(); } }).catch(function(){}); }, 120000);
+    } catch(e){ API = ''; return initDbOriginal(); } // dentro do claude.ai o sandbox bloqueia a chamada externa: volta pro modo com login (db + conector)
+  }
+  initDb();
+})();
+</script>
+
+</body></html>
