@@ -162,7 +162,7 @@ button{font:inherit}
 .dia{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:.72rem;padding:1px 7px;border-radius:99px;background:color-mix(in srgb,var(--cor) 16%,transparent);color:var(--ink);font-variant-numeric:tabular-nums}
 .dia.seg{box-shadow:inset 0 0 0 1.5px var(--warn)}
 .dia:focus-visible{outline:2px solid var(--accent)}
-.ent[draggable="true"]{cursor:grab}.ent.arrastando{opacity:.35}.cell.alvo{outline:2px dashed var(--accent);outline-offset:-2px;background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.ent{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}.ent.arrastavel{cursor:grab}.ent.arrastando{opacity:.35}.ent.ghost{position:fixed;left:0;top:0;pointer-events:none;z-index:999;opacity:.9;box-shadow:0 8px 24px rgba(0,0,0,.25);transform:rotate(-2deg)}.cell.alvo{outline:2px dashed var(--accent);outline-offset:-2px;background:color-mix(in srgb,var(--accent) 12%,transparent)}
 .dist .nota{font-size:.82rem;color:var(--muted)}
 .dist .nota b{color:var(--warn)}
 
@@ -916,7 +916,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
           else if (pa.id==='objetivo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join('<br>') || 'sem objetivo')+'</span>'+tema; alerta = objInvalido(e)?'⚠️':''; }
           else if (pa.id==='tudo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+icon(e.formato)+esc(e.formato||'sem formato')+' · '+esc(e.estrutura||'sem estrutura')+'</span>'+tema+'<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join(' + ') || 'sem objetivo')+(e.nivel?' · '+esc(String(e.nivel).split(' · ')[0]):'')+'</span>'; alerta = objInvalido(e)?'⚠️':''; }
           else { txt='<span class="dim">'+esc(e.estrutura||'sem estrutura')+'</span>'+tema; cor='var(--ink)'; }
-          h += '<button class="ent"'+(modo==='edita'?' draggable="true"':'')+' data-i="'+ix+'" data-semana="'+sem+'" aria-pressed="false" style="--cor:'+cor+'" title="'+esc(DOWL[dw]+' '+two(k)+' · '+(e.formato||'')+' · '+e.objetivo.join(' + ')+' · '+(e.estrutura||'')+' · '+e.tema)+'"><span class="dec">'+alerta+stIcon(p)+(mudou(p,'data')?'📅':'')+'</span><span class="txt">'+txt+'</span></button>';
+          h += '<button class="ent'+(modo==='edita'?' arrastavel':'')+'" data-i="'+ix+'" data-semana="'+sem+'" aria-pressed="false" style="--cor:'+cor+'" title="'+esc(DOWL[dw]+' '+two(k)+' · '+(e.formato||'')+' · '+e.objetivo.join(' + ')+' · '+(e.estrutura||'')+' · '+e.tema)+'"><span class="dec">'+alerta+stIcon(p)+(mudou(p,'data')?'📅':'')+'</span><span class="txt">'+txt+'</span></button>';
           });
           h += '</div>';
         } else h += '<span class="cell livre'+we+'" data-dia="'+y+'-'+two(mn)+'-'+two(k)+'"><span class="top"><span class="n">'+two(k)+'</span>'+(modo==='edita'?'<button class="add" data-add="'+y+'-'+two(mn)+'-'+two(k)+'" title="Adicionar um post neste dia">＋</button>':'')+'</span><span class="addhint">'+(modo==='edita'?'+ post':'')+'</span></span>';
@@ -1230,15 +1230,21 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     var ac2 = e.target.closest('[data-add-cancel]'); if (ac2){ renderTopo(); return; }
     if (e.target.closest('.addf')) return;
     var c = e.target.closest('[data-chk]'); if (c){ var k=c.dataset.chk; CHK[k] = !CHK[k]; renderTopo(); if (db || API) escreve('checks/geral', Object.assign({}, CHK, {atualizadoEm: new Date().toISOString()}), {semNotion:true}); return; }
+    if (ARRASTOU && Date.now() - ARRASTOU < 500) return;
     var n=e.target.closest('.row,.ent,.dia,.pedido'); if(n && n.dataset.i!=null){ origem = n.classList.contains('row') ? 'row' : 'cal'; go(+n.dataset.i,true); }
   });
-  // Arrastar e soltar no calendário (pedido da Denise, 19/10/2026): solta o post em outro dia e a data grava no Notion sozinha.
-  var ARR = null;
-  function limpaArrasto(){ ARR = null; document.querySelectorAll('.ent.arrastando').forEach(function(n){ n.classList.remove('arrastando'); }); document.querySelectorAll('.cell.alvo').forEach(function(n){ n.classList.remove('alvo'); }); }
-  document.addEventListener('dragstart', function(e){ var n = e.target.closest && e.target.closest('.ent[draggable="true"]'); if (!n || modo!=='edita') return; ARR = +n.dataset.i; n.classList.add('arrastando'); try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(ARR)); } catch(x){} });
-  document.addEventListener('dragend', limpaArrasto);
-  document.addEventListener('dragover', function(e){ if (ARR===null) return; var c = e.target.closest && e.target.closest('.cell[data-dia]'); if (!c) return; e.preventDefault(); try { e.dataTransfer.dropEffect = 'move'; } catch(x){} if (!c.classList.contains('alvo')) { document.querySelectorAll('.cell.alvo').forEach(function(n){ n.classList.remove('alvo'); }); c.classList.add('alvo'); } });
-  document.addEventListener('drop', function(e){ if (ARR===null) return; var c = e.target.closest && e.target.closest('.cell[data-dia]'); if (!c) return; e.preventDefault(); var dia = c.dataset.dia, i = ARR; limpaArrasto(); var p = P[i]; if (!p || !/^\d{4}-\d{2}-\d{2}$/.test(dia) || dia === eff(p).data) { renderTopo(); return; } setCampo(p, 'data', dia===p.data ? null : dia); renderBrief(); renderTopo(); });
+  // Arrastar e soltar no calendário (pedido da Denise, 19/10/2026): segura o post com o mouse, leva pra outro dia e solta; a data grava no Notion sozinha.
+  // Feito com pointer events (não com o drag nativo): o nativo não funciona em botão no Safari. Toque (celular/tablet) continua clique + campo de data.
+  var DR = null, ARRASTOU = 0;
+  function celulaEm(x, y){ var el = document.elementFromPoint(x, y); return el && el.closest ? el.closest('.cell[data-dia]') : null; }
+  function moveGhost(x, y){ if (DR && DR.ghost) DR.ghost.style.transform = 'translate('+(x - DR.dx)+'px,'+(y - DR.dy)+'px) rotate(-2deg)'; }
+  function iniciaArrasto(e){ var r = DR.el.getBoundingClientRect(); DR.dx = DR.x - r.left; DR.dy = DR.y - r.top; DR.ativo = true; DR.el.classList.add('arrastando'); var g = DR.el.cloneNode(true); g.classList.remove('arrastando'); g.classList.add('ghost'); g.style.width = r.width+'px'; document.body.appendChild(g); DR.ghost = g; moveGhost(e.clientX, e.clientY); }
+  function limpaArrasto(){ if (!DR) return; var d = DR; DR = null; if (d.ghost) d.ghost.remove(); d.el.classList.remove('arrastando'); document.querySelectorAll('.cell.alvo').forEach(function(n){ n.classList.remove('alvo'); }); return d; }
+  document.addEventListener('pointerdown', function(e){ if (modo!=='edita' || e.button !== 0 || e.pointerType === 'touch') return; var n = e.target.closest && e.target.closest('.ent.arrastavel'); if (!n) return; DR = { i: +n.dataset.i, el: n, x: e.clientX, y: e.clientY, ativo: false }; });
+  document.addEventListener('pointermove', function(e){ if (!DR) return; if (!DR.ativo){ if (Math.hypot(e.clientX - DR.x, e.clientY - DR.y) < 6) return; iniciaArrasto(e); } e.preventDefault(); moveGhost(e.clientX, e.clientY); var c = celulaEm(e.clientX, e.clientY); document.querySelectorAll('.cell.alvo').forEach(function(n){ if (n !== c) n.classList.remove('alvo'); }); if (c) c.classList.add('alvo'); }, { passive: false });
+  document.addEventListener('pointerup', function(e){ if (!DR) return; var d = limpaArrasto(); if (!d.ativo) return; ARRASTOU = Date.now(); var c = celulaEm(e.clientX, e.clientY); if (!c) return; var dia = c.dataset.dia, p = P[d.i]; if (!p || !/^\d{4}-\d{2}-\d{2}$/.test(dia) || dia === eff(p).data) return; setCampo(p, 'data', dia===p.data ? null : dia); renderBrief(); renderTopo(); });
+  document.addEventListener('pointercancel', function(){ limpaArrasto(); });
+  window.addEventListener('blur', function(){ limpaArrasto(); });
   renderTopo(); renderBrief(); renderDecidir();
   document.addEventListener('focusout', function(){ setTimeout(function(){ if (topoPendente && !briefTemFoco()) renderTopo(); }, 0); });
 
