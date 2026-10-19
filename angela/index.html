@@ -162,6 +162,7 @@ button{font:inherit}
 .dia{all:unset;cursor:pointer;font-family:var(--f-mono);font-size:.72rem;padding:1px 7px;border-radius:99px;background:color-mix(in srgb,var(--cor) 16%,transparent);color:var(--ink);font-variant-numeric:tabular-nums}
 .dia.seg{box-shadow:inset 0 0 0 1.5px var(--warn)}
 .dia:focus-visible{outline:2px solid var(--accent)}
+.ent[draggable="true"]{cursor:grab}.ent.arrastando{opacity:.35}.cell.alvo{outline:2px dashed var(--accent);outline-offset:-2px;background:color-mix(in srgb,var(--accent) 12%,transparent)}
 .dist .nota{font-size:.82rem;color:var(--muted)}
 .dist .nota b{color:var(--warn)}
 
@@ -1436,7 +1437,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
           else if (pa.id==='objetivo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join('<br>') || 'sem objetivo')+'</span>'+tema; alerta = objInvalido(e)?'⚠️':''; }
           else if (pa.id==='tudo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+icon(e.formato)+esc(e.formato||'sem formato')+' · '+esc(e.estrutura||'sem estrutura')+'</span>'+tema+'<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join(' + ') || 'sem objetivo')+(e.nivel?' · '+esc(String(e.nivel).split(' · ')[0]):'')+'</span>'; alerta = objInvalido(e)?'⚠️':''; }
           else { txt='<span class="dim">'+esc(e.estrutura||'sem estrutura')+'</span>'+tema; cor='var(--ink)'; }
-          h += '<button class="ent" data-i="'+ix+'" data-semana="'+sem+'" aria-pressed="false" style="--cor:'+cor+'" title="'+esc(DOWL[dw]+' '+two(k)+' · '+(e.formato||'')+' · '+e.objetivo.join(' + ')+' · '+(e.estrutura||'')+' · '+e.tema)+'"><span class="dec">'+alerta+stIcon(p)+(mudou(p,'data')?'📅':'')+'</span><span class="txt">'+txt+'</span></button>';
+          h += '<button class="ent"'+(modo==='edita'?' draggable="true"':'')+' data-i="'+ix+'" data-semana="'+sem+'" aria-pressed="false" style="--cor:'+cor+'" title="'+esc(DOWL[dw]+' '+two(k)+' · '+(e.formato||'')+' · '+e.objetivo.join(' + ')+' · '+(e.estrutura||'')+' · '+e.tema)+'"><span class="dec">'+alerta+stIcon(p)+(mudou(p,'data')?'📅':'')+'</span><span class="txt">'+txt+'</span></button>';
           });
           h += '</div>';
         } else h += '<span class="cell livre'+we+'" data-dia="'+y+'-'+two(mn)+'-'+two(k)+'"><span class="top"><span class="n">'+two(k)+'</span>'+(modo==='edita'?'<button class="add" data-add="'+y+'-'+two(mn)+'-'+two(k)+'" title="Adicionar um post neste dia">＋</button>':'')+'</span><span class="addhint">'+(modo==='edita'?'+ post':'')+'</span></span>';
@@ -1752,6 +1753,13 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     var c = e.target.closest('[data-chk]'); if (c){ var k=c.dataset.chk; CHK[k] = !CHK[k]; renderTopo(); if (db || API) escreve('checks/geral', Object.assign({}, CHK, {atualizadoEm: new Date().toISOString()}), {semNotion:true}); return; }
     var n=e.target.closest('.row,.ent,.dia,.pedido'); if(n && n.dataset.i!=null){ origem = n.classList.contains('row') ? 'row' : 'cal'; go(+n.dataset.i,true); }
   });
+  // Arrastar e soltar no calendário (pedido da Denise, 19/10/2026): solta o post em outro dia e a data grava no Notion sozinha.
+  var ARR = null;
+  function limpaArrasto(){ ARR = null; document.querySelectorAll('.ent.arrastando').forEach(function(n){ n.classList.remove('arrastando'); }); document.querySelectorAll('.cell.alvo').forEach(function(n){ n.classList.remove('alvo'); }); }
+  document.addEventListener('dragstart', function(e){ var n = e.target.closest && e.target.closest('.ent[draggable="true"]'); if (!n || modo!=='edita') return; ARR = +n.dataset.i; n.classList.add('arrastando'); try { e.dataTransfer.effectAllowed = 'move'; e.dataTransfer.setData('text/plain', String(ARR)); } catch(x){} });
+  document.addEventListener('dragend', limpaArrasto);
+  document.addEventListener('dragover', function(e){ if (ARR===null) return; var c = e.target.closest && e.target.closest('.cell[data-dia]'); if (!c) return; e.preventDefault(); try { e.dataTransfer.dropEffect = 'move'; } catch(x){} if (!c.classList.contains('alvo')) { document.querySelectorAll('.cell.alvo').forEach(function(n){ n.classList.remove('alvo'); }); c.classList.add('alvo'); } });
+  document.addEventListener('drop', function(e){ if (ARR===null) return; var c = e.target.closest && e.target.closest('.cell[data-dia]'); if (!c) return; e.preventDefault(); var dia = c.dataset.dia, i = ARR; limpaArrasto(); var p = P[i]; if (!p || !/^\d{4}-\d{2}-\d{2}$/.test(dia) || dia === eff(p).data) { renderTopo(); return; } setCampo(p, 'data', dia===p.data ? null : dia); renderBrief(); renderTopo(); });
   renderTopo(); renderBrief(); renderDecidir();
   document.addEventListener('focusout', function(){ setTimeout(function(){ if (topoPendente && !briefTemFoco()) renderTopo(); }, 0); });
 
