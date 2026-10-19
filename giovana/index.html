@@ -201,6 +201,7 @@ button{font:inherit}
 #brief-holder:empty{display:none}
 .brief{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px 28px;display:grid;gap:22px;scroll-margin-top:12px}
 .brief-head{display:grid;gap:10px;border-bottom:1px solid var(--line);padding-bottom:18px}
+.brief-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.fechar-topo{all:unset;cursor:pointer;font-weight:700;font-size:.82rem;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}.fechar-topo:hover{border-color:var(--ink)}.fechar-topo:focus-visible{outline:2px solid var(--accent)}
 .brief-head .meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem;color:var(--muted);align-items:center}
 .brief-head .meta b{color:var(--ink);font-weight:600}
 .brief-head h2{font-size:clamp(1.3rem,3vw,1.75rem);line-height:1.15}
@@ -1077,11 +1078,13 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     // ---------- aprovação do calendário inteiro (gatilho da produção) ----------
     var nPend = P.filter(function(p){ var d=decisao(p); return d!=='aprovado' && d!=='ajustar'; }).length;
     var faltam = ['dias','formato','objetivo','estrutura'].filter(function(k){ return !CHK[k]; }).length;
-    h += '<div class="aprovacal'+(CHK.aprovadoEm && !nPend ? ' done' : '')+'">';
-    if (CHK.aprovadoEm) h += '<p><b>✅ Calendário aprovado em '+esc(fmtQuando(CHK.aprovadoEm))+'.</b> A IA está escrevendo a copy dos posts aprovados direto nos cards do Notion, um por vez, e a Ju revisa cada um. '+(nJ ? nJ+' com 🔁 pedido de ajuste ficam de fora até a Ju ajustar. ' : '')+(nPend ? nPend+' post'+(nPend>1?'s':'')+' sem aprovação (mudou depois da aprovação).' : '')+'</p>';
-    else h += '<p><b>Aprovar o calendário inteiro.</b> Os '+nPend+' posts sem 🔁 vão pra produção: a IA escreve a copy de cada um no card do Notion e a Ju revisa antes de chegar em você. '+(nJ ? nJ+' com pedido de ajuste ficam de fora. ' : '')+(faltam ? 'Faltam '+faltam+' das 4 conferências, mas dá pra aprovar mesmo assim.' : '')+'</p>';
-    if (nPend) h += '<button data-aprova-cal="1"'+(modo==='edita'?'':' disabled')+'>✅ Aprovar '+(CHK.aprovadoEm ? 'os '+nPend+' restantes' : 'o calendário')+' e mandar pra produção</button>';
-    h += '</div>';
+    var ha = '<div class="aprovacal'+(CHK.aprovadoEm && !nPend ? ' done' : '')+'">';
+    if (CHK.aprovadoEm) ha += '<p><b>✅ Calendário aprovado em '+esc(fmtQuando(CHK.aprovadoEm))+'.</b> A IA está escrevendo a copy dos posts aprovados direto nos cards do Notion, um por vez, e a Ju revisa cada um. '+(nJ ? nJ+' com 🔁 pedido de ajuste ficam de fora até a Ju ajustar. ' : '')+(nPend ? nPend+' post'+(nPend>1?'s':'')+' sem aprovação (mudou depois da aprovação).' : '')+'</p>';
+    else ha += '<p><b>Aprovar o calendário inteiro.</b> Os '+nPend+' posts sem 🔁 vão pra produção: a IA escreve a copy de cada um no card do Notion e a Ju revisa antes de chegar em você. '+(nJ ? nJ+' com pedido de ajuste ficam de fora. ' : '')+(faltam ? 'Faltam '+faltam+' das 4 conferências, mas dá pra aprovar mesmo assim.' : '')+'</p>';
+    if (nPend) ha += '<button data-aprova-cal="1"'+(modo==='edita'?'':' disabled')+'>✅ Aprovar '+(CHK.aprovadoEm ? 'os '+nPend+' restantes' : 'o calendário')+' e mandar pra produção</button>';
+    ha += '</div>';
+    // Ju (vídeo de 19/10/2026): o bloco de aprovar fica no FIM da página, depois de escolher ganchos e responder as dúvidas.
+    var ah = document.getElementById('aprova-holder'); if (ah) ah.innerHTML = ha;
 
     // lista
     var nF = {todos:P.length, copy:P.length-nA-nJ-nV+nJ, denise:nV, aprovados:nA};
@@ -1115,7 +1118,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     var bd = pd(e.data);
     var ORDb = P.map(function(q,i){ return i; }).sort(function(a,b){ return String(eff(P[a]).data||'9').localeCompare(String(eff(P[b]).data||'9')); }); var pos = ORDb.indexOf(sel);
     var campo = function(k, lbl, inner){ var m = mudou(p,k); return '<div class="campo'+(m?' mudou':'')+'" data-k="'+k+'"><div class="lbl"><span class="label">'+lbl+'</span>'+(m&&!ro?'<button class="orig" data-restaura="'+k+'">↺ voltar ao original</button>':'')+'</div>'+inner+(m?'<p class="was">Original: '+esc(Array.isArray(p[k])?p[k].join(' + '):p[k])+'</p>':'')+'</div>'; };
-    var x = '<header class="brief-head"><span class="label">Post '+two(pos+1)+' de '+two(P.length)+'</span>';
+    var x = '<header class="brief-head"><div class="brief-top"><span class="label">Post '+two(pos+1)+' de '+two(P.length)+'</span><button class="fechar-topo" data-fechar="1" title="Fechar este post">✕ Fechar</button></div>';
     x += '<div class="meta">'+(bd?'<span><b>'+DOWL[bd.getDay()]+', '+two(bd.getDate())+'/'+two(bd.getMonth()+1)+'</b></span>':'')+(p.campanha?'<span>'+esc(p.campanha)+'</span>':'')+(p.macro?'<span>No Notion: '+esc(p.macro)+'</span>':'')+'</div>';
     x += '<h2>'+esc(e.tema)+'</h2>'+(p.porque?'<p class="datewhy"><b>Por que este post nesta data:</b> '+esc(p.porque)+'</p>':'')+'</header>';
     x += campo('data','Data da postagem (mude aqui se preferir outro dia)','<input type="date" data-f="data" value="'+esc(e.data)+'" min="'+esc(String(e.data||'').slice(0,7))+'-01"'+dis+'>');
@@ -1345,12 +1348,13 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
   }
   function fechaBrief(){ aberto = false; colocaBrief(); }
 
-  app.innerHTML = '<div class="topline"><span class="brand">LUMEN STRATEGIC HUB · CALENDÁRIO MACRO PRA APROVAR</span><span class="modo" id="modo"><i></i>carregando…</span></div><div id="topo"></div><div id="brief-holder"><article class="brief" id="brief" aria-live="polite" hidden></article></div><section class="decidir" id="decidir"></section>';
+  app.innerHTML = '<div class="topline"><span class="brand">LUMEN STRATEGIC HUB · CALENDÁRIO MACRO PRA APROVAR</span><span class="modo" id="modo"><i></i>carregando…</span></div><div id="topo"></div><div id="brief-holder"><article class="brief" id="brief" aria-live="polite" hidden></article></div><section class="decidir" id="decidir"></section><div id="aprova-holder"></div>';
   app.addEventListener('click', function(e){
     var f = e.target.closest('[data-filtro]'); if (f){ filtro = f.dataset.filtro; renderTopo(); return; }
     var b = e.target.closest('[data-passo]'); if (b){ var np=+b.dataset.passo; if(np>=0&&np<5){ passo=np; try{ localStorage.setItem('passo',String(np)); }catch(x){} renderTopo(); try{ document.querySelector('.checks').scrollIntoView({block:'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }catch(x){} } return; }
     var ac = e.target.closest('[data-aprova-cal]'); if (ac){ aprovaCalendario(); return; }
     var np = e.target.closest('[data-novo-post]'); if (np){ novoPost(); return; }
+    var fx = e.target.closest('[data-fechar]'); if (fx){ fechaBrief(); return; }
     var ad = e.target.closest('[data-add]'); if (ad){ abreAddNoDia(ad.dataset.add); return; }
     var ac2 = e.target.closest('[data-add-cancel]'); if (ac2){ renderTopo(); return; }
     if (e.target.closest('.addf')) return;
