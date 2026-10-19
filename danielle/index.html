@@ -1699,7 +1699,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     });
     seq.then(function(){ aviso(mcp ? 'salvo ✓ · Notion ✓ · produção começa em até 10 min' : 'salvo ✓'); });
   }
-  function setRev(p, patch){ var r = REV[p.id] = REV[p.id] || {}; Object.keys(patch).forEach(function(k){ r[k] = patch[k]; }); agenda(p.id); renderTopoSeguro(); }
+  function setRev(p, patch){ var r = REV[p.id] = REV[p.id] || {}; Object.keys(patch).forEach(function(k){ r[k] = patch[k]; (TOCADOS[p.id] = TOCADOS[p.id] || {})[k] = 1; }); agenda(p.id); renderTopoSeguro(); }
   function setDec(id, v){ var d = DEC[id] = DEC[id] || {}; d.resposta = v; agendaDec(id); }
   function docRev(id){ var r = REV[id] || {}; return { campos: r.campos || {}, comentario: r.comentario || '', respostaCopy: r.respostaCopy || '', decisao: r.decisao || '', notion: r.notion || {}, atualizadoEm: new Date().toISOString() }; }
   function agenda(id){ aviso('salvando…'); clearTimeout(timers[id]); timers[id] = setTimeout(function(){ escreve('revisao/'+id, docRev(id)); }, 1200); }
@@ -1866,7 +1866,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     var prev = filaEscrita[path] || Promise.resolve();
     filaEscrita[path] = prev.then(function(){
       if (path.indexOf('revisao/')===0){ var id = path.slice(8); var p = byId[id]; var orig = {}; if (p) CAMPOS_VIVOS.forEach(function(k){ orig[k] = p[k]; });
-        return apiPost({tipo:'revisao', id:id, campos: data.campos||{}, original: orig, tocados: Object.keys(TOCADOS[id]||{}), decisao: data.decisao||'', comentario: data.comentario||'', respostaCopy: data.respostaCopy||''}); }
+        return apiPost({tipo:'revisao', id:id, campos: data.campos||{}, original: orig, tocados: Object.keys(TOCADOS[id]||{}), decisao: data.decisao||'', comentario: (TOCADOS[id]||{}).comentario ? (data.comentario||'') : undefined, respostaCopy: (TOCADOS[id]||{}).respostaCopy ? (data.respostaCopy||'') : undefined}); }
       if (path === 'checks/geral') return apiPost({tipo:'estado', checks:{dias:!!data.dias, formato:!!data.formato, objetivo:!!data.objetivo, estrutura:!!data.estrutura}, aprovadoEm: data.aprovadoEm||''});
       if (path.indexOf('decisoes/')===0){ var qid = path.slice(9); var q = (D.decidir||[]).filter(function(x){ return x.id===qid; })[0]; return apiPost({tipo:'decisao', qid:qid, pergunta: q ? q.pergunta : '', resposta: data.resposta||''}); }
       return null;
