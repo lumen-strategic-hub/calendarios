@@ -750,7 +750,11 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
   var P = (D.posts||[]).slice().sort(function(a,b){ return String(a.data||'9').localeCompare(String(b.data||'9')); });
   var REV = {};   // revisao/<id> -> {campos:{}, comentario, decisao, notion:{campos,decisao,comentario}}
   var byId = {}; P.forEach(function(p){ byId[p.id] = p; });
-  var ORIG_PT = {data:'Data da postagem', tema:'Foco/Tema', objetivo:'Objetivo', formato:'Formato', estrutura:'Estrutura', angulo:'Ângulo', gancho:'Gancho', cta:'CTA', nivel:'Nível de consciência'};
+  var ORIG_PT = {data:'Data da postagem', tema:'Foco/Tema', objetivo:'Objetivo', formato:'Formato', estrutura:'Estrutura', angulo:'Ângulo', gancho:'Gancho', cta:'CTA', nivel:'Nível de consciência', tipoCta:'Tipo de CTA', palavraChave:'Palavra-chave'};
+  // Ju, 21/10/2026: o CTA no calendário é TIPO (+ palavra-chave opcional); a frase fica pra copy.
+  var TIPOS_CTA = ['Comentar','Salvar','Compartilhar','Curtir','Refletir','Direct','Link da bio'];
+  var CTA_COR = {'Comentar':'#3b82f6','Salvar':'#16a34a','Compartilhar':'#9333ea','Curtir':'#db2777','Refletir':'#ca8a04','Direct':'#ea580c','Link da bio':'#92400e'};
+  var corCta = function(t){ return CTA_COR[t] || 'var(--o-outro)'; };
   var NIVEIS = ['N1 · Inconsciente','N2 · Consciente do problema','N3 · Consciente da solução','N4 · Consciente do produto','N5 · Totalmente consciente'];
   var DS_CONTEUDO = '3586e171-5362-8321-ae4d-876799c1134c';
   var NOVOS = {};
@@ -758,11 +762,11 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
   var sel = 0;
   var filtro = 'todos';
   var origem = null, aberto = false, topoPendente = false; // onde o post abre: 'row' (lista) ou 'cal' (semana do calendário)
-  var passo = 0; try { passo = Math.min(4, Math.max(0, +(localStorage.getItem('passo')||0))) || 0; } catch(e){}
+  var passo = 0; try { passo = Math.min(5, Math.max(0, +(localStorage.getItem('passo')||0))) || 0; } catch(e){}
   var CHK = {};   // checks/geral -> {dias,formato,objetivo,estrutura}
   var FMT_COR = {'Reels':'var(--f-reels)','Carrossel':'var(--f-carrossel)','Card único':'var(--f-card)','Stories':'var(--f-stories)'};
   var corFmt = function(f){ return FMT_COR[f] || 'var(--o-outro)'; };
-  var EDIT = ['data','tema','objetivo','formato','estrutura','gancho','cta','nivel'];
+  var EDIT = ['data','tema','objetivo','formato','estrutura','gancho','cta','nivel','tipoCta','palavraChave'];
   function eff(p){ var r = REV[p.id] || {}, c = r.campos || {}, o = {}; EDIT.forEach(function(k){ o[k] = (c[k] !== undefined && c[k] !== null) ? c[k] : p[k]; }); o.objetivo = Array.isArray(o.objetivo) ? o.objetivo : (o.objetivo ? [o.objetivo] : []); return o; }
   function mudou(p,k){ var c=(REV[p.id]||{}).campos||{}; if(c[k]===undefined||c[k]===null) return false; return JSON.stringify(c[k])!==JSON.stringify(p[k]); }
   function temEdicao(p){ return EDIT.some(function(k){ return mudou(p,k); }); }
@@ -814,10 +818,11 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
       { id:'formato', titulo:'Carrossel e reels estão bem distribuídos?', sub:'Formato + tema: o formato combina com o que o post vai contar?' },
       { id:'objetivo', titulo:'Os objetivos estão bem distribuídos?', sub:'Objetivo + tema: o objetivo está de acordo com o tema? Um por post; dois só quando um é Vender.' },
       { id:'estrutura', titulo:'As estruturas criativas estão variadas?', sub:'Estrutura + tema: a estrutura serve pra esse tema?' },
+      { id:'cta', titulo:'Os CTAs estão variados?', sub:'Tipo de CTA + tema. Fora de sequência de venda, evite o mesmo tipo em posts seguidos (só comentar, só curtir). A palavra-chave aparece ao lado quando tem.' },
       { id:'tudo', titulo:'Visão completa', sub:'Tudo junto em cada dia: formato, estrutura, objetivo, nível e tema. Clique num post pra abrir.' }
     ];
     var pa = PASSOS[passo];
-    h += '<div class="checks"><div class="passos" role="tablist">'+PASSOS.map(function(x,i){ return '<button role="tab" data-passo="'+i+'" aria-selected="'+(i===passo)+'" class="'+(CHK[x.id]?'feito':'')+'">'+(CHK[x.id]?'✓ ':'')+(i<4?(i+1)+'. ':'👁 ')+esc(['Dias','Formato','Objetivo','Estrutura','Tudo junto'][i])+'</button>'; }).join('')+'</div>';
+    h += '<div class="checks"><div class="passos" role="tablist">'+PASSOS.map(function(x,i){ return '<button role="tab" data-passo="'+i+'" aria-selected="'+(i===passo)+'" class="'+(CHK[x.id]?'feito':'')+'">'+(CHK[x.id]?'✓ ':'')+(i<5?(i+1)+'. ':'👁 ')+esc(['Dias','Formato','Objetivo','Estrutura','CTA','Tudo junto'][i])+'</button>'; }).join('')+'</div>';
     h += '<div class="passo-head"><h2>'+esc(pa.titulo)+'</h2><p>'+esc(pa.sub)+'</p></div>';
 
     if (y && mn){
@@ -835,7 +840,8 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
           if (pa.id==='dias'){ txt=tema; }
           else if (pa.id==='formato'){ cor=corFmt(e.formato); txt='<span class="dim">'+esc(e.formato||'sem formato')+'</span>'+tema; }
           else if (pa.id==='objetivo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join('<br>') || 'sem objetivo')+'</span>'+tema; alerta = objInvalido(e)?'⚠️':''; }
-          else if (pa.id==='tudo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+icon(e.formato)+esc(e.formato||'sem formato')+' · '+esc(e.estrutura||'sem estrutura')+'</span>'+tema+'<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join(' + ') || 'sem objetivo')+(e.nivel?' · '+esc(String(e.nivel).split(' · ')[0]):'')+'</span>'; alerta = objInvalido(e)?'⚠️':''; }
+          else if (pa.id==='cta'){ cor=corCta(e.tipoCta); txt='<span class="dim" style="color:'+corCta(e.tipoCta)+'">'+esc(e.tipoCta||'sem CTA')+(e.palavraChave?' · '+esc(String(e.palavraChave).toUpperCase()):'')+'</span>'+tema; }
+          else if (pa.id==='tudo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+icon(e.formato)+esc(e.formato||'sem formato')+' · '+esc(e.estrutura||'sem estrutura')+'</span>'+tema+'<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join(' + ') || 'sem objetivo')+(e.nivel?' · '+esc(String(e.nivel).split(' · ')[0]):'')+(e.tipoCta?' · <span style="color:'+corCta(e.tipoCta)+'">'+esc(e.tipoCta)+(e.palavraChave?' '+esc(String(e.palavraChave).toUpperCase()):'')+'</span>':'')+'</span>'; alerta = objInvalido(e)?'⚠️':''; }
           else { txt='<span class="dim">'+esc(e.estrutura||'sem estrutura')+'</span>'+tema; cor='var(--ink)'; }
           h += '<button class="ent'+(modo==='edita'?' arrastavel':'')+'" data-i="'+ix+'" data-semana="'+sem+'" aria-pressed="false" style="--cor:'+cor+'" title="'+esc(DOWL[dw]+' '+two(k)+' · '+(e.formato||'')+' · '+e.objetivo.join(' + ')+' · '+(e.estrutura||'')+' · '+e.tema)+'"><span class="dec">'+alerta+stIcon(p)+(mudou(p,'data')?'📅':'')+'</span><span class="txt">'+txt+'</span></button>';
           });
@@ -863,6 +869,11 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
       });
       var nO = E.filter(objInvalido).length;
       h += '<p class="nota">'+(seqAlerta.length ? '<b>Posts seguidos com o mesmo objetivo:</b> '+seqAlerta.map(function(sq){ var d1=pd(E[sq[0]].data), d2=pd(E[sq[1]].data); return two(d1.getDate())+' e '+two(d2.getDate())+' ('+sq[2].map(nomeObj).join(' + ')+')'; }).join(' · ')+'. ' : 'Nenhum par de posts seguidos repete o objetivo. ')+(nO?'<b>⚠️ '+nO+' post(s) com dois objetivos sem Vender:</b> abra e clique no que fica.':'')+'</p></div>';
+    } else if (pa.id==='cta'){
+      var tc = {}; E.forEach(function(e){ var t=e.tipoCta||'sem CTA'; tc[t]=(tc[t]||0)+1; });
+      h += '<div class="legend">'+Object.keys(tc).sort(function(a,b){ return tc[b]-tc[a]; }).map(function(t){ return '<span><span class="dot" style="background:'+corCta(t)+'"></span>'+esc(t)+' <b>'+tc[t]+'</b></span>'; }).join('')+'</div>';
+      var seqCta = []; for (var q=1; q<ORD.length; q++){ var a1=E[ORD[q-1]], a2=E[ORD[q]]; if (a1.tipoCta && a1.tipoCta===a2.tipoCta) seqCta.push([ORD[q-1],ORD[q],a1.tipoCta]); }
+      h += '<p class="nota">'+(seqCta.length ? '<b>Posts seguidos com o mesmo tipo de CTA:</b> '+seqCta.map(function(sq){ var d1=pd(E[sq[0]].data), d2=pd(E[sq[1]].data); return (d1?two(d1.getDate()):'?')+' e '+(d2?two(d2.getDate()):'?')+' ('+esc(sq[2])+')'; }).join(' · ')+'. Em sequência de venda pode; fora dela, varie.' : 'Nenhum par de posts seguidos repete o tipo de CTA.')+'</p>';
     } else {
       h += '<div class="legend">'+eu.map(function(x){ return '<span>'+esc(x)+' <b>'+ec[x]+'</b></span>'; }).join('')+'</div>';
     }
@@ -872,10 +883,10 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     if (false) h += '<details class="novo" open><summary>➕ Adicionar um post em outra data <small>(cria o card no Notion na hora)</small></summary><div class="novo-form"><label>Data <input type="date" id="nv-data" min="'+esc(String(D.ano))+'-'+two(+D.mesNumero)+'-01"></label><label>Formato <select id="nv-fmt">'+FORMATOS.map(function(f){ return '<option>'+esc(f)+'</option>'; }).join('')+'</select></label><label class="wide">Tema / o que é o post <input type="text" id="nv-tema" placeholder="ex.: convite pra live de quinta"></label><button data-novo-post="1"'+(modo==='edita'?'':' disabled')+'>Criar o card no Notion</button><span class="aviso" id="nv-aviso">'+(modo==='edita'?'':'Entre com a conta da Lumen pra criar o card.')+'</span></div></details>';
     // ---------- aprovação do calendário inteiro (gatilho da produção) ----------
     var nPend = P.filter(function(p){ var d=decisao(p); return d!=='aprovado' && d!=='ajustar'; }).length;
-    var faltam = ['dias','formato','objetivo','estrutura'].filter(function(k){ return !CHK[k]; }).length;
+    var faltam = ['dias','formato','objetivo','estrutura','cta'].filter(function(k){ return !CHK[k]; }).length;
     var ha = '<div class="aprovacal'+(CHK.aprovadoEm && !nPend ? ' done' : '')+'">';
     if (CHK.aprovadoEm) ha += '<p><b>✅ Calendário aprovado em '+esc(fmtQuando(CHK.aprovadoEm))+'.</b> A IA está escrevendo a copy dos posts aprovados direto nos cards do Notion, um por vez, e a Ju revisa cada um. '+(nJ ? nJ+' com 🔁 pedido de ajuste ficam de fora até a Ju ajustar. ' : '')+(nPend ? nPend+' post'+(nPend>1?'s':'')+' sem aprovação (mudou depois da aprovação).' : '')+'</p>';
-    else ha += '<p><b>Aprovar o calendário inteiro.</b> Os '+nPend+' posts sem 🔁 vão pra produção: a IA escreve a copy de cada um no card do Notion e a Ju revisa antes de chegar em você. '+(nJ ? nJ+' com pedido de ajuste ficam de fora. ' : '')+(faltam ? 'Faltam '+faltam+' das 4 conferências, mas dá pra aprovar mesmo assim.' : '')+'</p>';
+    else ha += '<p><b>Aprovar o calendário inteiro.</b> Os '+nPend+' posts sem 🔁 vão pra produção: a IA escreve a copy de cada um no card do Notion e a Ju revisa antes de chegar em você. '+(nJ ? nJ+' com pedido de ajuste ficam de fora. ' : '')+(faltam ? 'Faltam '+faltam+' das 5 conferências, mas dá pra aprovar mesmo assim.' : '')+'</p>';
     if (nPend) ha += '<button data-aprova-cal="1"'+(modo==='edita'?'':' disabled')+'>✅ Aprovar '+(CHK.aprovadoEm ? 'os '+nPend+' restantes' : 'o calendário')+' e mandar pra produção</button>';
     ha += '</div>';
     // Ju (vídeo de 19/10/2026): o bloco de aprovar fica no FIM da página, depois de escolher ganchos e responder as dúvidas.
@@ -930,7 +941,8 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     var G = ganchos(p); var escolhido = G.indexOf(e.gancho);
     var opcoes = G.length>1 ? '<div class="opcoes" data-opcoes="gancho">'+G.map(function(g,i){ return '<button class="opc" data-g="'+i+'" aria-pressed="'+(i===escolhido)+'"'+dis+'><span class="num">'+(i+1)+(i===0?' · sugerido pelo robô':'')+'</span>'+esc(g)+'</button>'; }).join('')+'</div>' : '';
     x += campo('gancho','Gancho: '+(G.length>1?G.length+' opções, a copy escolhe a melhor (ou escreve outra)':''), opcoes+'<textarea class="gancho" data-f="gancho" rows="2" aria-label="Gancho escolhido, editável"'+dis+'>'+esc(e.gancho)+'</textarea>');
-    x += '<div class="grid2">'+campo('cta','CTA','<textarea class="cta" data-f="cta" rows="2"'+dis+'>'+esc(e.cta)+'</textarea>')+campo('tema','Foco / tema','<input type="text" data-f="tema" value="'+esc(e.tema)+'"'+dis+'>')+'</div>';
+    x += '<div class="grid2">'+campo('tipoCta','Tipo de CTA','<select data-f="tipoCta"'+dis+'>'+opt(TIPOS_CTA, e.tipoCta||'')+'</select>')+campo('palavraChave','Palavra-chave (opcional, quando é pra comentar)','<input type="text" data-f="palavraChave" value="'+esc(e.palavraChave||'')+'" placeholder="ex.: AURA"'+dis+'>')+'</div>';
+    x += campo('tema','Foco / tema','<input type="text" data-f="tema" value="'+esc(e.tema)+'"'+dis+'>');
     // 3) secundário
     if (p.dependeDe) x += '<div class="campo"><span class="label">Material que precisa existir</span><p class="falta">'+esc(p.dependeDe)+'</p></div>';
     if (Array.isArray(p.briefing) && p.briefing.length) x += '<details class="briefing"><summary>Briefing completo da copy ('+p.briefing.length+' itens: '+esc(p.briefing.map(function(b){return b.rotulo;}).join(', ').toLowerCase())+')</summary><div class="bgrid">'+p.briefing.map(function(b){ return '<div class="campo"><span class="label">'+esc(b.rotulo)+'</span><div class="txt">'+String(b.texto||'').split('\n').filter(Boolean).map(function(l){return '<p>'+esc(l)+'</p>';}).join('')+'</div></div>'; }).join('')+'</div></details>';
@@ -1116,7 +1128,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
         renderTopoSeguro(); if (!briefTemFoco()) renderBrief();
       }, function(e){ setModo('leitura','Não consegui ler as revisões salvas ('+(e&&e.code||'erro')+'). Recarregue a página.'); });
       db.collection('novos').onSnapshot(function(snap){ var mudou = false; snap.docChanges().forEach(function(ch){ var d = ch.doc.data() || {}; if (ch.type !== 'removed' && d.id && !byId[d.id]) { adicionaPost(JSON.parse(JSON.stringify(d))); mudou = true; } }); if (mudou) renderTopoSeguro(); }, function(){});
-      db.doc('checks/geral').onSnapshot(function(snap){ var d = snap.exists ? snap.data() : {}; CHK = {dias:!!d.dias, formato:!!d.formato, objetivo:!!d.objetivo, estrutura:!!d.estrutura, aprovadoEm: d.aprovadoEm || ''}; renderTopo(); }, function(){});
+      db.doc('checks/geral').onSnapshot(function(snap){ var d = snap.exists ? snap.data() : {}; CHK = {dias:!!d.dias, formato:!!d.formato, objetivo:!!d.objetivo, estrutura:!!d.estrutura, cta:!!d.cta, aprovadoEm: d.aprovadoEm || ''}; renderTopo(); }, function(){});
       db.collection('decisoes').onSnapshot(function(snap){
         snap.docChanges().forEach(function(ch){ if (ch.type==='removed') delete DEC[ch.doc.id]; else DEC[ch.doc.id] = JSON.parse(JSON.stringify(ch.doc.data()||{})); });
         if (!decidirTemFoco()) renderDecidir();
@@ -1146,7 +1158,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
   app.innerHTML = '<div class="topline"><span class="brand">LUMEN STRATEGIC HUB · CALENDÁRIO MACRO PRA APROVAR</span><span class="modo" id="modo"><i></i>carregando…</span></div><div id="topo"></div><div id="brief-holder"><article class="brief" id="brief" aria-live="polite" hidden></article></div><section class="decidir" id="decidir"></section><div id="aprova-holder"></div>';
   app.addEventListener('click', function(e){
     var f = e.target.closest('[data-filtro]'); if (f){ filtro = f.dataset.filtro; renderTopo(); return; }
-    var b = e.target.closest('[data-passo]'); if (b){ var np=+b.dataset.passo; if(np>=0&&np<5){ passo=np; try{ localStorage.setItem('passo',String(np)); }catch(x){} renderTopo(); try{ document.querySelector('.checks').scrollIntoView({block:'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }catch(x){} } return; }
+    var b = e.target.closest('[data-passo]'); if (b){ var np=+b.dataset.passo; if(np>=0&&np<6){ passo=np; try{ localStorage.setItem('passo',String(np)); }catch(x){} renderTopo(); try{ document.querySelector('.checks').scrollIntoView({block:'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}); }catch(x){} } return; }
     var ac = e.target.closest('[data-aprova-cal]'); if (ac){ aprovaCalendario(); return; }
     var np = e.target.closest('[data-novo-post]'); if (np){ novoPost(); return; }
     var fx = e.target.closest('[data-fechar]'); if (fx){ fechaBrief(); return; }
@@ -1177,7 +1189,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
   var API = D.api || '';
   var MES = (D.ano && D.mesNumero) ? (D.ano + '-' + two(+D.mesNumero)) : '';
   var DEC_MAP = {'✅ Aprovado':'aprovado', '✍️ Validado pela copy':'validado', '🔁 Ajustar':'ajustar'};
-  var CAMPOS_VIVOS = ['data','tema','formato','estrutura','objetivo','gancho','cta','nivel'];
+  var CAMPOS_VIVOS = ['data','tema','formato','estrutura','objetivo','gancho','cta','nivel','tipoCta','palavraChave'];
   function apiGet(){ return fetch(API + '/artefato/calendario?cliente=' + encodeURIComponent(D.idCliente||'') + '&mes=' + MES + '&t=' + Date.now(), {cache:'no-store'}).then(function(r){ return r.json(); }); }
   function apiPost(body){ return fetch(API + '/artefato/grava', {method:'POST', headers:{'Content-Type':'text/plain'}, body: JSON.stringify(Object.assign({cliente: D.idCliente||'', mes: MES, resumo: D.notion||''}, body))}).then(function(r){ return r.json(); }); }
   function aplicaVivo(res){
@@ -1185,6 +1197,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     (res.posts||[]).forEach(function(c){
       vistos[c.id] = 1; var p = byId[c.id];
       if (!p){ p = {id:c.id, link:'https://app.notion.com/p/'+c.id, porque:'', dependeDe:'', ganchos:[], data:c.data, tema:c.tema, formato:c.formato, estrutura:c.estrutura, objetivo:c.objetivo, gancho:c.gancho, cta:c.cta, nivel:c.nivel, angulo:c.angulo}; adicionaPost(p); }
+      if (p.tipoCta === undefined) p.tipoCta = c.tipoCta || ''; if (p.palavraChave === undefined) p.palavraChave = c.palavraChave || '';
       var r = REV[c.id] = REV[c.id] || {}; r.campos = r.campos || {};
       CAMPOS_VIVOS.forEach(function(k){ var v = c[k]; if (v === undefined || v === null) return; if (k==='objetivo' && !Array.isArray(v)) v = v ? [v] : []; var orig = p[k]; if (k==='objetivo' && !Array.isArray(orig)) orig = orig ? [orig] : []; if (JSON.stringify(v) !== JSON.stringify(orig)) { if (!(TOCADOS[c.id]||{})[k]) r.campos[k] = v; } else if (!(TOCADOS[c.id]||{})[k]) delete r.campos[k]; });
       if (Array.isArray(c.ganchos) && c.ganchos.length >= 2) p.ganchos = c.ganchos;
@@ -1195,7 +1208,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     });
     for (var i = P.length-1; i >= 0; i--){ if (/^[0-9a-f]{32}$/.test(P[i].id) && !vistos[P[i].id]) { delete byId[P[i].id]; P.splice(i,1); } }
     var e = res.estado || {}; var ck = e.checks || {};
-    CHK = {dias:!!ck.dias, formato:!!ck.formato, objetivo:!!ck.objetivo, estrutura:!!ck.estrutura, aprovadoEm: e.aprovadoEm||''};
+    CHK = {dias:!!ck.dias, formato:!!ck.formato, objetivo:!!ck.objetivo, estrutura:!!ck.estrutura, cta:!!ck.cta, aprovadoEm: e.aprovadoEm||''};
     Object.keys(e.decisoes||{}).forEach(function(q){ DEC[q] = {resposta: e.decisoes[q], notion: e.decisoes[q]}; });
     if (sel >= P.length) sel = 0;
   }
@@ -1205,7 +1218,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     filaEscrita[path] = prev.then(function(){
       if (path.indexOf('revisao/')===0){ var id = path.slice(8); var p = byId[id]; var orig = {}; if (p) CAMPOS_VIVOS.forEach(function(k){ orig[k] = p[k]; });
         return apiPost({tipo:'revisao', id:id, campos: data.campos||{}, original: orig, tocados: Object.keys(TOCADOS[id]||{}), decisao: data.decisao||'', comentario: (TOCADOS[id]||{}).comentario ? (data.comentario||'') : undefined, respostaCopy: (TOCADOS[id]||{}).respostaCopy ? (data.respostaCopy||'') : undefined}); }
-      if (path === 'checks/geral') return apiPost({tipo:'estado', checks:{dias:!!data.dias, formato:!!data.formato, objetivo:!!data.objetivo, estrutura:!!data.estrutura}, aprovadoEm: data.aprovadoEm||''});
+      if (path === 'checks/geral') return apiPost({tipo:'estado', checks:{dias:!!data.dias, formato:!!data.formato, objetivo:!!data.objetivo, estrutura:!!data.estrutura, cta:!!data.cta}, aprovadoEm: data.aprovadoEm||''});
       if (path.indexOf('decisoes/')===0){ var qid = path.slice(9); var q = (D.decidir||[]).filter(function(x){ return x.id===qid; })[0]; return apiPost({tipo:'decisao', qid:qid, pergunta: q ? q.pergunta : '', resposta: data.resposta||''}); }
       return null;
     }).then(function(r){ if (r && r.ok === false) aviso('não salvou: ' + (r.erro||'erro')); else if (r) aviso('salvo no Notion ✓'); }).catch(function(e){ aviso('não salvou agora (' + ((e && e.message) || 'rede') + '). Tente de novo.'); });
