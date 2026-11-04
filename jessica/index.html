@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow, noarchive">
-<title>Calendário Jéssica Novembro</title>
+<title>Calendário Jéssica Dezembro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -43,6 +43,13 @@ button{font:inherit}
 
 /* ---------- Visão do mês ---------- */
 .visao{background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:grid}
+/* 04/11/2026: navegação entre meses no mesmo link (pedido da Ju) */
+.meses-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.meses-nav a,.meses-nav span{font:600 14px/1.2 inherit;text-decoration:none;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.meses-nav a:hover{border-color:var(--accent);color:var(--accent)}
+.meses-nav .atual{background:var(--accent-soft);border-color:var(--accent);color:var(--ink)}
+.meses-nav .vazio{visibility:hidden}
+.meses-nav .lista{display:flex;gap:6px;flex-wrap:wrap}
 .head{background:var(--ink);color:var(--bg);padding:24px 26px;display:grid;gap:18px}
 .head .mes{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;opacity:.7}
 .head h1{font-size:clamp(1.6rem,4vw,2.2rem);line-height:1.05}
@@ -324,378 +331,399 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
   "Trend adaptada",
   "Utilidade"
  ],
- "titulo": "Calendário Jéssica Novembro",
+ "titulo": "Calendário Jéssica Dezembro",
  "cliente": "Jéssica Barreto",
  "marca": "@jessicagomesbarreto",
- "mes": "Novembro 2026",
+ "mes": "Dezembro 2026",
  "ano": 2026,
- "mesNumero": 11,
- "objetivo": "Retomar o perfil com clareza de posicionamento, atrair pessoas novas e alinhadas e transformar essa descoberta em interesse real pela Leitura de Aura Multidimensional em grupo e pelo Curso Meditação das Rosas. O mês precisa construir confiança, explicar a profundidade do trabalho sem jargão e iniciar vendas intercaladas na segunda quinzena.",
- "fio": "01 a 15/11: não há projeto ativo no Notion nem esqueleto marcado; pela Orientação Estratégica, é a retomada do perfil depois de cerca de 1 ano parado, com foco em apresentar quem eu sou, a visão de espiritualidade na prática e o que diferencia a Leitura de Aura Multidimensional para quem nunca ouviu falar.\n16 a 24/11: segunda quinzena inicia a venda da Leitura de Aura Multidimensional em grupo, primeira data aberta ao público em 8/12; a comunicação precisa vender com ponte, explicar o formato e reduzir objeções sem depender de evento anterior.\n25 a 30/11: entra o aquecimento da nova turma do Curso Meditação das Rosas, em 12 e 13/12, com o gancho de proteção, presença e fortalecimento energético nos convívios de Natal.\nNão há lives, eventos de novembro, posts em produção ou marcos de calendário registrados nas fontes.",
- "ritmo": "Input do mês não foi lido, então usei a Orientação Estratégica do Cliente, que manda acima da ficha: 12 conteúdos em novembro, 3 por semana, segunda, quarta e sexta, com 4 Reels e 8 carrosséis porque é o primeiro mês dela gravando. Não havia esqueleto nem posts em produção. Novembro tem 13 slots de segunda, quarta e sexta; para entregar exatamente 12, fechei o calendário nas quatro primeiras semanas, de 02/11 a 27/11, sem post em 30/11.",
+ "mesNumero": 12,
+ "objetivo": "Fechar as divulgações das datas de dezembro com venda intercalada e sem pressão comercial, enquanto consolida a compreensão do trabalho da Jéssica para pessoas novas. Depois das entregas, manter confiança, autoridade e desejo para as entradas de janeiro.",
+ "fio": "1 a 7/12: as fontes registram a Leitura de Aura Multidimensional em grupo em 8/12, então o início do mês trabalha convite, decisão e preparação para essa data, sem depender de narrativa de projeto.\n8/12: data da Leitura de Aura Multidimensional em grupo. Não há post nesse dia pelo padrão real de publicação.\n9 a 11/12: preparação e convite para a nova turma do Curso de Meditação das Rosas, marcada para 12 e 13/12, com gancho de proteção e fortalecimento energético nos convívios de Natal.\n12 e 13/12: entrega da turma de Meditação das Rosas. Não há post nesses dias.\n14 a 31/12: não há projeto registrado no Notion; o calendário alterna respiro perene, posicionamento, prova social e preparação leve das datas de janeiro, sobretudo Leitura de Aura em grupo de 10/01 e Meditação das Rosas de 23 e 24/01.",
+ "ritmo": "Sem input da copy e sem esqueleto marcado. Usei a orientação estratégica do cliente, que manda 12 conteúdos por mês, 3 por semana, às segundas, quartas e sextas. O padrão real de novembro foi 8 carrosséis e 4 Reels, então mantive o mesmo mix. Criei 12 posts do zero e pulei a sexta 25/12 para fechar a cota sem ultrapassar o contratado.",
  "decidir": [
   {
    "id": "q1",
-   "pergunta": "A Leitura de Aura Multidimensional em grupo de 8/12 será online e qual é o link ou formulário correto de inscrição? Afeta os posts 7 e 10.",
+   "pergunta": "Quais são os horários e a plataforma da Leitura de Aura Multidimensional em grupo de 8/12 e do Curso de Meditação das Rosas de 12 e 13/12? Afeta os posts de 2026-12-02, 2026-12-07 e 2026-12-11.",
    "afeta": ""
   },
   {
    "id": "q2",
-   "pergunta": "Há depoimento autorizado de Leitura de Aura para usar no post 9? Se não houver, devo trocar por uma análise sem print mantendo a função de prova?",
+   "pergunta": "Para as datas de janeiro, o CTA deve ir para formulário ou página no link da bio, ou para WhatsApp? Afeta os posts de 2026-12-18 e 2026-12-28.",
+   "afeta": ""
+  },
+  {
+   "id": "q3",
+   "pergunta": "Temos um depoimento real e autorizado sobre Leitura de Aura ou Meditação das Rosas para o post de 2026-12-23, ou devo trocar esse conteúdo por um educativo sem prova?",
    "afeta": ""
   }
  ],
  "material": [
   {
-   "data": "2026-11-04",
-   "texto": "gravação da Jéssica em primeira pessoa"
+   "data": "2026-12-04",
+   "texto": "gravação curta da Jéssica em lote"
   },
   {
-   "data": "2026-11-11",
-   "texto": "gravação da Jéssica em primeira pessoa"
+   "data": "2026-12-11",
+   "texto": "gravação curta da Jéssica em lote"
   },
   {
-   "data": "2026-11-18",
-   "texto": "gravação ou narração da Jéssica com metáfora visual do computador"
+   "data": "2026-12-18",
+   "texto": "gravação curta da Jéssica em lote"
   },
   {
-   "data": "2026-11-20",
-   "texto": "depoimento autorizado de Leitura de Aura sobre clareza, autonomia ou reconhecimento de padrões"
+   "data": "2026-12-23",
+   "texto": "depoimento real e autorizado de cliente sobre Leitura de Aura, idealmente com reconhecimento de padrões e autonomia"
   },
   {
-   "data": "2026-11-23",
-   "texto": "gravação da Jéssica explicando o formato e os limites da leitura em grupo"
+   "data": "2026-12-28",
+   "texto": "gravação da Jéssica com imagens simples de bastidor ou rotina para narração"
   }
  ],
  "notion": "",
- "geradoEm": "29/10/2026",
+ "geradoEm": "04/11/2026",
  "posts": [
   {
-   "id": "4086e171536281b1b71ccfb65924942b",
-   "data": "2026-11-02",
-   "link": "https://app.notion.com/p/4086e171536281b1b71ccfb65924942b",
-   "campanha": "Perene · retomada do perfil e aumento de base · Direcionamento 29/10: apresentar a visão de espiritualidade aplicada à vida real",
-   "objetivo": [
-    "Aumentar a base"
-   ],
-   "tema": "A distância entre quem a pessoa aprendeu a ser e quem realmente é",
-   "angulo": "DOR / PROBLEMA",
-   "formato": "Carrossel",
-   "estrutura": "Comparativo",
-   "gancho": "Dizes que sim para não desiludir e só depois perguntas: «Mas eu queria esta vida?»",
-   "ganchos": [
-    "Dizes que sim para não desiludir e só depois perguntas: «Mas eu queria esta vida?»",
-    "Escolheste o que esperavam de ti. Quando te perguntam o que queres, sabes responder?",
-    "És sempre quem cede na família. É uma escolha tua ou o papel que aprendeste a cumprir?",
-    "Trabalho estável, família satisfeita. Porque sentes que estás a viver a vida de outra pessoa?",
-    "Quando escolhes sem pedir opinião à família, sentes liberdade ou culpa?"
-   ],
-   "cta": "partilhar com alguém que vive no modo expectativas",
-   "nivel": "N1 · Inconsciente",
-   "porque": "Abre o mês com topo de funil e a mensagem central do briefing: regressar a si exige consciência, presença e escolhas.",
-   "dependeDe": "",
-   "macro": "🤖 Gerado",
-   "cardNome": "A distância entre quem a pessoa aprendeu a ser e quem realmente é"
-  },
-  {
-   "id": "4086e171536281358b79c7d63f42bc53",
-   "data": "2026-11-04",
-   "link": "https://app.notion.com/p/4086e171536281358b79c7d63f42bc53",
-   "campanha": "Perene · retomada do perfil e conexão · Direcionamento 29/10: mostrar a pessoa por trás da marca",
-   "objetivo": [
-    "Gerar conexão"
-   ],
-   "tema": "O percurso da arquitetura e coordenação de equipas até assumir o trabalho espiritual",
-   "angulo": "STORYTELLING / EXPERIÊNCIA",
-   "formato": "Reels",
-   "estrutura": "Storytelling",
-   "gancho": "Eu aprendi a coordenar equipas antes de aprender a confiar no meu trabalho espiritual",
-   "ganchos": [
-    "Eu aprendi a coordenar equipas antes de aprender a confiar no meu trabalho espiritual",
-    "Eu tentava encaixar a minha sensibilidade numa vida racional. Como cheguei ao trabalho espiritual?",
-    "Como passei da arquitetura ao trabalho espiritual sem ter a certeza de estar pronta?",
-    "Da coordenação de equipas ao trabalho espiritual: como largar o papel de quem nunca falha?",
-    "Antes de assumir as leituras de aura, eu coordenava equipas. Como atravessei essa mudança?"
-   ],
-   "cta": "reflexão sobre que parte de si a pessoa aprendeu a esconder",
-   "nivel": "N2 · Consciente do problema",
-   "porque": "Cumpre a regra de pelo menos 1 conteúdo por semana mostrando a pessoa por trás da marca, sem transformar a vida pessoal no centro da comunicação.",
-   "dependeDe": "gravação da Jéssica em primeira pessoa",
-   "macro": "🤖 Gerado",
-   "cardNome": "O percurso da arquitetura e coordenação de equipas até assumir o trabalho espiritual"
-  },
-  {
-   "id": "4086e1715362817ea16cd9eac0d53858",
-   "data": "2026-11-06",
-   "link": "https://app.notion.com/p/4086e1715362817ea16cd9eac0d53858",
-   "campanha": "Perene · educação de base · Direcionamento 29/10: explicar o que é uma leitura de aura sem jargão",
-   "objetivo": [
-    "Educar"
-   ],
-   "tema": "O que uma leitura de aura não deve fazer: sentença, previsão ou dependência",
-   "angulo": "QUEBRA DE CRENÇA",
-   "formato": "Carrossel",
-   "estrutura": "Lista",
-   "gancho": "Saíste de uma leitura de aura a pensar «sou assim e não posso mudar»? Atenção a essa sentença.",
-   "ganchos": [
-    "Saíste de uma leitura de aura a pensar «sou assim e não posso mudar»? Atenção a essa sentença.",
-    "Depois de uma leitura de aura, ficaste com medo de decidir sem consultar quem te leu?",
-    "Numa leitura de aura, disseram-te como és. Mas deixaram espaço para discordares?",
-    "Mudaste uma decisão por medo de uma previsão feita numa leitura de aura?",
-    "Sentes que precisas de outra leitura de aura antes de cada decisão? Não confundas clareza com dependência."
-   ],
-   "cta": "salvar para rever antes de escolher uma leitura espiritual",
-   "nivel": "N2 · Consciente do problema",
-   "porque": "Cria compreensão e confiança antes de vender, respondendo à objeção de credibilidade e às linhas vermelhas da Orientação Estratégica.",
-   "dependeDe": "",
-   "macro": "🤖 Gerado",
-   "cardNome": "O que uma leitura de aura não deve fazer: sentença, previsão ou dependência"
-  },
-  {
-   "id": "4086e171536281a4a07ffd90fecedd60",
-   "data": "2026-11-09",
-   "link": "https://app.notion.com/p/4086e171536281a4a07ffd90fecedd60",
-   "campanha": "Perene · autoridade e diferenciação · Direcionamento 29/10: clarificar o valor específico da Leitura de Aura Multidimensional",
-   "objetivo": [
-    "Ancorar autoridade"
-   ],
-   "tema": "A diferença entre descrever sintomas e ler camadas de um padrão",
-   "angulo": "AUTORIDADE / VISÃO DE ESPECIALISTA",
-   "formato": "Carrossel",
-   "estrutura": "Pergunta e resposta",
-   "gancho": "Uma leitura de aura descreve a tua insegurança. Mas explica porque se repete no trabalho e no amor?",
-   "ganchos": [
-    "Uma leitura de aura descreve a tua insegurança. Mas explica porque se repete no trabalho e no amor?",
-    "Cedes no trabalho e nas relações. Numa leitura de aura, olho para o que liga essas escolhas.",
-    "Custa-te pedir um aumento e dizer não numa relação. Que padrão pode ligar as duas dificuldades?",
-    "Procuras uma leitura de aura por um conflito de hoje. E se o padrão já aparecer noutras relações?",
-    "Dizes «bloqueio» numa leitura de aura. Estás a falar de medo de escolher ou de culpa por dizer não?"
-   ],
-   "cta": "comentar qual padrão a pessoa percebe repetir em mais de uma área da vida",
-   "nivel": "N3 · Consciente da solução",
-   "porque": "Aprofunda a percepção de método próprio sem vender ainda, usando o diferencial descrito no briefing e no glossário.",
-   "dependeDe": "",
-   "macro": "🤖 Gerado",
-   "cardNome": "A diferença entre descrever sintomas e ler camadas de um padrão"
-  },
-  {
-   "id": "4086e17153628175ada1d8623c0b44ac",
-   "data": "2026-11-11",
-   "link": "https://app.notion.com/p/4086e17153628175ada1d8623c0b44ac",
-   "campanha": "Perene · quebra de objeção de entrada · Direcionamento 29/10: tornar o trabalho acessível para quem nunca ouviu falar",
-   "objetivo": [
-    "Quebrar objeção"
-   ],
-   "tema": "A pessoa não precisa sentir-se espiritual o suficiente para começar um caminho de autoconhecimento",
-   "angulo": "POSICIONAMENTO / OPINIÃO",
-   "formato": "Reels",
-   "estrutura": "Talking head",
-   "gancho": "Adias o autoconhecimento porque não percebes as palavras usadas na espiritualidade?",
-   "ganchos": [
-    "Adias o autoconhecimento porque não percebes as palavras usadas na espiritualidade?",
-    "«Não sou espiritual o suficiente.» Esse medo está a adiar o teu autoconhecimento?",
-    "Antes de começares a conhecer-te, procuras o significado de cada palavra espiritual. É mesmo preciso?",
-    "Ouves falar de energia e sentes que estás atrasada no teu caminho espiritual. Atrasada em relação a quem?",
-    "Entre trabalho, decisões e responsabilidades, onde cabe um caminho espiritual sem mudares de vida?"
-   ],
-   "cta": "partilhar com quem acha que espiritualidade é só para pessoas muito experientes",
-   "nivel": "N2 · Consciente do problema",
-   "porque": "Remove uma barreira de entrada importante do briefing e reforça o posicionamento de espiritualidade enraizada e sem hierarquia.",
-   "dependeDe": "gravação da Jéssica em primeira pessoa",
-   "macro": "🤖 Gerado",
-   "cardNome": "A pessoa não precisa sentir-se espiritual o suficiente para começar um caminho de autoconhecimento"
-  },
-  {
-   "id": "4086e171536281299df5f51678c90004",
-   "data": "2026-11-13",
-   "link": "https://app.notion.com/p/4086e171536281299df5f51678c90004",
-   "campanha": "Perene · aquecimento da Leitura em grupo · Direcionamento 29/10: preparar a demanda para a Leitura de Aura em grupo",
-   "objetivo": [
-    "Gerar desejo"
-   ],
-   "tema": "O que um processo em grupo pode abrir quando há espelhamento e segurança",
-   "angulo": "DESEJO / POSSIBILIDADE",
-   "formato": "Carrossel",
-   "estrutura": "Utilidade",
-   "gancho": "Numa leitura de aura em grupo, e se a pergunta de outra pessoa te ajudar a reconhecer um padrão teu?",
-   "ganchos": [
-    "Numa leitura de aura em grupo, e se a pergunta de outra pessoa te ajudar a reconhecer um padrão teu?",
-    "Numa leitura de aura em grupo, ouves falar do medo de desiludir. Porque te toca tanto?",
-    "Voltas à mesma pergunta sobre ti. O que pode mudar ao ouvi-la numa leitura de aura em grupo?",
-    "Tens receio de falar numa leitura de aura em grupo? Reconhecer-te pode começar por ouvir.",
-    "Prometes não voltar a ceder e cedes outra vez. Como olhar para esse padrão numa leitura de aura em grupo?"
-   ],
-   "cta": "reflexão sobre qual pergunta a pessoa levaria para uma experiência em grupo",
-   "nivel": "N3 · Consciente da solução",
-   "porque": "Faz a ponte para a venda da segunda quinzena sem anunciar do nada, seguindo a regra de produto com contexto.",
-   "dependeDe": "",
-   "macro": "🤖 Gerado",
-   "cardNome": "O que um processo em grupo pode abrir quando há espelhamento e segurança"
-  },
-  {
-   "id": "4086e171536281889735da36c73f148c",
-   "data": "2026-11-16",
-   "link": "https://app.notion.com/p/4086e171536281889735da36c73f148c",
-   "campanha": "Leitura de Aura Multidimensional em grupo 8/12 · venda inicial · Ponte de venda: situação de entrada → formato em grupo → próximo passo",
-   "objetivo": [
-    "Educar",
-    "Vender"
-   ],
-   "tema": "Leitura de Aura Multidimensional em grupo como porta de entrada para quem quer conhecer o trabalho",
-   "angulo": "SOLUÇÃO / EDUCAÇÃO",
-   "formato": "Carrossel",
-   "estrutura": "Lista",
-   "gancho": "Queres conhecer a Leitura de Aura Multidimensional, mas hesitas na sessão individual? Podes começar em grupo.",
-   "ganchos": [
-    "Queres conhecer a Leitura de Aura Multidimensional, mas hesitas na sessão individual? Podes começar em grupo.",
-    "Tens curiosidade pelo meu trabalho com a aura, mas não sabes se é para ti? Porquê começar em grupo?",
-    "Queres explorar a tua energia, mas não numa sessão individual? O que muda numa leitura de aura em grupo?",
-    "Numa leitura de aura em grupo, o que podes reconhecer em ti quando a pergunta vem de outra pessoa?",
-    "«Por onde começo?» Se queres conhecer o meu trabalho com a aura, vê o que uma leitura em grupo pode abrir."
-   ],
-   "cta": "formulário ou WhatsApp da Leitura de Aura Multidimensional em grupo de 8/12, canal de entrega a confirmar",
-   "nivel": "N4 · Consciente do produto",
-   "porque": "Primeiro post de venda da Leitura em grupo, exatamente a partir da segunda quinzena, como manda o direcionamento de 29/10.",
-   "dependeDe": "",
-   "macro": "🤖 Gerado",
-   "cardNome": "Leitura de Aura Multidimensional em grupo como porta de entrada para quem quer conhecer o trabalho"
-  },
-  {
-   "id": "4086e1715362818f96dde0a3da2eeea1",
-   "data": "2026-11-18",
-   "link": "https://app.notion.com/p/4086e1715362818f96dde0a3da2eeea1",
-   "campanha": "Leitura de Aura Multidimensional em grupo 8/12 · sustentação de autoridade · Diferencial do método: Frequências de Brilho como explicação acessível",
-   "objetivo": [
-    "Educar"
-   ],
-   "tema": "Frequências de Brilho explicadas pela metáfora do sistema operativo e dos programas herdados",
-   "angulo": "CAUSA / EXPLICAÇÃO",
-   "formato": "Reels",
-   "estrutura": "Metáfora visual",
-   "gancho": "Repites «na nossa família não se arrisca» e desistes de mudar? É como obedecer a um programa herdado.",
-   "ganchos": [
-    "Repites «na nossa família não se arrisca» e desistes de mudar? É como obedecer a um programa herdado.",
-    "Queres dizer não, mas ouves «a família vem primeiro». Quem instalou esse programa nas tuas escolhas?",
-    "A tua vida mudou, mas ainda decides pelas regras da família? Imagina um sistema operativo sem atualização.",
-    "Antes de aceitares um desafio, pensas «não sou capaz», como ouvias em casa? Esse programa ainda comanda?",
-    "Escolhes um caminho diferente do da família e sentes culpa? Que programa antigo continua ativo?"
-   ],
-   "cta": "salvar para rever a metáfora do sistema interior",
-   "nivel": "N3 · Consciente da solução",
-   "porque": "Explica um diferencial que aparece em todos os serviços sem transformar Frequências de Brilho em oferta de feed, como orientado no documento estratégico.",
-   "dependeDe": "gravação ou narração da Jéssica com metáfora visual do computador",
-   "macro": "🤖 Gerado",
-   "cardNome": "Frequências de Brilho explicadas pela metáfora do sistema operativo e dos programas herdados"
-  },
-  {
-   "id": "4086e1715362814f95edfcadcee4a8b6",
-   "data": "2026-11-20",
-   "link": "https://app.notion.com/p/4086e1715362814f95edfcadcee4a8b6",
-   "campanha": "Leitura de Aura Multidimensional em grupo 8/12 · prova e confiança · Prova com cuidado: clareza e autonomia, sem promessa de resultado",
-   "objetivo": [
-    "Ancorar autoridade"
-   ],
-   "tema": "Depoimento autorizado sobre uma leitura que gerou reconhecimento de padrões e autonomia",
-   "angulo": "PROVA / VALIDAÇÃO",
-   "formato": "Carrossel",
-   "estrutura": "Comentário / Print",
-   "gancho": "Antes de marcares uma leitura de aura por um depoimento, vê quem ficou a decidir: a pessoa ou o leitor.",
-   "ganchos": [
-    "Antes de marcares uma leitura de aura por um depoimento, vê quem ficou a decidir: a pessoa ou o leitor.",
-    "Lês um depoimento de leitura de aura. A pessoa ganhou clareza ou ficou com medo de decidir sem o leitor?",
-    "Ao leres um depoimento de leitura de aura, como distingues reconhecer um padrão de aceitar um rótulo?",
-    "Um depoimento promete que uma leitura de aura resolve a vida? É aí que eu paro de confiar na promessa.",
-    "Ao leres um depoimento de leitura de aura, reparas nas escolhas da pessoa ou só no entusiasmo?"
-   ],
-   "cta": "direct para quem quer perceber se a Leitura de Aura faz sentido para o seu momento",
-   "nivel": "N4 · Consciente do produto",
-   "porque": "Insere prova social antes da próxima venda, respeitando a regra da casa de usar depoimentos reais e autorizados.",
-   "dependeDe": "depoimento autorizado de Leitura de Aura sobre clareza, autonomia ou reconhecimento de padrões",
-   "macro": "🤖 Gerado",
-   "cardNome": "Depoimento autorizado sobre uma leitura que gerou reconhecimento de padrões e autonomia"
-  },
-  {
-   "id": "4086e171536281d3893fe1351875457e",
-   "data": "2026-11-23",
-   "link": "https://app.notion.com/p/4086e171536281d3893fe1351875457e",
-   "campanha": "Leitura de Aura Multidimensional em grupo 8/12 · venda com objeção · Objeção: medo de exposição e dúvida sobre formato em grupo",
+   "id": "40e6e17153628178abefed10cbbef7ad",
+   "data": "2026-12-02",
+   "link": "https://app.notion.com/p/40e6e17153628178abefed10cbbef7ad",
+   "campanha": "Leitura de Aura Multidimensional em grupo 08/12 · convite e decisão · Sem narrativa de projeto registrada; ponte tema para produto a partir da dúvida sobre formato em grupo",
    "objetivo": [
     "Quebrar objeção",
     "Vender"
    ],
-   "tema": "Como a leitura em grupo respeita limites, exposição e ritmo pessoal",
+   "tema": "Como escolher entre leitura em grupo e sessão individual",
    "angulo": "OBJEÇÃO / DECISÃO",
-   "formato": "Reels",
-   "estrutura": "POV",
-   "gancho": "Queres uma leitura de aura em grupo, mas receias ter de te expor? O teu ritmo não fica à porta.",
+   "formato": "Carrossel",
+   "estrutura": "Pergunta e resposta",
+   "gancho": "Queres fazer uma leitura de aura, mas não sabes se o formato em grupo faz sentido para ti?",
    "ganchos": [
-    "Queres uma leitura de aura em grupo, mas receias ter de te expor? O teu ritmo não fica à porta.",
-    "Se tens medo de mexer em questões internas à frente de outras pessoas, eu quero explicar como conduzo a leitura em grupo",
-    "Numa leitura em grupo, ninguém precisa contar a vida toda para viver uma experiência profunda",
-    "Numa leitura de aura em grupo, tens medo de ouvir uma pergunta a que não queres responder?",
-    "Antes de entrares numa leitura em grupo, precisas saber como eu cuido do limite de cada pessoa"
+    "Queres fazer uma leitura de aura, mas não sabes se o formato em grupo faz sentido para ti?",
+    "Receias ficar exposta numa leitura de aura em grupo? O que deves ponderar antes de decidir?",
+    "Numa leitura de aura em grupo, tens de contar a tua história à frente de todos?",
+    "Adias a leitura de aura por receio do grupo? A sessão individual é a única alternativa?",
+    "Como saber se a leitura de aura em grupo chega para este momento ou se precisas de uma sessão individual?"
    ],
-   "cta": "formulário ou WhatsApp da Leitura de Aura Multidimensional em grupo de 8/12, canal de entrega a confirmar",
+   "cta": "inscrição na Leitura de Aura Multidimensional em grupo de 8 de dezembro, online, via link da bio",
    "nivel": "N4 · Consciente do produto",
-   "porque": "Segunda venda da Leitura em grupo, intercalada depois de educação e prova, sem repetir o ângulo de compra direta.",
-   "dependeDe": "gravação da Jéssica explicando o formato e os limites da leitura em grupo",
+   "porque": "Abre dezembro com venda contextualizada da data de 8/12, respondendo à objeção de exposição e escolha de serviço prevista na orientação estratégica.",
+   "dependeDe": "",
    "macro": "🤖 Gerado",
-   "cardNome": "Como a leitura em grupo respeita limites, exposição e ritmo pessoal"
+   "cardNome": "Como escolher entre leitura em grupo e sessão individual"
   },
   {
-   "id": "4086e171536281a08de7f7793208859c",
-   "data": "2026-11-25",
-   "link": "https://app.notion.com/p/4086e171536281a08de7f7793208859c",
-   "campanha": "Curso Meditação das Rosas 12 e 13/12 · aquecimento com Natal · Gancho sazonal: convívios de fim de ano e fortalecimento energético",
+   "id": "40e6e171536281978e9ef5b397d4424c",
+   "data": "2026-12-04",
+   "link": "https://app.notion.com/p/40e6e171536281978e9ef5b397d4424c",
+   "campanha": "Leitura de Aura Multidimensional em grupo 08/12 · preparação de consciência · Mensagem central: autonomia, consciência e responsabilidade no trabalho espiritual",
    "objetivo": [
     "Educar"
    ],
-   "tema": "Como convívios de Natal podem ativar padrões antigos e pedir presença energética",
-   "angulo": "SOLUÇÃO / EDUCAÇÃO",
-   "formato": "Carrossel",
-   "estrutura": "Utilidade",
-   "gancho": "No Natal, basta um comentário da família para voltares a ser quem tenta agradar. Como sair desse papel?",
+   "tema": "Leitura espiritual não é previsão nem sentença",
+   "angulo": "POSICIONAMENTO / OPINIÃO",
+   "formato": "Reels",
+   "estrutura": "Talking head",
+   "gancho": "Vais adiar uma decisão até a leitura espiritual te dizer o que vai acontecer?",
    "ganchos": [
-    "No Natal, basta um comentário da família para voltares a ser quem tenta agradar. Como sair desse papel?",
-    "Se uma conversa de família te tira do centro em poucos minutos, prepara a tua energia antes de chegares",
-    "Entras no convívio de Natal com energia e sais exausta. Em que momento começaste a ceder para agradar?",
-    "Depois do Natal em família, estás exausta. Foi o convívio ou o esforço de engolir cada resposta?",
-    "Antes do Natal, pensas em como evitar conflitos à mesa. E em como cuidar da tua energia sem ceder sempre?"
+    "Vais adiar uma decisão até a leitura espiritual te dizer o que vai acontecer?",
+    "Sais de uma leitura espiritual a precisar de outra para conseguir decidir? Vale a pena parar aí.",
+    "Numa leitura espiritual, perguntas o que vai acontecer ou que escolha estás a evitar?",
+    "Numa leitura espiritual, pedes «diz-me o que fazer»? A minha resposta não é uma ordem.",
+    "Disseram-te numa leitura espiritual que o teu futuro está decidido. Tens de viver como se estivesse?"
    ],
-   "cta": "salvar para rever antes dos encontros de fim de ano",
-   "nivel": "N2 · Consciente do problema",
-   "porque": "Introduz o gancho de Natal da Meditação das Rosas no fim do mês, como pedido pela cliente no briefing.",
-   "dependeDe": "",
+   "cta": "guardar para rever antes de procurar uma leitura espiritual",
+   "nivel": "N3 · Consciente da solução",
+   "porque": "Prepara a venda de 8/12 sem repetir convite direto, reforçando a visão da Jéssica contra previsões, dependência e medo espiritual.",
+   "dependeDe": "gravação curta da Jéssica em lote",
    "macro": "🤖 Gerado",
-   "cardNome": "Como convívios de Natal podem ativar padrões antigos e pedir presença energética"
+   "cardNome": "Leitura espiritual não é previsão nem sentença"
   },
   {
-   "id": "4086e171536281088274e9ecf0db69aa",
-   "data": "2026-11-27",
-   "link": "https://app.notion.com/p/4086e171536281088274e9ecf0db69aa",
-   "campanha": "Curso Meditação das Rosas 12 e 13/12 · venda inicial · Ponte de venda: convívios intensos → prática de proteção e presença → turma de dezembro",
+   "id": "40e6e171536281ad8b8be218a926b337",
+   "data": "2026-12-07",
+   "link": "https://app.notion.com/p/40e6e171536281ad8b8be218a926b337",
+   "campanha": "Leitura de Aura Multidimensional em grupo 08/12 · véspera e convite final · Sem narrativa de projeto registrada; desejo de entrada segura no trabalho",
    "objetivo": [
     "Gerar desejo",
     "Vender"
    ],
-   "tema": "Curso Meditação das Rosas como preparação energética para os convívios de fim de ano",
+   "tema": "Leitura em grupo como porta de entrada para reconhecer padrões e potenciais",
    "angulo": "DESEJO / POSSIBILIDADE",
    "formato": "Carrossel",
-   "estrutura": "Pergunta e resposta",
-   "gancho": "Cedes para evitar discussões no Natal? Como preparar a tua energia com o Curso Meditação das Rosas.",
+   "estrutura": "Lista",
+   "gancho": "Vens à Leitura de Aura em grupo de amanhã saber o futuro? E as escolhas que continuas a repetir?",
    "ganchos": [
-    "Cedes para evitar discussões no Natal? Como preparar a tua energia com o Curso Meditação das Rosas.",
-    "Uma conversa de Natal deixa-te a remoer durante horas? Como preparar-te com a Meditação das Rosas.",
-    "Adias a Meditação das Rosas para Janeiro? Os convívios que te deixam exausta chegam antes.",
-    "O Natal em família deixa-te exausta? Prepara a tua energia na Meditação das Rosas online, a 12 e 13/12.",
-    "Depois de uma discussão no Natal, custa-te voltar ao teu centro? Como praticar com a Meditação das Rosas."
+    "Vens à Leitura de Aura em grupo de amanhã saber o futuro? E as escolhas que continuas a repetir?",
+    "Tentaste mudar, mas voltaste à mesma escolha? Leva esse padrão à Leitura de Aura em grupo de amanhã.",
+    "Leitura de Aura em grupo, 8 de dezembro: queres reconhecer padrões sem pedir que decidam por ti?",
+    "Na Leitura de Aura em grupo de amanhã, vais pedir mais uma opinião ou olhar para o potencial que adias?",
+    "Sabes o que queres, mas continuas a escolher o contrário? Amanhã há Leitura de Aura em grupo."
    ],
-   "cta": "página da Jornada das Rosas para o Curso Meditação das Rosas, online ao vivo, 12 e 13/12, pelo link da bio",
-   "nivel": "N4 · Consciente do produto",
-   "porque": "Abre a venda da Meditação das Rosas no fim do mês, com ponte natural a partir do conteúdo educativo anterior e sem colar duas vendas seguidas.",
+   "cta": "inscrição na Leitura de Aura Multidimensional em grupo de 8 de dezembro, online, via link da bio",
+   "nivel": "N5 · Totalmente consciente",
+   "porque": "Faz o convite final para a data de 8/12 com prazo real de véspera, sem urgência fabricada e com ponte clara entre dor, desejo e produto.",
    "dependeDe": "",
    "macro": "🤖 Gerado",
-   "cardNome": "Curso Meditação das Rosas como preparação energética para os convívios de fim de ano"
+   "cardNome": "Leitura em grupo como porta de entrada para reconhecer padrões e potenciais"
+  },
+  {
+   "id": "40e6e1715362810ab1bae6a8598aeddc",
+   "data": "2026-12-09",
+   "link": "https://app.notion.com/p/40e6e1715362810ab1bae6a8598aeddc",
+   "campanha": "Curso de Meditação das Rosas 12 e 13/12 · preparação para convívios de Natal · Preparação Meditação das Rosas; causa do problema: convívios ativam padrões antigos",
+   "objetivo": [
+    "Educar"
+   ],
+   "tema": "Convívios de Natal, padrões antigos e presença energética",
+   "angulo": "CAUSA / EXPLICAÇÃO",
+   "formato": "Carrossel",
+   "estrutura": "Utilidade",
+   "gancho": "Nos convívios de Natal, o teu corpo pode reagir a uma frase antiga antes de escolheres a tua resposta.",
+   "ganchos": [
+    "Nos convívios de Natal, o teu corpo pode reagir a uma frase antiga antes de escolheres a tua resposta.",
+    "A mesa de Natal pode ativar papéis que já não queres viver, mesmo quando entras na sala com boas intenções.",
+    "Se voltas de certos encontros familiares exausta, talvez não seja só cansaço social.",
+    "Uma pergunta à mesa de Natal e já estás a justificar-te? Repara no padrão antes de responderes.",
+    "Antes do convívio de Natal, já estás tensa só de imaginar a conversa? Como cuidar da tua energia?"
+   ],
+   "cta": "guardar para preparar os convívios de fim de ano com mais presença",
+   "nivel": "N2 · Consciente do problema",
+   "porque": "Intercala educação entre dois posts de venda e prepara naturalmente a ponte para a Meditação das Rosas, conforme orientação do gancho de Natal.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "Convívios de Natal, padrões antigos e presença energética"
+  },
+  {
+   "id": "40e6e17153628188a65ed0414b95cd1e",
+   "data": "2026-12-11",
+   "link": "https://app.notion.com/p/40e6e17153628188a65ed0414b95cd1e",
+   "campanha": "Curso de Meditação das Rosas 12 e 13/12 · véspera e convite · Sem narrativa de projeto registrada; objeção de não ser espiritual o suficiente",
+   "objetivo": [
+    "Quebrar objeção",
+    "Vender"
+   ],
+   "tema": "Meditação das Rosas para proteção, enraizamento e vida diária",
+   "angulo": "OBJEÇÃO / DECISÃO",
+   "formato": "Reels",
+   "estrutura": "Talking head",
+   "gancho": "Queres aprender a Meditação das Rosas, mas achas que não és espiritual o suficiente?",
+   "ganchos": [
+    "Queres aprender a Meditação das Rosas, mas achas que não és espiritual o suficiente?",
+    "Com trabalho, recados e família, onde cabe a Meditação das Rosas no teu dia?",
+    "Tropeças nos termos espirituais e adias a Meditação das Rosas? Não precisas de dominar esse vocabulário.",
+    "Os convívios deixam-te sem energia? Como levar a Meditação das Rosas para antes de te sentires drenada?",
+    "Sentes que só consegues proteger a tua energia se evitares pessoas? Onde entra a Meditação das Rosas?"
+   ],
+   "cta": "inscrição no Curso de Meditação das Rosas de 12 e 13 de dezembro, online ao vivo, pela página Jornada das Rosas no link da bio",
+   "nivel": "N4 · Consciente do produto",
+   "porque": "Converte para a turma de 12 e 13/12 respondendo à objeção de linguagem espiritual e mantendo a promessa enraizada, sem exagerar resultado.",
+   "dependeDe": "gravação curta da Jéssica em lote",
+   "macro": "🤖 Gerado",
+   "cardNome": "Meditação das Rosas para proteção, enraizamento e vida diária"
+  },
+  {
+   "id": "40e6e17153628109975bed76559b164d",
+   "data": "2026-12-14",
+   "link": "https://app.notion.com/p/40e6e17153628109975bed76559b164d",
+   "campanha": "Perene · Mensagem central da orientação: traduzir o espiritual para a vida real",
+   "objetivo": [
+    "Gerar conexão"
+   ],
+   "tema": "O percurso profissional que ajuda a traduzir o subtil com clareza",
+   "angulo": "STORYTELLING / EXPERIÊNCIA",
+   "formato": "Carrossel",
+   "estrutura": "Storytelling",
+   "gancho": "Quando ouves falar de energia, perguntas «mas como se aplica à vida?» Eu venho da arquitetura.",
+   "ganchos": [
+    "Quando ouves falar de energia, perguntas «mas como se aplica à vida?» Eu venho da arquitetura.",
+    "Uma explicação sobre energia parece-te vaga? A arquitetura ensinou-me a dar-lhe estrutura.",
+    "Perdes-te nas explicações sobre energia? Coordenar equipas ensinou-me a procurar clareza.",
+    "Quando ouves «espiritualidade», pensas em fugir da realidade? O meu percurso foi noutra direção.",
+    "Se precisas de um dicionário para acompanhar uma conversa sobre energia, a clareza ficou onde?"
+   ],
+   "cta": "comentar que parte da espiritualidade ainda parece difícil de trazer para a vida diária",
+   "nivel": "N1 · Inconsciente",
+   "porque": "Dá respiro depois das duas entregas de dezembro e cumpre a orientação de mostrar a pessoa por trás da marca, sem centrar o mês inteiro na transição profissional.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "O percurso profissional que ajuda a traduzir o subtil com clareza"
+  },
+  {
+   "id": "40e6e171536281fdaa17d5bfd65919a0",
+   "data": "2026-12-16",
+   "link": "https://app.notion.com/p/40e6e171536281fdaa17d5bfd65919a0",
+   "campanha": "Perene · Mensagem central da orientação: espiritualidade com enraizamento e responsabilidade",
+   "objetivo": [
+    "Aumentar a base"
+   ],
+   "tema": "Fuga espiritual versus presença na vida diária",
+   "angulo": "QUEBRA DE CRENÇA",
+   "formato": "Carrossel",
+   "estrutura": "Comparativo",
+   "gancho": "Meditas para ter paz, mas continuas a dizer sim quando queres dizer não? Onde fica o teu limite?",
+   "ganchos": [
+    "Meditas para ter paz, mas continuas a dizer sim quando queres dizer não? Onde fica o teu limite?",
+    "Meditar e continuar a evitar a conversa difícil também pode ser uma forma de fuga espiritual.",
+    "Se a tua espiritualidade só funciona quando ninguém te contraria, talvez não tenha chegado à vida diária.",
+    "Depois de meditar, ficas calada para evitar conflito? O silêncio é presença ou fuga?",
+    "Depois de meditar sobre uma escolha, continuas a adiá-la? O que muda quando sais da almofada?"
+   ],
+   "cta": "partilhar com alguém que também procura uma espiritualidade mais enraizada",
+   "nivel": "N1 · Inconsciente",
+   "porque": "Atrai público novo com um tema acessível e forte do posicionamento da Jéssica, sem depender de conhecimento prévio dos produtos.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "Fuga espiritual versus presença na vida diária"
+  },
+  {
+   "id": "40e6e17153628126a8b1f72996f6d22c",
+   "data": "2026-12-18",
+   "link": "https://app.notion.com/p/40e6e17153628126a8b1f72996f6d22c",
+   "campanha": "Leitura de Aura Multidimensional em grupo 10/01 · preparação e convite antecipado · Sem narrativa de projeto registrada; autoridade sobre a diferença da leitura multidimensional",
+   "objetivo": [
+    "Ancorar autoridade",
+    "Vender"
+   ],
+   "tema": "O que diferencia uma leitura de aura profunda de uma leitura genérica",
+   "angulo": "AUTORIDADE / VISÃO DE ESPECIALISTA",
+   "formato": "Reels",
+   "estrutura": "Talking head",
+   "gancho": "Numa leitura de aura, ouves quem deves ser ou reconheces um padrão nas escolhas que já fazes?",
+   "ganchos": [
+    "Numa leitura de aura, ouves quem deves ser ou reconheces um padrão nas escolhas que já fazes?",
+    "Vais à leitura de aura à espera de uma previsão? Repara se a conversa chega aos padrões que repetes.",
+    "Depois de uma leitura de aura, consegues olhar para uma escolha ou só queres que te digam o que fazer?",
+    "Numa leitura de aura, recebes uma descrição que serve a qualquer pessoa ou reconheces situações tuas?",
+    "Já saíste de uma leitura de aura sem perceber como se liga à tua vida? O que faltou nessa leitura?"
+   ],
+   "cta": "enviar direct para perceber se a Leitura de Aura Multidimensional em grupo de 10 de janeiro, online, faz sentido para este momento",
+   "nivel": "N4 · Consciente do produto",
+   "porque": "Retoma venda de forma intercalada e começa a preparar a data de janeiro com autoridade e clareza, uma necessidade central do briefing.",
+   "dependeDe": "gravação curta da Jéssica em lote",
+   "macro": "🤖 Gerado",
+   "cardNome": "O que diferencia uma leitura de aura profunda de uma leitura genérica"
+  },
+  {
+   "id": "40e6e171536281fd8f01de168c4aedb2",
+   "data": "2026-12-21",
+   "link": "https://app.notion.com/p/40e6e171536281fd8f01de168c4aedb2",
+   "campanha": "Perene · Mensagem central da orientação: não basta compreender, é preciso integrar",
+   "objetivo": [
+    "Educar"
+   ],
+   "tema": "Diferença entre compreender um padrão e integrar uma nova escolha",
+   "angulo": "TRANSFORMAÇÃO",
+   "formato": "Carrossel",
+   "estrutura": "Lista",
+   "gancho": "Já sabes por que te calas numa discussão. Porque continuas a calar-te quando queres pôr um limite?",
+   "ganchos": [
+    "Já sabes por que te calas numa discussão. Porque continuas a calar-te quando queres pôr um limite?",
+    "Já percebeste de onde vem o medo de rejeição. Porque te justificas a cada crítica?",
+    "Reconheces o medo de desagradar, mas voltas a dizer sim sem querer. Onde começa uma escolha diferente?",
+    "Sabes de onde vem a culpa, mas ela volta quando tentas pôr um limite. Como respondes sem ceder?",
+    "Consegues explicar a tua reação, mas voltas a levantar a voz na discussão. O que falta entre saber e agir?"
+   ],
+   "cta": "guardar para rever quando um padrão antigo voltar a aparecer",
+   "nivel": "N2 · Consciente do problema",
+   "porque": "Sustenta a linha editorial de integração e prepara a audiência para ver os serviços como processos de autonomia, não como respostas mágicas.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "Diferença entre compreender um padrão e integrar uma nova escolha"
+  },
+  {
+   "id": "40e6e1715362816ea2d2ead993f3ca44",
+   "data": "2026-12-23",
+   "link": "https://app.notion.com/p/40e6e1715362816ea2d2ead993f3ca44",
+   "campanha": "Leitura de Aura Multidimensional · prova e confiança para próximas datas · Prova social; reconhecimento de padrões e autonomia sem promessa de resultado",
+   "objetivo": [
+    "Ancorar autoridade"
+   ],
+   "tema": "Depoimento autorizado sobre uma leitura que gerou reconhecimento de padrões",
+   "angulo": "PROVA / VALIDAÇÃO",
+   "formato": "Carrossel",
+   "estrutura": "Comentário / Print",
+   "gancho": "Uma cliente reconheceu o próprio padrão na leitura de aura. Porque não saiu com uma decisão pronta?",
+   "ganchos": [
+    "Uma cliente reconheceu o próprio padrão na leitura de aura. Porque não saiu com uma decisão pronta?",
+    "Lês o depoimento de uma leitura de aura e perguntas: a cliente ficou mais autónoma ou mais dependente?",
+    "Como é reconhecer um padrão numa leitura de aura? Uma cliente descreveu a experiência no seu depoimento.",
+    "Vais à leitura de aura para te dizerem o que fazer? Lê o que uma cliente reconheceu por si.",
+    "Uma cliente descreveu a leitura de aura como reconhecimento. Quem ficou com a decisão nas mãos?"
+   ],
+   "cta": "enviar direct para conversar sobre a próxima Leitura de Aura Multidimensional em grupo",
+   "nivel": "N4 · Consciente do produto",
+   "porque": "Insere prova social depois de quase um mês do último depoimento citado no histórico e reforça confiança sem criar dependência da terapeuta.",
+   "dependeDe": "depoimento real e autorizado de cliente sobre Leitura de Aura, idealmente com reconhecimento de padrões e autonomia",
+   "macro": "🤖 Gerado",
+   "cardNome": "Depoimento autorizado sobre uma leitura que gerou reconhecimento de padrões"
+  },
+  {
+   "id": "40e6e1715362816a82e0f19c28dd88b9",
+   "data": "2026-12-28",
+   "link": "https://app.notion.com/p/40e6e1715362816a82e0f19c28dd88b9",
+   "campanha": "Curso de Meditação das Rosas 23 e 24/01 · preparação e convite antecipado · Desejo de começar janeiro com presença, proteção e prática integrada",
+   "objetivo": [
+    "Gerar desejo",
+    "Vender"
+   ],
+   "tema": "Depois dos convívios, aprender uma prática de cuidado energético para janeiro",
+   "angulo": "DESEJO / POSSIBILIDADE",
+   "formato": "Reels",
+   "estrutura": "B-roll + narração",
+   "gancho": "Voltaste dos convívios de dezembro sem energia? Em janeiro, como pode a Meditação das Rosas entrar no teu dia?",
+   "ganchos": [
+    "Voltaste dos convívios de dezembro sem energia? Em janeiro, como pode a Meditação das Rosas entrar no teu dia?",
+    "Queres começar a Meditação das Rosas em janeiro, mas já pensas «não vou conseguir praticar todos os dias»?",
+    "Em janeiro, queres reagir de outra forma nos convívios? Onde entra a Meditação das Rosas nessa preparação?",
+    "Depois dos convívios, descansas e continuas a sentir-te drenada? Como aprender a cuidar da tua energia em janeiro?",
+    "Como levas a Meditação das Rosas para um dia cheio de pessoas, sem precisares de fugir do convívio?"
+   ],
+   "cta": "inscrição no Curso de Meditação das Rosas de 23 e 24 de janeiro, online ao vivo, pela página Jornada das Rosas no link da bio",
+   "nivel": "N4 · Consciente do produto",
+   "porque": "Aproveita o pós Natal como ponte natural para a próxima turma de janeiro, mantendo venda semanal sem colar dois posts de venda.",
+   "dependeDe": "gravação da Jéssica com imagens simples de bastidor ou rotina para narração",
+   "macro": "🤖 Gerado",
+   "cardNome": "Depois dos convívios, aprender uma prática de cuidado energético para janeiro"
+  },
+  {
+   "id": "40e6e1715362810fb1b5dabfa27050d1",
+   "data": "2026-12-30",
+   "link": "https://app.notion.com/p/40e6e1715362810fb1b5dabfa27050d1",
+   "campanha": "Perene · Mensagem central da orientação: regressar a ti com consciência e escolhas concretas",
+   "objetivo": [
+    "Gerar conexão"
+   ],
+   "tema": "Fecho de ano com pergunta de identidade, essência e escolhas para 2027",
+   "angulo": "ASPIRAÇÃO / IDENTIDADE",
+   "formato": "Carrossel",
+   "estrutura": "Pergunta e resposta",
+   "gancho": "Ao escreveres as metas para 2027, deixas de fora o que queres por medo de desagradar?",
+   "ganchos": [
+    "Ao escreveres as metas para 2027, deixas de fora o que queres por medo de desagradar?",
+    "Na lista para o próximo ano, escreveste o que queres ou o que esperam de ti?",
+    "Mudas de opinião para caber em cada grupo? Que parte de ti fica de fora quando tentas agradar?",
+    "Ao reveres 2026, vês o medo de falhar a decidir por ti? Como queres escolher em 2027?",
+    "Prometes pôr limites em 2027, mas continuas a dizer sim sem querer. Que escolha estás a adiar?"
+   ],
+   "cta": "refletir sobre uma escolha concreta para viver com mais verdade em 2027",
+   "nivel": "N2 · Consciente do problema",
+   "porque": "Fecha o mês com conexão e posicionamento, sem depender de retrospectiva íntima, e deixa a audiência aquecida para janeiro.",
+   "dependeDe": "",
+   "macro": "🤖 Gerado",
+   "cardNome": "Fecho de ano com pergunta de identidade, essência e escolhas para 2027"
+  }
+ ],
+ "navMeses": [
+  {
+   "mes": "2026-11",
+   "nome": "Novembro",
+   "href": "/calendarios/jessica/2026-11/",
+   "atual": false
+  },
+  {
+   "mes": "2026-12",
+   "nome": "Dezembro",
+   "href": "/calendarios/jessica/2026-12/",
+   "atual": true
   }
  ]
 }</script>
@@ -778,7 +806,10 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     var ORD = P.map(function(p,i){ return i; }).sort(function(a,b){ return String(E[a].data||'9').localeCompare(String(E[b].data||'9')); });
     var nA = P.filter(function(p){return decisao(p)==='aprovado';}).length, nJ = P.filter(function(p){return decisao(p)==='ajustar';}).length, nC = P.filter(function(p){return !!comentario(p);}).length, nO = E.filter(objInvalido).length, nV = P.filter(validado).length;
 
-    var h = '<section class="visao" aria-label="Visão do mês"><div class="head"><span class="mes">'+esc(D.mes)+' · '+P.length+' conteúdos'+(D.marca?' · '+esc(D.marca):'')+'</span><h1>'+esc(D.cliente)+'</h1>'+(D.objetivo?'<p class="obj">'+esc(D.objetivo)+'</p>':'');
+    var navM = '';
+    if (D.navMeses && D.navMeses.length > 1) { var iM = D.navMeses.findIndex(function(m){ return m.atual; }); var ant = D.navMeses[iM-1], seg = D.navMeses[iM+1];
+      navM = '<nav class="meses-nav" aria-label="Outros meses">' + (ant ? '<a href="'+esc(ant.href)+'">‹ '+esc(ant.nome)+'</a>' : '<span class="vazio">‹</span>') + '<span class="lista">' + D.navMeses.map(function(m){ return m.atual ? '<span class="atual">'+esc(m.nome)+'</span>' : '<a href="'+esc(m.href)+'">'+esc(m.nome)+'</a>'; }).join('') + '</span>' + (seg ? '<a href="'+esc(seg.href)+'">'+esc(seg.nome)+' ›</a>' : '<span class="vazio">›</span>') + '</nav>'; }
+    var h = navM + '<section class="visao" aria-label="Visão do mês"><div class="head"><span class="mes">'+esc(D.mes)+' · '+P.length+' conteúdos'+(D.marca?' · '+esc(D.marca):'')+'</span><h1>'+esc(D.cliente)+'</h1>'+(D.objetivo?'<p class="obj">'+esc(D.objetivo)+'</p>':'');
     if (D.fio || D.ritmo) h += '<div class="strat">'+(D.fio?'<div><span>Leitura do mês</span><p>'+esc(D.fio)+'</p></div>':'')+(D.ritmo?'<div><span>Distribuição</span><p>'+esc(D.ritmo)+'</p></div>':'')+'</div>';
     h += '<div class="placar"><span>Fila da copy <b>'+(P.length-nA-nJ-nV)+'</b></span><span>🔁 Ajustar (volta pra copy) <b>'+nJ+'</b></span><span>✍️ Validados pela copy <b>'+nV+'</b></span><span>✅ Aprovados pela Denise <b>'+nA+'</b></span><span>💬 Com comentário <b>'+nC+'</b></span>'+(nO?'<span>⚠️ Objetivo a escolher <b>'+nO+'</b></span>':'')+'</div></div>';
 
