@@ -244,6 +244,19 @@ textarea.cta{border-left:3px solid var(--accent);font-style:italic}
 .datewhy{font-size:.92rem;background:var(--bg);border-radius:8px;padding:8px 12px}
 .datewhy b{color:var(--accent)}
 .falta{font-size:.9rem;color:var(--no);background:var(--no-soft);border-radius:8px;padding:8px 12px}
+/* 04/11/2026 (Ju): material do cliente anexado no post, pro robô usar na copy */
+.material{border:1px dashed var(--accent);background:var(--accent-soft);border-radius:12px;padding:12px 14px;display:grid;gap:10px}
+.material .dica{font-size:.88rem;color:var(--muted);margin:0}
+.material textarea{width:100%}
+.material .anexos{display:flex;flex-wrap:wrap;gap:10px}
+.material .anexo{position:relative;display:grid;gap:4px;width:120px;font-size:.78rem;color:var(--muted)}
+.material .anexo img{width:120px;height:120px;object-fit:cover;border-radius:8px;border:1px solid var(--line);background:var(--surface)}
+.material .anexo span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.material .anexo button{position:absolute;top:4px;right:4px;border:0;border-radius:999px;width:26px;height:26px;background:rgba(0,0,0,.65);color:#fff;cursor:pointer;font-size:13px;line-height:26px;padding:0}
+.material .subir{display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-weight:600;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;width:max-content}
+.material .subir input{display:none}
+.material .st{font-size:.85rem;color:var(--muted);margin:0}
+.mat .ok-mat{color:var(--yes);font-weight:600;font-style:normal;margin-left:6px}
 details.briefing{border:1px solid var(--line);border-radius:10px;padding:10px 14px}
 details.briefing summary{cursor:pointer;font-weight:600;color:var(--muted);font-size:.92rem}
 details.briefing .bgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px;padding-top:12px}
@@ -968,7 +981,8 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     x += '<div class="grid2">'+campo('tipoCta','Tipo de CTA','<select data-f="tipoCta"'+dis+'>'+opt(TIPOS_CTA, e.tipoCta||'')+'</select>')+campo('palavraChave','Palavra-chave (opcional, quando é pra comentar)','<input type="text" data-f="palavraChave" value="'+esc(e.palavraChave||'')+'" placeholder="ex.: AURA"'+dis+'>')+'</div>';
     x += campo('tema','Foco / tema','<input type="text" data-f="tema" value="'+esc(e.tema)+'"'+dis+'>');
     // 3) secundário
-    if (p.dependeDe) x += '<div class="campo"><span class="label">Material que precisa existir</span><p class="falta">'+esc(p.dependeDe)+'</p></div>';
+    if (p.dependeDe) x += '<div class="campo"><span class="label">Material que precisa existir</span><p class="falta">'+esc(p.dependeDe)+(temMaterial(p)?' <b style="color:var(--yes)">· ✓ material anexado</b>':'')+'</p></div>';
+    x += materialHtml(p, ro);
     if (Array.isArray(p.briefing) && p.briefing.length) x += '<details class="briefing"><summary>Briefing completo da copy ('+p.briefing.length+' itens: '+esc(p.briefing.map(function(b){return b.rotulo;}).join(', ').toLowerCase())+')</summary><div class="bgrid">'+p.briefing.map(function(b){ return '<div class="campo"><span class="label">'+esc(b.rotulo)+'</span><div class="txt">'+String(b.texto||'').split('\n').filter(Boolean).map(function(l){return '<p>'+esc(l)+'</p>';}).join('')+'</div></div>'; }).join('')+'</div></details>';
     // decisão + comentário
     var dec = decisao(p), vz = validado(p);
@@ -989,6 +1003,9 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
       inp.addEventListener('input', function(){ var k=inp.dataset.f; if (k==='data') return; if (k==='comentario'||k==='respostaCopy') { var o={}; o[k]=inp.value; setRev(p, o); } else setCampo(p, k, inp.value); });
       inp.addEventListener('change', function(){ var k=inp.dataset.f; if (k==='data'){ if (!/^\d{4}-\d{2}-\d{2}$/.test(inp.value)) return; setCampo(p, 'data', inp.value===p.data ? null : inp.value); renderBrief(); return; } if (k==='comentario'||k==='respostaCopy') { var o={}; o[k]=inp.value; setRev(p, o); } else setCampo(p, k, inp.value); });
     });
+    var tm = el.querySelector('[data-m="texto"]'); if (tm) tm.addEventListener('input', function(){ salvaMaterialTexto(p, tm.value); });
+    var fm = el.querySelector('[data-m="arquivo"]'); if (fm) fm.addEventListener('change', function(){ anexaArquivos(p, fm.files); fm.value = ''; });
+    el.querySelectorAll('[data-tira]').forEach(function(b){ b.onclick = function(){ tiraAnexo(p, b.dataset.tira); }; });
     el.querySelectorAll('.seg[data-single] button').forEach(function(b){ b.onclick = function(){ setCampo(p, b.parentNode.dataset.single, b.dataset.v); renderBrief(); }; });
     el.querySelectorAll('.seg[data-multi] button').forEach(function(b){ b.onclick = function(){ var cur = eff(p).objetivo.slice(); var v=b.dataset.v, ix=cur.indexOf(v); if (ix>=0) cur.splice(ix,1); else if (v==='Vender') cur = cur.filter(function(o){return o!=='Vender';}).slice(0,1).concat(['Vender']); else if (cur.indexOf('Vender')>=0) cur = [v,'Vender']; else cur = [v]; setCampo(p, 'objetivo', cur); renderBrief(); }; });
     el.querySelectorAll('.opc').forEach(function(b){ b.onclick = function(){ var g = ganchos(p)[+b.dataset.g]; setCampo(p, 'gancho', g===p.gancho ? null : g); renderBrief(); }; });
@@ -997,6 +1014,54 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
   }
 
   // ---------- pra decidir ----------
+  // ===== 04/11/2026 (Ju): material do cliente no post (texto + imagens) → Notion "Material do cliente" e "Materiais brutos" =====
+  function temMaterial(p){ return !!(String(p.material||'').trim() || (p.anexos||[]).length); }
+  function materialHtml(p, ro){
+    var an = p.anexos || [];
+    var h = '<div class="campo material" id="material"><span class="label">📎 Material do cliente (a IA usa na copy)</span>';
+    h += '<p class="dica">Pra depoimento, comentário, print ou antes e depois: cole o texto aqui e anexe a imagem. Quando o post for pra produção, a IA escreve a copy a partir disso. Anexe antes de aprovar; se a copy já foi escrita, peça pra refazer.</p>';
+    h += '<textarea data-m="texto" rows="3" placeholder="Ex.: Depoimento da Maria no WhatsApp (02/11): &quot;…&quot;. Pode colar o texto do jeito que o cliente mandou."'+(ro?' disabled':'')+'>'+esc(p.material||'')+'</textarea>';
+    if (an.length) h += '<div class="anexos">'+an.map(function(a){ return '<div class="anexo"><a href="'+esc(a.url)+'" target="_blank" rel="noopener"><img src="'+esc(a.url)+'" alt="'+esc(a.nome)+'" loading="lazy"></a><span title="'+esc(a.nome)+'">'+esc(a.nome)+'</span>'+(ro?'':'<button data-tira="'+esc(a.nome)+'" title="Tirar este anexo do card" aria-label="Tirar '+esc(a.nome)+'">✕</button>')+'</div>'; }).join('')+'</div>';
+    if (!ro) h += '<label class="subir">📎 Anexar imagem (print, foto, antes e depois)<input type="file" accept="image/jpeg,image/png,image/webp" multiple data-m="arquivo"></label>';
+    h += '<p class="st" id="material-st"></p></div>';
+    return h;
+  }
+  var materialTimer = null;
+  function materialSt(t){ var s = document.getElementById('material-st'); if (s) s.textContent = t; }
+  function salvaMaterialTexto(p, v){
+    p.material = v; MAT_TOCADO[p.id] = 1; clearTimeout(materialTimer);
+    materialTimer = setTimeout(function(){ if (!API) return; materialSt('salvando…');
+      apiPost({tipo:'material', id:p.id, texto:v}).then(function(r){ materialSt(r && r.ok ? 'texto salvo no card ✓' : 'não salvou: ' + ((r && r.erro) || 'erro')); renderTopoSeguro(); }).catch(function(){ materialSt('não salvou agora (rede). Tente de novo.'); }); }, 1200);
+  }
+  function reduzImagem(file){ // imagem grande vira JPEG de até 1800 px (print continua legível e o envio fica leve)
+    return new Promise(function(res, rej){
+      var fr = new FileReader(); fr.onerror = function(){ rej(new Error('não li o arquivo')); };
+      fr.onload = function(){ var img = new Image(); img.onerror = function(){ rej(new Error('não é imagem')); };
+        img.onload = function(){ var M = 1800, w = img.width, h = img.height, k = Math.min(1, M / Math.max(w, h));
+          if (k === 1 && file.size < 2.5 * 1024 * 1024) { res({ base64: String(fr.result).split(',')[1], mime: file.type, nome: file.name }); return; }
+          var c = document.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(h * k); var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, c.width, c.height); g.drawImage(img, 0, 0, c.width, c.height);
+          res({ base64: c.toDataURL('image/jpeg', 0.86).split(',')[1], mime: 'image/jpeg', nome: file.name.replace(/\.[^.]+$/, '') + '.jpg' }); };
+        img.src = fr.result; };
+      fr.readAsDataURL(file); });
+  }
+  async function anexaArquivos(p, files){
+    if (!API) { materialSt('anexo só funciona na página publicada.'); return; }
+    var lista = Array.prototype.slice.call(files || []); if (!lista.length) return;
+    for (var i = 0; i < lista.length; i++){
+      var f = lista[i]; materialSt('enviando ' + (i+1) + ' de ' + lista.length + ': ' + f.name + '…');
+      try { var x = await reduzImagem(f); var r = await apiPost({tipo:'anexo', id:p.id, nome:x.nome, mime:x.mime, base64:x.base64});
+        if (!r || !r.ok) { materialSt('não anexou ' + f.name + ': ' + ((r && r.erro) || 'erro')); return; }
+        p.anexos = r.anexos || p.anexos; MAT_TOCADO[p.id] = 1;
+      } catch(e){ materialSt('não anexou ' + f.name + ' (' + ((e && e.message) || 'rede') + ').'); return; }
+    }
+    renderBrief(); materialSt('anexado no card ✓'); renderTopoSeguro();
+  }
+  function tiraAnexo(p, nome){
+    if (!confirm('Tirar "' + nome + '" deste post?\n\nA imagem sai do card no Notion.')) return;
+    materialSt('tirando…');
+    apiPost({tipo:'tira-anexo', id:p.id, nome:nome}).then(function(r){ if (!r || !r.ok) { materialSt('não tirou: ' + ((r && r.erro) || 'erro')); return; } p.anexos = r.anexos || []; MAT_TOCADO[p.id] = 1; renderBrief(); materialSt('tirado ✓'); renderTopoSeguro(); }).catch(function(){ materialSt('não tirou agora (rede).'); });
+  }
+  var MAT_TOCADO = {};
   function renderDecidir(){
     var ro = (modo!=='edita'), dis = ro?' disabled':'';
     var x = '';
@@ -1005,7 +1070,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
       D.decidir.forEach(function(q){ x += '<div class="perg"><span class="q">'+esc(q.pergunta)+'</span>'+(q.afeta?'<span class="af">Afeta: '+esc(q.afeta)+'</span>':'')+'<textarea data-q="'+esc(q.id)+'" rows="1" placeholder="Sua resposta"'+dis+'>'+esc((DEC[q.id]||{}).resposta||'')+'</textarea></div>'; });
     }
     if ((D.material||[]).length){
-      x += '<div><span class="label">Material que falta pra produzir (pendência da equipe, não sua)</span><div class="mat" style="margin-top:6px">'+D.material.map(function(m){ var d=pd(m.data); return '<span><b>'+(d?two(d.getDate())+'/'+two(d.getMonth()+1):'')+'</b>'+esc(m.texto)+'</span>'; }).join('')+'</div></div>';
+      x += '<div><span class="label">Material que falta pra produzir (pendência da equipe, não sua)</span><div class="mat" style="margin-top:6px">'+D.material.map(function(m){ var d=pd(m.data); var pm = P.filter(function(q){ return q.data===m.data; })[0]; return '<span><b>'+(d?two(d.getDate())+'/'+two(d.getMonth()+1):'')+'</b>'+esc(m.texto)+(pm && temMaterial(pm)?'<em class="ok-mat">✓ anexado</em>':'')+'</span>'; }).join('')+'</div></div>';
     }
     x += '<p class="rodape">Calendário gerado pelo robô em '+esc(D.geradoEm||'')+' a partir do Notion da cliente. '+(D.notion?'<a href="'+esc(D.notion)+'" target="_blank" rel="noopener">Pendências no Notion</a>. ':'')+''+(mcp ? 'Decisões, comentários e campos que você muda aqui vão direto pros cards; as respostas vão pra página de pendências.' : 'O que você mudar aqui fica salvo e vai pro Notion na próxima sincronização.')+'</p>';
     var el = document.getElementById('decidir'); el.innerHTML = x;
@@ -1225,6 +1290,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
       var r = REV[c.id] = REV[c.id] || {}; r.campos = r.campos || {};
       CAMPOS_VIVOS.forEach(function(k){ var v = c[k]; if (v === undefined || v === null) return; if (k==='objetivo' && !Array.isArray(v)) v = v ? [v] : []; var orig = p[k]; if (k==='objetivo' && !Array.isArray(orig)) orig = orig ? [orig] : []; if (JSON.stringify(v) !== JSON.stringify(orig)) { if (!(TOCADOS[c.id]||{})[k]) r.campos[k] = v; } else if (!(TOCADOS[c.id]||{})[k]) delete r.campos[k]; });
       if (Array.isArray(c.ganchos) && c.ganchos.length >= 2) p.ganchos = c.ganchos;
+      if (!MAT_TOCADO[c.id]) { p.material = c.material || ''; p.anexos = c.anexos || []; } // 04/11/2026: material do cliente
       p.macro = c.macro || ''; p.cardNome = c.cardNome || p.cardNome; if (c.campanha) p.campanha = c.campanha; if (c.angulo) p.angulo = c.angulo;
       r.decisao = DEC_MAP[c.macro] || '';
       if (c.obs !== undefined){ var m1 = /Denise:\s*([\s\S]*?)(?=\n\nCopy:|$)/.exec(c.obs||''); var m2 = /Copy:\s*([\s\S]*?)$/.exec(c.obs||''); r.comentario = m1 ? m1[1].trim() : ''; r.respostaCopy = m2 ? m2[1].trim() : ''; }
