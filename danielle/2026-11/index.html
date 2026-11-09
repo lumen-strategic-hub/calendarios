@@ -1429,7 +1429,7 @@ h2 .svc{font-size:.45em;vertical-align:.35em}
 <div class="wrap" id="app"></div>
 
 <script>
-function servico(p){ var s=String((p&&(p.servico||p.campanha))||'');
+function servico(p){ var s=String((p&&p.servico)||''); if(!s){ var c=String((p&&p.campanha)||''); if(/^(Servi[cç]o|Frente \(Ju\))/i.test(c)) s=c; }
   if (/mentoria/i.test(s)) return ['Mentoria','var(--s-mentoria)'];
   if (/leitura/i.test(s)) return ['Leitura Áurica','var(--s-leitura)'];
   if (/ra[ií]zes/i.test(s)) return ['Raízes e Asas','var(--s-raizes)'];
