@@ -309,6 +309,14 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
   .cell .cod{font-size:.56rem}
 }
 @media (prefers-reduced-motion: reduce){*{scroll-behavior:auto}}
+
+/* sinalização do serviço antes do título */
+:root{--s-mentoria:#8A4FB0;--s-leitura:#B9790B;--s-raizes:#2F7D4F}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--s-mentoria:#C49BE3;--s-leitura:#E3A93E;--s-raizes:#7FCB9C}}
+:root[data-theme="dark"]{--s-mentoria:#C49BE3;--s-leitura:#E3A93E;--s-raizes:#7FCB9C}
+.svc{display:inline-block;font-size:.62em;font-weight:700;letter-spacing:.04em;text-transform:uppercase;line-height:1;padding:3px 6px;border-radius:999px;color:var(--svc);background:color-mix(in srgb,var(--svc) 14%,transparent);border:1px solid color-mix(in srgb,var(--svc) 40%,transparent);margin:0 6px 3px 0;vertical-align:middle;white-space:nowrap}
+.cell .svc{font-size:.5rem;padding:2px 5px;margin:0 0 3px 0;display:table}
+h2 .svc{font-size:.45em;vertical-align:.35em}
 </style>
 </head><body>
 
@@ -832,6 +840,13 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
 <div class="wrap" id="app"></div>
 
 <script>
+function servico(p){ var s=String((p&&(p.servico||p.campanha))||'');
+  if (/mentoria/i.test(s)) return ['Mentoria','var(--s-mentoria)'];
+  if (/leitura/i.test(s)) return ['Leitura Áurica','var(--s-leitura)'];
+  if (/ra[ií]zes/i.test(s)) return ['Raízes e Asas','var(--s-raizes)'];
+  return null; }
+function svcTag(p){ var s=servico(p); return s?'<span class="svc" style="--svc:'+s[1]+'">'+s[0]+'</span>':''; }
+
 (function(){
   var D;
   try { D = JSON.parse(document.getElementById('dados').textContent); }
@@ -956,7 +971,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
         var dw = new Date(y,mn-1,k).getDay(), we = (dw===0||dw===6)?' we':''; var sem = Math.floor((lead + k - 1) / 7);
         if (byDay[k]){ h += '<div class="cell post p-'+pa.id+we+(byDay[k].length>1?' dupla':'')+'" data-dia="'+y+'-'+two(mn)+'-'+two(k)+'"><span class="top"><span class="n">'+two(k)+'</span>'+(byDay[k].length>1?'<span class="dec">'+byDay[k].length+' posts</span>':'')+(modo==='edita'?'<button class="add" data-add="'+y+'-'+two(mn)+'-'+two(k)+'" title="Adicionar outro post neste dia">＋</button>':'')+'</span>';
           byDay[k].forEach(function(ix){ var p=P[ix], e=E[ix]; var cor='var(--accent)', txt='', alerta='';
-          var tema = '<span class="tema">'+esc(e.tema)+'</span>';
+          var tema = '<span class="tema">'+svcTag(p)+esc(e.tema)+'</span>';
           if (pa.id==='dias'){ txt=tema; }
           else if (pa.id==='formato'){ cor=corFmt(e.formato); txt='<span class="dim">'+esc(e.formato||'sem formato')+'</span>'+tema; }
           else if (pa.id==='objetivo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join('<br>') || 'sem objetivo')+'</span>'+tema; alerta = objInvalido(e)?'⚠️':''; }
@@ -1027,7 +1042,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
       h += '<button class="row" data-i="'+i+'" aria-pressed="false"><span class="day">'+(d?'<span class="dwl">'+DOW[d.getDay()]+'</span><span class="dn">'+two(d.getDate())+'/'+two(d.getMonth()+1)+(mudou(p,'data')?' <span class="edit-mark" title="data alterada">📅</span>':'')+'</span>':'<span class="dn">sem data</span>')+gap+'</span>';
       h += '<span class="tile" style="--cor:'+corFmt(e.formato)+'" title="'+esc(e.formato)+'">'+icon(e.formato)+'</span>';
       h += '<span class="kind">'+e.objetivo.map(function(o){ return '<span class="chip" style="--cor:'+corObj(o)+'"><span class="dot"></span>'+esc(nomeObj(o))+'</span>'; }).join('')+'<span class="fmt">'+esc(e.formato)+' · '+esc(e.estrutura)+'</span></span>';
-      h += '<span class="what"><span class="t">'+(temEdicao(p)?'<span class="edit-mark" title="editado">✎ </span>':'')+esc(e.tema)+'</span>'+(p.campanha?'<span class="w">'+esc(p.campanha)+(p.porque?' · '+esc(p.porque):'')+'</span>':(p.porque?'<span class="w">'+esc(p.porque)+'</span>':''))+'</span>';
+      h += '<span class="what"><span class="t">'+(temEdicao(p)?'<span class="edit-mark" title="editado">✎ </span>':'')+svcTag(p)+esc(e.tema)+'</span>'+(p.campanha?'<span class="w">'+esc(p.campanha)+(p.porque?' · '+esc(p.porque):'')+'</span>':(p.porque?'<span class="w">'+esc(p.porque)+'</span>':''))+'</span>';
       h += '<span class="st">'+(objInvalido(e)?'⚠️':'')+stIcon(p)+'</span></button>';
     });
     h += '</div><p class="hintline">Clique num dia ou numa linha: o post abre logo abaixo. Copy: escolhe o gancho, ajusta o que precisar e valida. Denise: aprova ou dá feedback em cima.</p></section>';
@@ -1046,7 +1061,7 @@ details.briefing .txt{display:grid;gap:6px;font-size:.95rem}
     var campo = function(k, lbl, inner){ var m = mudou(p,k); return '<div class="campo'+(m?' mudou':'')+'" data-k="'+k+'"><div class="lbl"><span class="label">'+lbl+'</span>'+(m&&!ro?'<button class="orig" data-restaura="'+k+'">↺ voltar ao original</button>':'')+'</div>'+inner+(m?'<p class="was">Original: '+esc(Array.isArray(p[k])?p[k].join(' + '):p[k])+'</p>':'')+'</div>'; };
     var x = '<header class="brief-head"><div class="brief-top"><span class="label">Post '+two(pos+1)+' de '+two(P.length)+'</span><button class="fechar-topo" data-fechar="1" title="Fechar este post">✕ Fechar</button></div>';
     x += '<div class="meta">'+(bd?'<span><b>'+DOWL[bd.getDay()]+', '+two(bd.getDate())+'/'+two(bd.getMonth()+1)+'</b></span>':'')+(p.campanha?'<span>'+esc(p.campanha)+'</span>':'')+(p.macro?'<span>No Notion: '+esc(p.macro)+'</span>':'')+'</div>';
-    x += '<h2>'+esc(e.tema)+'</h2>'+(p.porque?'<p class="datewhy"><b>Por que este post nesta data:</b> '+esc(p.porque)+'</p>':'')+'</header>';
+    x += '<h2>'+svcTag(p)+esc(e.tema)+'</h2>'+(p.porque?'<p class="datewhy"><b>Por que este post nesta data:</b> '+esc(p.porque)+'</p>':'')+'</header>';
     x += campo('data','Data da postagem (mude aqui se preferir outro dia)','<input type="date" data-f="data" value="'+esc(e.data)+'" min="'+esc(String(e.data||'').slice(0,7))+'-01"'+dis+'>');
 
     // 1) o que a Denise olha primeiro: objetivo, estrutura, formato
