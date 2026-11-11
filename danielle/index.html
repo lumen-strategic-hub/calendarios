@@ -939,8 +939,8 @@ function svcTag(p){ var s=servico(p); return s?'<span class="svc" style="--svc:'
     var min = function(t){ return t.charAt(0).toLowerCase()+t.slice(1); };
     return s.replace(/\{([^{}]+)\}/g, function(tudo, k){
       k = k.trim();
-      if (k === 'posts') return String(V.length);
-      if (k === 'formatos') { var c = {}; V.forEach(function(x){ var fm = x.e.formato || 'sem formato'; c[fm] = (c[fm]||0)+1; }); var ord = Object.keys(c).sort(function(a,b){ return c[b]-c[a]; }); return listaE(ord.map(function(fm){ var pl = FMT_PL[fm] || [fm.toLowerCase(), fm.toLowerCase()]; return c[fm]+' '+(c[fm]===1 ? pl[0] : pl[1]); })); }
+      if (k === 'posts') return String(V.filter(function(x){ return !!x.e.formato; }).length);
+      if (k === 'formatos') { var c = {}; V.forEach(function(x){ var fm = x.e.formato; if (!fm) return; c[fm] = (c[fm]||0)+1; }); var ord = Object.keys(c).sort(function(a,b){ return c[b]-c[a]; }); return listaE(ord.map(function(fm){ var pl = FMT_PL[fm] || [fm.toLowerCase(), fm.toLowerCase()]; return c[fm]+' '+(c[fm]===1 ? pl[0] : pl[1]); })); }
       if (k === 'reacts') return datasDe(V.filter(ehReact));
       if (k === 'n_reacts') return String(V.filter(ehReact).length);
       if (k === 'servicos') { var gs = grupos(svc); return gs.length ? gs.map(function(g){ return datasDe(g[1])+' '+g[0]; }).join(', ') : 'nenhum'; }
