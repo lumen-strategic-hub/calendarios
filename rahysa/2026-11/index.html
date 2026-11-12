@@ -131,6 +131,7 @@ button{font:inherit}
 .cell .dim{display:block}
 .cell .tema{display:block;font-size:.68rem;font-weight:500;color:var(--ink);line-height:1.2;overflow-wrap:anywhere}
 .cell.p-dias .tema{font-weight:600}
+.cell .tema{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:5;overflow:hidden}
 .cell.p-dias{background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
 .cell.p-formato{background:color-mix(in srgb,var(--cor) 12%,var(--surface))}
 .cell.p-objetivo{background:color-mix(in srgb,var(--cor) 10%,var(--surface))}
@@ -1181,7 +1182,7 @@ function svcTag(p){ var s=servico(p); return s?'<span class="svc" style="--svc:'
     var dc = [0,0,0,0,0,0,0]; E.forEach(function(e){ var d=pd(e.data); if(d) dc[d.getDay()]++; });
 
     var PASSOS = [
-      { id:'dias', titulo:'Os dias estão certos?', sub:'Cada dia com post mostra o tema. Confira se caem nos dias que a cliente publica.' },
+      { id:'dias', titulo:'Os dias estão certos?', sub:'Cada dia com post mostra o gancho escolhido (o tema aparece ao passar o mouse). Confira se caem nos dias que a cliente publica.' },
       { id:'formato', titulo:'Carrossel e reels estão bem distribuídos?', sub:'Formato + tema: o formato combina com o que o post vai contar?' },
       { id:'objetivo', titulo:'Os objetivos estão bem distribuídos?', sub:'Objetivo + tema: o objetivo está de acordo com o tema? Um por post; dois só quando um é Vender.' },
       { id:'estrutura', titulo:'As estruturas criativas estão variadas?', sub:'Estrutura + tema: a estrutura serve pra esse tema?' },
@@ -1203,7 +1204,7 @@ function svcTag(p){ var s=servico(p); return s?'<span class="svc" style="--svc:'
         var dw = new Date(y,mn-1,k).getDay(), we = (dw===0||dw===6)?' we':''; var sem = Math.floor((lead + k - 1) / 7);
         if (byDay[k]){ h += '<div class="cell post p-'+pa.id+we+(byDay[k].length>1?' dupla':'')+'" data-dia="'+y+'-'+two(mn)+'-'+two(k)+'"><span class="top"><span class="n">'+two(k)+'</span>'+(byDay[k].length>1?'<span class="dec">'+byDay[k].length+' posts</span>':'')+(modo==='edita'?'<button class="add" data-add="'+y+'-'+two(mn)+'-'+two(k)+'" title="Adicionar outro post neste dia">＋</button>':'')+'</span>';
           byDay[k].forEach(function(ix){ var p=P[ix], e=E[ix]; var cor='var(--accent)', txt='', alerta='';
-          var tema = '<span class="tema">'+svcTag(p)+esc(e.tema)+'</span>';
+          var tema = '<span class="tema" title="'+esc(e.tema)+'">'+svcTag(p)+esc(e.gancho||e.tema)+'</span>'; // Paula 11/11/2026: no calendário aparece o gancho escolhido, não o tema
           if (pa.id==='dias'){ txt=tema; }
           else if (pa.id==='formato'){ cor=corFmt(e.formato); txt='<span class="dim">'+esc(e.formato||'sem formato')+'</span>'+tema; }
           else if (pa.id==='objetivo'){ cor=corObj(e.objetivo[0]); txt='<span class="dim">'+(e.objetivo.map(function(o){ return '<span style="color:'+corObj(o)+'">'+esc(nomeObj(o))+'</span>'; }).join('<br>') || 'sem objetivo')+'</span>'+tema; alerta = objInvalido(e)?'⚠️':''; }
@@ -1274,7 +1275,7 @@ function svcTag(p){ var s=servico(p); return s?'<span class="svc" style="--svc:'
       h += '<button class="row" data-i="'+i+'" aria-pressed="false"><span class="day">'+(d?'<span class="dwl">'+DOW[d.getDay()]+'</span><span class="dn">'+two(d.getDate())+'/'+two(d.getMonth()+1)+(mudou(p,'data')?' <span class="edit-mark" title="data alterada">📅</span>':'')+'</span>':'<span class="dn">sem data</span>')+gap+'</span>';
       h += '<span class="tile" style="--cor:'+corFmt(e.formato)+'" title="'+esc(e.formato)+'">'+icon(e.formato)+'</span>';
       h += '<span class="kind">'+e.objetivo.map(function(o){ return '<span class="chip" style="--cor:'+corObj(o)+'"><span class="dot"></span>'+esc(nomeObj(o))+'</span>'; }).join('')+'<span class="fmt">'+esc(e.formato)+' · '+esc(e.estrutura)+'</span></span>';
-      h += '<span class="what"><span class="t">'+(temEdicao(p)?'<span class="edit-mark" title="editado">✎ </span>':'')+svcTag(p)+esc(e.tema)+'</span>'+(p.campanha?'<span class="w">'+esc(p.campanha)+(p.porque?' · '+esc(p.porque):'')+'</span>':(p.porque?'<span class="w">'+esc(p.porque)+'</span>':''))+'</span>';
+      h += '<span class="what"><span class="t">'+(temEdicao(p)?'<span class="edit-mark" title="editado">✎ </span>':'')+svcTag(p)+esc(e.gancho||e.tema)+'</span>'+(p.campanha?'<span class="w">'+esc(p.campanha)+(p.porque?' · '+esc(p.porque):'')+'</span>':(p.porque?'<span class="w">'+esc(p.porque)+'</span>':''))+'</span>';
       h += '<span class="st">'+(objInvalido(e)?'⚠️':'')+stIcon(p)+'</span></button>';
     });
     h += '</div><p class="hintline">Clique num dia ou numa linha: o post abre logo abaixo. Copy: escolhe o gancho, ajusta o que precisar e valida. Denise: aprova ou dá feedback em cima.</p></section>';
